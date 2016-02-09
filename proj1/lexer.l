@@ -4,7 +4,6 @@
 #include "token.h"
 
 #define LIMIT1 500
-#define LIMIT2 100
 
 extern int yycolumn, yylength, yyline, yylval;
 extern char symbolTable[LIMIT1];
@@ -16,7 +15,7 @@ void string_table(char str[]);
 int search(char str[]);
 int insert(char str[]);
 
-char string_buf[LIMIT2];
+char string_buf[LIMIT1];
 char *string_buf_ptr;
 int str_error = 0;
 %}

@@ -866,7 +866,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case YY_STATE_EOF(comment):
 #line 43 "lexer.l"
-{report_error("Non-terminated Comment"); 
+{report_error("Unterminated Comment"); 
 						 BEGIN(INITIAL);}
 	YY_BREAK
 case 5:
