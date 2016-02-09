@@ -1,0 +1,11 @@
+/* Example 1: A hello world program 
+******* ASD */
+program xyz;
+	class Test {
+		method void main() {
+			System.println('Hello World !!!');
+			System.PRINTLN('println');
+			int abc := 1234;
+			int ab?cd;
+		}
+	}

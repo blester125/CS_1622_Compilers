@@ -1,0 +1,6 @@
+/* Example Comment */
+program xyz;
+	class Test {
+		method void main() {
+		}
+	}
