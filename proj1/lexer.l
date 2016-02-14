@@ -30,7 +30,6 @@ newline					[\n]
 ICONSTnum				([1-9]{digit}*|0)
 IDnum					{letter}({letter}|{digit})*
 BADIDnum				{digit}({letter}|{digit})*
-SCONSTnum				\'(\\.|[^\\'])*\'
 
 %%
 
@@ -84,31 +83,25 @@ SCONSTnum				\'(\\.|[^\\'])*\'
 						 return(ICONSTnum);}
 
 \'						{string_buf_ptr = string_buf;
+						 pos();
 						 *string_buf_ptr++ = '\'';						
 						 BEGIN(str);}
 <str>{
 	\'					{ /* Closing Quote, all done  */
                             *string_buf_ptr++ = '\'';
+							pos();
 							BEGIN(INITIAL);
 							*string_buf_ptr = '\0';
-							if (str_error == 0) {
-								yycolumn += strlen(string_buf);
-								string_table(string_buf);
-								return(SCONSTnum);
-							} else {
-								yycolumn += str_error;
-								str_error = 0;
-							}
+							string_table(string_buf);
+							return(SCONSTnum);
 						}
-	\n					{yyline++; yycolumn = 0; report_error("Unterminated String"); str_error = 1; }
-	\\n					*string_buf_ptr++ = '\n';
-	\\t					*string_buf_ptr++ = '\t';
-	\\\'				*string_buf_ptr++ = '\'';
+	\n					pos();
+	\\n					pos(); *string_buf_ptr++ = '\n';
+	\\t					pos(); *string_buf_ptr++ = '\t';
+	\\\'				pos(); *string_buf_ptr++ = '\'';
 	<<EOF>>				{report_error("EOF Unterminated String"); BEGIN(INITIAL);}
-	.					{*string_buf_ptr++ = *yytext;
-						 if (str_error != 0) {
-						 	str_error += 1;
-						 }
+	.					{pos();
+						 *string_buf_ptr++ = *yytext;
 						}
 }
 

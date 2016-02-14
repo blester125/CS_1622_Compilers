@@ -5,7 +5,6 @@ program xyz;
 		method void main() {
 			System.println('Hello World !!!');
 			System.PRINTLN('println');
-			int abc := 1234;
-			int ab?cd;
+			int XYZ := 1234;
 		}
 	}

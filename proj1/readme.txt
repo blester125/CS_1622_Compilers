@@ -1,5 +1,5 @@
 CS 1622 Compilers Project 1
-Brian Lester 2-9-16
+Brian Lester bdl20@pitt.edu 2-9-16
 
 This is my project 1 for CS 1622 lexical analysis
 Lexical rules are in lexer.l
@@ -15,4 +15,9 @@ The total length of all string constants and identifier
 names are limited to 500. This is set with 
 #define LIMIT1 500 as described in the notes.
 
-This implementation supports multiline comments and multiline strings.
+This implementation supports multiline comments and multiline strings. 
+The professor told me this was fine if I mentioned it in the readme
+
+The columns tell location of the end of token as in the project example.
+
+Tabs are assumed to be 4 spaces and 4 was used for column count purposes.
