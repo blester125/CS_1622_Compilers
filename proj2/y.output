@@ -1,0 +1,99 @@
+   0  $accept : Program $end
+
+   1  Program : PROGRAMnum IDnum SEMInum ClassDecl_rec
+
+   2  ClassDecl_rec : ClassDecl
+   3                | ClassDecl_rec ClassDecl
+
+   4  ClassDecl : CLASSnum IDnum LBRACEnum RBRACEnum
+
+state 0
+	$accept : . Program $end  (0)
+
+	PROGRAMnum  shift 1
+	.  error
+
+	Program  goto 2
+
+
+state 1
+	Program : PROGRAMnum . IDnum SEMInum ClassDecl_rec  (1)
+
+	IDnum  shift 3
+	.  error
+
+
+state 2
+	$accept : Program . $end  (0)
+
+	$end  accept
+
+
+state 3
+	Program : PROGRAMnum IDnum . SEMInum ClassDecl_rec  (1)
+
+	SEMInum  shift 4
+	.  error
+
+
+state 4
+	Program : PROGRAMnum IDnum SEMInum . ClassDecl_rec  (1)
+
+	CLASSnum  shift 5
+	.  error
+
+	ClassDecl_rec  goto 6
+	ClassDecl  goto 7
+
+
+state 5
+	ClassDecl : CLASSnum . IDnum LBRACEnum RBRACEnum  (4)
+
+	IDnum  shift 8
+	.  error
+
+
+state 6
+	Program : PROGRAMnum IDnum SEMInum ClassDecl_rec .  (1)
+	ClassDecl_rec : ClassDecl_rec . ClassDecl  (3)
+
+	CLASSnum  shift 5
+	$end  reduce 1
+
+	ClassDecl  goto 9
+
+
+state 7
+	ClassDecl_rec : ClassDecl .  (2)
+
+	.  reduce 2
+
+
+state 8
+	ClassDecl : CLASSnum IDnum . LBRACEnum RBRACEnum  (4)
+
+	LBRACEnum  shift 10
+	.  error
+
+
+state 9
+	ClassDecl_rec : ClassDecl_rec ClassDecl .  (3)
+
+	.  reduce 3
+
+
+state 10
+	ClassDecl : CLASSnum IDnum LBRACEnum . RBRACEnum  (4)
+
+	RBRACEnum  shift 11
+	.  error
+
+
+state 11
+	ClassDecl : CLASSnum IDnum LBRACEnum RBRACEnum .  (4)
+
+	.  reduce 4
+
+
+87 terminals, 4 nonterminals
+5 grammar rules, 12 states

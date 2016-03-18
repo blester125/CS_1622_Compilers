@@ -16,12 +16,13 @@ static const char yysccsid[] = "@(#)yaccpar	1.9 (Berkeley) 02/21/93";
 
 #define YYPURE 0
 
-#line 1 "grammar.y"
- /* definition */
-#include "proj2.h"
-#include "token.h"
-#include <stdio.h>
-#line 24 "y.tab.c"
+#line 2 "grammar.y"
+#include  "proj2.h"
+#include  <stdio.h>
+
+  tree type_record, type_method, argtype, bractemp;/* globals used to store treenode pointers */
+
+#line 25 "y.tab.c"
 
 /* compatibility with bison */
 #ifdef YYPARSE_PARAM
@@ -57,38 +58,125 @@ extern int YYPARSE_DECL();
 #define PROGRAMnum 257
 #define IDnum 258
 #define SEMInum 259
+#define CLASSnum 260
+#define DECLARATIONSnum 261
+#define ENDDECLARATIONSnum 262
+#define COMMAnum 263
+#define EQUALnum 264
+#define LBRACEnum 265
+#define RBRACEnum 266
+#define LBRACnum 267
+#define RBRACnum 268
+#define LPARENnum 269
+#define RPARENnum 270
+#define VOIDnum 271
+#define INTnum 272
+#define METHODnum 273
+#define VALnum 274
+#define DOTnum 275
+#define ASSGNnum 276
+#define RETURNnum 277
+#define IFnum 278
+#define ELSEnum 279
+#define WHILEnum 280
+#define LTnum 281
+#define LEnum 282
+#define EQnum 283
+#define NEnum 284
+#define GEnum 285
+#define GTnum 286
+#define PLUSnum 287
+#define MINUSnum 288
+#define ORnum 289
+#define TIMESnum 290
+#define DIVIDEnum 291
+#define ANDnum 292
+#define NOTnum 293
+#define ICONSTnum 294
+#define SCONSTnum 295
+#define ClassBody 296
+#define MethodDecl_z1 297
+#define MethodDecl_rec 298
+#define Decls 299
+#define FieldDecl_rec 300
+#define FieldDecl 301
+#define Tail 302
+#define FieldDecl_body 303
+#define VariableDeclId 304
+#define Bracket_rec1 305
+#define Bracket_rec2 306
+#define VariableInitializer 307
+#define ArrayInitializer 308
+#define ArrayInitializer_body 309
+#define ArrayCreationExpression 310
+#define ArrayCreationExpression_tail 311
+#define MethodDecl 312
+#define FormalParameterList_z1 313
+#define FormalParameterList 314
+#define FormalParameterList_rec 315
+#define IDENTIFIER_rec 316
+#define Block 317
+#define Type 318
+#define Type_front 319
+#define StatementList 320
+#define Statement_rec 321
+#define Statement 322
+#define AssignmentStatement 323
+#define MethodCallStatement 324
+#define MethodCallStatement_tail 325
+#define Expression_rec 326
+#define ReturnStatement 327
+#define IfStatement 328
+#define If_rec 329
+#define WhileStatement 330
+#define Expression 331
+#define Comp_op 332
+#define SimpleExpression 333
+#define Term 334
+#define Factor 335
+#define Expression_rec2 336
+#define UnsignedConstant 337
+#define Variable 338
+#define Variable_tail 339
+#define Variable_rec 340
+#define Variable_1 341
 #define YYERRCODE 256
 static const short yylhs[] = {                           -1,
-    0,
+    0,    1,    1,    2,
 };
 static const short yylen[] = {                            2,
-    3,
+    4,    1,    2,    4,
 };
 static const short yydefred[] = {                         0,
-    0,    0,    0,    1,
+    0,    0,    0,    0,    0,    0,    2,    0,    3,    0,
+    4,
 };
 static const short yydgoto[] = {                          2,
+    6,    7,
 };
 static const short yysindex[] = {                      -257,
- -256,    0, -258,    0,
+ -256,    0, -258, -255, -254, -255,    0, -262,    0, -260,
+    0,
 };
 static const short yyrindex[] = {                         0,
-    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    7,    0,    0,    0,    0,
+    0,
 };
 static const short yygindex[] = {                         0,
+    0,    2,
 };
-#define YYTABLESIZE 2
+#define YYTABLESIZE 8
 static const short yytable[] = {                          1,
-    4,    3,
+    4,    3,   10,    8,    5,   11,    1,    9,
 };
 static const short yycheck[] = {                        257,
-  259,  258,
+  259,  258,  265,  258,  260,  266,    0,    6,
 };
 #define YYFINAL 2
 #ifndef YYDEBUG
 #define YYDEBUG 0
 #endif
-#define YYMAXTOKEN 259
+#define YYMAXTOKEN 341
 #define YYTRANSLATE(a) ((a) > YYMAXTOKEN ? (YYMAXTOKEN + 1) : (a))
 #if YYDEBUG
 static const char *yyname[] = {
@@ -100,11 +188,29 @@ static const char *yyname[] = {
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"PROGRAMnum","IDnum","SEMInum",
-"illegal-symbol",
+"CLASSnum","DECLARATIONSnum","ENDDECLARATIONSnum","COMMAnum","EQUALnum",
+"LBRACEnum","RBRACEnum","LBRACnum","RBRACnum","LPARENnum","RPARENnum","VOIDnum",
+"INTnum","METHODnum","VALnum","DOTnum","ASSGNnum","RETURNnum","IFnum","ELSEnum",
+"WHILEnum","LTnum","LEnum","EQnum","NEnum","GEnum","GTnum","PLUSnum","MINUSnum",
+"ORnum","TIMESnum","DIVIDEnum","ANDnum","NOTnum","ICONSTnum","SCONSTnum",
+"ClassBody","MethodDecl_z1","MethodDecl_rec","Decls","FieldDecl_rec",
+"FieldDecl","Tail","FieldDecl_body","VariableDeclId","Bracket_rec1",
+"Bracket_rec2","VariableInitializer","ArrayInitializer","ArrayInitializer_body",
+"ArrayCreationExpression","ArrayCreationExpression_tail","MethodDecl",
+"FormalParameterList_z1","FormalParameterList","FormalParameterList_rec",
+"IDENTIFIER_rec","Block","Type","Type_front","StatementList","Statement_rec",
+"Statement","AssignmentStatement","MethodCallStatement",
+"MethodCallStatement_tail","Expression_rec","ReturnStatement","IfStatement",
+"If_rec","WhileStatement","Expression","Comp_op","SimpleExpression","Term",
+"Factor","Expression_rec2","UnsignedConstant","Variable","Variable_tail",
+"Variable_rec","Variable_1","illegal-symbol",
 };
 static const char *yyrule[] = {
 "$accept : Program",
-"Program : PROGRAMnum IDnum SEMInum",
+"Program : PROGRAMnum IDnum SEMInum ClassDecl_rec",
+"ClassDecl_rec : ClassDecl",
+"ClassDecl_rec : ClassDecl_rec ClassDecl",
+"ClassDecl : CLASSnum IDnum LBRACEnum RBRACEnum",
 
 };
 #endif
@@ -142,14 +248,26 @@ typedef struct {
 } YYSTACKDATA;
 /* variables for the parser stack */
 static YYSTACKDATA yystack;
-#line 15 "grammar.y"
+#line 43 "grammar.y"
+
 int yycolumn, yyline;
-YYSTYPE yylval;
+
 FILE *treelst;
-main() { treelst = stdout; yyparse(); }
-yyerror(char *str) { printf("yyerror: %s at line %d\n", str, yyline); }
+
+main()
+{
+  treelst = stdout;
+  yyparse();
+}
+
+yyerror(char *str)
+{
+  printf("yyerror: %s at line %d\n", str, yyline);
+}
+
 #include "lex.yy.c"
-#line 151 "y.tab.c"
+
+#line 269 "y.tab.c"
 
 #if YYDEBUG
 #include <stdio.h>		/* needed for printf */
@@ -352,10 +470,26 @@ yyreduce:
     switch (yyn)
     {
 case 1:
-#line 10 "grammar.y"
-	{ yyval.tptr = MakeTree(ProgramOp, MakeLeaf(DummyNode, 0), MakeLeaf(IDNode, yystack.l_mark[-1].intg)); printtree(yyval.tptr, 0); }
+#line 28 "grammar.y"
+	{  
+                          /* $$ = MakeTree(ProgramOp, $4, NullExp());  */
+                          yyval.tptr = MakeTree(ProgramOp, yystack.l_mark[0].tptr, MakeLeaf(IDNode, yystack.l_mark[-2].intg)); 
+                          printtree(yyval.tptr, 0);
+                        }
 break;
-#line 357 "y.tab.c"
+case 2:
+#line 35 "grammar.y"
+	{  yyval.tptr = MakeTree(ClassOp, NullExp(), yystack.l_mark[0].tptr); }
+break;
+case 3:
+#line 37 "grammar.y"
+	{  yyval.tptr = MakeTree(ClassOp, yystack.l_mark[-1].tptr, yystack.l_mark[0].tptr); }
+break;
+case 4:
+#line 40 "grammar.y"
+	{  yyval.tptr = MakeTree(ClassDefOp, NullExp(), MakeLeaf(IDNode, yystack.l_mark[-2].intg)); }
+break;
+#line 491 "y.tab.c"
     }
     yystack.s_mark -= yym;
     yystate = *yystack.s_mark;

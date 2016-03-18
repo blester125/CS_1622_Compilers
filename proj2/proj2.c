@@ -16,6 +16,7 @@ Aggelos Varvitsiotis.
 #include <stdio.h>
 #include "proj2.h"
 
+
 ILTree dummy = { DUMMYNode, 0, 0, 0, 0 };
  
 
@@ -332,16 +333,16 @@ void zerocrosses ()
     crosses [i] = 0;
 }
 
-extern char  strg_tbl[];
+extern char  string_table[];
 
 char* getname(int i)/*return ID name or String, i is the index of the string table, passed through yylval*/
 {
-  return( strg_tbl+i );/*return string table indexed at i*/
+  return( string_table+i );/*return string table indexed at i*/
 }
 
-char* getstring(int i)/*Strings have a startng ' so add 1 to it*/
+char* getstring(int i)
 {
-  return( strg_tbl+i+1 );/*return string table indexed at i*/
+  return( string_table+i+1 );/*return string table indexed at i*/
 }
 
 
