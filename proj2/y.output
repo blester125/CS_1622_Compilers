@@ -5,7 +5,14 @@
    2  ClassDecl_rec : ClassDecl
    3                | ClassDecl_rec ClassDecl
 
-   4  ClassDecl : CLASSnum IDnum LBRACEnum RBRACEnum
+   4  ClassDecl : CLASSnum IDnum ClassBody
+
+   5  ClassBody : LBRACEnum RBRACEnum
+   6            | LBRACEnum Decls RBRACEnum
+   7            | LBRACEnum MethodDecl_List RBRACEnum
+   8            | LBRACEnum Decls MethodDecl_List RBRACEnum
+
+   9  Decls : DECLARATIONSnum ENDDECLARATIONSnum
 
 state 0
 	$accept : . Program $end  (0)
@@ -47,7 +54,7 @@ state 4
 
 
 state 5
-	ClassDecl : CLASSnum . IDnum LBRACEnum RBRACEnum  (4)
+	ClassDecl : CLASSnum . IDnum ClassBody  (4)
 
 	IDnum  shift 8
 	.  error
@@ -70,10 +77,12 @@ state 7
 
 
 state 8
-	ClassDecl : CLASSnum IDnum . LBRACEnum RBRACEnum  (4)
+	ClassDecl : CLASSnum IDnum . ClassBody  (4)
 
 	LBRACEnum  shift 10
 	.  error
+
+	ClassBody  goto 11
 
 
 state 9
@@ -83,17 +92,84 @@ state 9
 
 
 state 10
-	ClassDecl : CLASSnum IDnum LBRACEnum . RBRACEnum  (4)
+	ClassBody : LBRACEnum . RBRACEnum  (5)
+	ClassBody : LBRACEnum . Decls RBRACEnum  (6)
+	ClassBody : LBRACEnum . MethodDecl_List RBRACEnum  (7)
+	ClassBody : LBRACEnum . Decls MethodDecl_List RBRACEnum  (8)
 
-	RBRACEnum  shift 11
+	DECLARATIONSnum  shift 12
+	RBRACEnum  shift 13
+	MethodDecl_List  shift 14
 	.  error
+
+	Decls  goto 15
 
 
 state 11
-	ClassDecl : CLASSnum IDnum LBRACEnum RBRACEnum .  (4)
+	ClassDecl : CLASSnum IDnum ClassBody .  (4)
 
 	.  reduce 4
 
 
-87 terminals, 4 nonterminals
-5 grammar rules, 12 states
+state 12
+	Decls : DECLARATIONSnum . ENDDECLARATIONSnum  (9)
+
+	ENDDECLARATIONSnum  shift 16
+	.  error
+
+
+state 13
+	ClassBody : LBRACEnum RBRACEnum .  (5)
+
+	.  reduce 5
+
+
+state 14
+	ClassBody : LBRACEnum MethodDecl_List . RBRACEnum  (7)
+
+	RBRACEnum  shift 17
+	.  error
+
+
+state 15
+	ClassBody : LBRACEnum Decls . RBRACEnum  (6)
+	ClassBody : LBRACEnum Decls . MethodDecl_List RBRACEnum  (8)
+
+	RBRACEnum  shift 18
+	MethodDecl_List  shift 19
+	.  error
+
+
+state 16
+	Decls : DECLARATIONSnum ENDDECLARATIONSnum .  (9)
+
+	.  reduce 9
+
+
+state 17
+	ClassBody : LBRACEnum MethodDecl_List RBRACEnum .  (7)
+
+	.  reduce 7
+
+
+state 18
+	ClassBody : LBRACEnum Decls RBRACEnum .  (6)
+
+	.  reduce 6
+
+
+state 19
+	ClassBody : LBRACEnum Decls MethodDecl_List . RBRACEnum  (8)
+
+	RBRACEnum  shift 20
+	.  error
+
+
+state 20
+	ClassBody : LBRACEnum Decls MethodDecl_List RBRACEnum .  (8)
+
+	.  reduce 8
+
+
+86 terminals, 6 nonterminals
+10 grammar rules, 21 states

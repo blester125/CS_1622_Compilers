@@ -12,7 +12,7 @@
 %token <intg>  LTnum LEnum EQnum NEnum GEnum GTnum PLUSnum MINUSnum ORnum TIMESnum DIVIDEnum ANDnum
 %token <intg>  NOTnum ICONSTnum SCONSTnum
 
-%type  <tptr>  Program ClassDecl_rec ClassDecl ClassBody MethodDecl_z1 MethodDecl_rec Decls
+%type  <tptr>  Program ClassDecl_rec ClassDecl ClassBody MethodDecl_z1 MethodDecl_rec MethodDecl_List Decls
 %type  <tptr>  FieldDecl_rec FieldDecl Tail FieldDecl_body VariableDeclId Bracket_rec1 Bracket_rec2
 %type  <tptr>  VariableInitializer ArrayInitializer ArrayInitializer_body  ArrayCreationExpression
 %type  <tptr>  ArrayCreationExpression_tail MethodDecl FormalParameterList_z1 FormalParameterList
@@ -24,20 +24,48 @@
 
 
 %%/* yacc specification*/
-Program          :      PROGRAMnum IDnum SEMInum ClassDecl_rec
-                        {  
-                          /* $$ = MakeTree(ProgramOp, $4, NullExp());  */
-                          $$ = MakeTree(ProgramOp, $4, MakeLeaf(IDNode, $2)); 
-                          printtree($$, 0);
-                        }
-                 ;
-ClassDecl_rec    :      ClassDecl                        /* 1 or More of ClassDecl */
+Program         :      PROGRAMnum IDnum SEMInum ClassDecl_rec
+                       {  
+                         /* $$ = MakeTree(ProgramOp, $4, NullExp());  */
+                         $$ = MakeTree(ProgramOp, $4, MakeLeaf(IDNode, $2)); 
+                         printtree($$, 0);
+                       }
+                ;
+ClassDecl_rec   :      ClassDecl                        /* 1 or More of ClassDecl */
                           {  $$ = MakeTree(ClassOp, NullExp(), $1); } 
-                 |      ClassDecl_rec ClassDecl
+                |      ClassDecl_rec ClassDecl
 			  {  $$ = MakeTree(ClassOp, $1, $2); }
-                 ;
-
-ClassDecl : CLASSnum IDnum LBRACEnum RBRACEnum {  $$ = MakeTree(ClassDefOp, NullExp(), MakeLeaf(IDNode, $2)); } 
+		/* This Grammar Rule definition creates the tree in the order that the classes are made*/
+		/*|	  ClassDecl ClassDecl_rec
+			  {  $$ = MakeTree(ClassOp, $2, $1); }*/
+                ;
+ClassDecl 	:	CLASSnum IDnum ClassBody
+			{
+				$$ = MakeTree(ClassDefOp, $3, MakeLeaf(IDNode, $2));
+			} 
+		;
+ClassBody	:	LBRACEnum RBRACEnum
+			{
+				$$ = MakeTree(BodyOp, NullExp(), NullExp());
+			}
+		|	LBRACEnum Decls RBRACEnum
+			{
+				$$ = MakeTree(BodyOp, $2, NullExp());
+			}
+		|	LBRACEnum MethodDecl_List RBRACEnum
+			{
+				$$ = MakeTree(BodyOp, NullExp(), $2);
+			}
+		|	LBRACEnum Decls MethodDecl_List RBRACEnum
+			{
+				$$ = MakeTree(BodyOp, $2, $3);
+			}
+		;
+Decls		:	DECLARATIONSnum ENDDECLARATIONSnum
+			{
+				$$ = MakeTree(BodyOp, NullExp(), NullExp());
+			}
+		;
 
 %%
 

@@ -94,89 +94,94 @@ extern int YYPARSE_DECL();
 #define NOTnum 293
 #define ICONSTnum 294
 #define SCONSTnum 295
-#define ClassBody 296
-#define MethodDecl_z1 297
-#define MethodDecl_rec 298
-#define Decls 299
-#define FieldDecl_rec 300
-#define FieldDecl 301
-#define Tail 302
-#define FieldDecl_body 303
-#define VariableDeclId 304
-#define Bracket_rec1 305
-#define Bracket_rec2 306
-#define VariableInitializer 307
-#define ArrayInitializer 308
-#define ArrayInitializer_body 309
-#define ArrayCreationExpression 310
-#define ArrayCreationExpression_tail 311
-#define MethodDecl 312
-#define FormalParameterList_z1 313
-#define FormalParameterList 314
-#define FormalParameterList_rec 315
-#define IDENTIFIER_rec 316
-#define Block 317
-#define Type 318
-#define Type_front 319
-#define StatementList 320
-#define Statement_rec 321
-#define Statement 322
-#define AssignmentStatement 323
-#define MethodCallStatement 324
-#define MethodCallStatement_tail 325
-#define Expression_rec 326
-#define ReturnStatement 327
-#define IfStatement 328
-#define If_rec 329
-#define WhileStatement 330
-#define Expression 331
-#define Comp_op 332
-#define SimpleExpression 333
-#define Term 334
-#define Factor 335
-#define Expression_rec2 336
-#define UnsignedConstant 337
-#define Variable 338
-#define Variable_tail 339
-#define Variable_rec 340
-#define Variable_1 341
+#define MethodDecl_z1 296
+#define MethodDecl_rec 297
+#define MethodDecl_List 298
+#define FieldDecl_rec 299
+#define FieldDecl 300
+#define Tail 301
+#define FieldDecl_body 302
+#define VariableDeclId 303
+#define Bracket_rec1 304
+#define Bracket_rec2 305
+#define VariableInitializer 306
+#define ArrayInitializer 307
+#define ArrayInitializer_body 308
+#define ArrayCreationExpression 309
+#define ArrayCreationExpression_tail 310
+#define MethodDecl 311
+#define FormalParameterList_z1 312
+#define FormalParameterList 313
+#define FormalParameterList_rec 314
+#define IDENTIFIER_rec 315
+#define Block 316
+#define Type 317
+#define Type_front 318
+#define StatementList 319
+#define Statement_rec 320
+#define Statement 321
+#define AssignmentStatement 322
+#define MethodCallStatement 323
+#define MethodCallStatement_tail 324
+#define Expression_rec 325
+#define ReturnStatement 326
+#define IfStatement 327
+#define If_rec 328
+#define WhileStatement 329
+#define Expression 330
+#define Comp_op 331
+#define SimpleExpression 332
+#define Term 333
+#define Factor 334
+#define Expression_rec2 335
+#define UnsignedConstant 336
+#define Variable 337
+#define Variable_tail 338
+#define Variable_rec 339
+#define Variable_1 340
 #define YYERRCODE 256
 static const short yylhs[] = {                           -1,
-    0,    1,    1,    2,
+    0,    1,    1,    2,    3,    3,    3,    3,    4,
 };
 static const short yylen[] = {                            2,
-    4,    1,    2,    4,
+    4,    1,    2,    3,    2,    3,    3,    4,    2,
 };
 static const short yydefred[] = {                         0,
     0,    0,    0,    0,    0,    0,    2,    0,    3,    0,
-    4,
+    4,    0,    5,    0,    0,    9,    7,    6,    0,    8,
 };
 static const short yydgoto[] = {                          2,
-    6,    7,
+    6,    7,   11,   15,
 };
-static const short yysindex[] = {                      -257,
- -256,    0, -258, -255, -254, -255,    0, -262,    0, -260,
-    0,
+static const short yysindex[] = {                      -255,
+ -254,    0, -256, -253, -252, -253,    0, -257,    0, -261,
+    0, -251,    0, -250, -265,    0,    0,    0, -249,    0,
 };
 static const short yyrindex[] = {                         0,
-    0,    0,    0,    0,    0,    7,    0,    0,    0,    0,
-    0,
+    0,    0,    0,    0,    0,    9,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
 };
 static const short yygindex[] = {                         0,
-    0,    2,
+    0,    4,    0,    0,
 };
-#define YYTABLESIZE 8
-static const short yytable[] = {                          1,
-    4,    3,   10,    8,    5,   11,    1,    9,
+#define YYTABLESIZE 37
+static const short yytable[] = {                         12,
+   18,    1,    4,    3,   13,    8,    5,   10,    1,    9,
+   16,    0,    0,    0,    0,   17,   20,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,   19,    0,    0,    0,   14,
 };
-static const short yycheck[] = {                        257,
-  259,  258,  265,  258,  260,  266,    0,    6,
+static const short yycheck[] = {                        261,
+  266,  257,  259,  258,  266,  258,  260,  265,    0,    6,
+  262,   -1,   -1,   -1,   -1,  266,  266,   -1,   -1,   -1,
+   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
+   -1,   -1,  298,   -1,   -1,   -1,  298,
 };
 #define YYFINAL 2
 #ifndef YYDEBUG
 #define YYDEBUG 0
 #endif
-#define YYMAXTOKEN 341
+#define YYMAXTOKEN 340
 #define YYTRANSLATE(a) ((a) > YYMAXTOKEN ? (YYMAXTOKEN + 1) : (a))
 #if YYDEBUG
 static const char *yyname[] = {
@@ -193,9 +198,9 @@ static const char *yyname[] = {
 "INTnum","METHODnum","VALnum","DOTnum","ASSGNnum","RETURNnum","IFnum","ELSEnum",
 "WHILEnum","LTnum","LEnum","EQnum","NEnum","GEnum","GTnum","PLUSnum","MINUSnum",
 "ORnum","TIMESnum","DIVIDEnum","ANDnum","NOTnum","ICONSTnum","SCONSTnum",
-"ClassBody","MethodDecl_z1","MethodDecl_rec","Decls","FieldDecl_rec",
-"FieldDecl","Tail","FieldDecl_body","VariableDeclId","Bracket_rec1",
-"Bracket_rec2","VariableInitializer","ArrayInitializer","ArrayInitializer_body",
+"MethodDecl_z1","MethodDecl_rec","MethodDecl_List","FieldDecl_rec","FieldDecl",
+"Tail","FieldDecl_body","VariableDeclId","Bracket_rec1","Bracket_rec2",
+"VariableInitializer","ArrayInitializer","ArrayInitializer_body",
 "ArrayCreationExpression","ArrayCreationExpression_tail","MethodDecl",
 "FormalParameterList_z1","FormalParameterList","FormalParameterList_rec",
 "IDENTIFIER_rec","Block","Type","Type_front","StatementList","Statement_rec",
@@ -210,7 +215,12 @@ static const char *yyrule[] = {
 "Program : PROGRAMnum IDnum SEMInum ClassDecl_rec",
 "ClassDecl_rec : ClassDecl",
 "ClassDecl_rec : ClassDecl_rec ClassDecl",
-"ClassDecl : CLASSnum IDnum LBRACEnum RBRACEnum",
+"ClassDecl : CLASSnum IDnum ClassBody",
+"ClassBody : LBRACEnum RBRACEnum",
+"ClassBody : LBRACEnum Decls RBRACEnum",
+"ClassBody : LBRACEnum MethodDecl_List RBRACEnum",
+"ClassBody : LBRACEnum Decls MethodDecl_List RBRACEnum",
+"Decls : DECLARATIONSnum ENDDECLARATIONSnum",
 
 };
 #endif
@@ -248,7 +258,7 @@ typedef struct {
 } YYSTACKDATA;
 /* variables for the parser stack */
 static YYSTACKDATA yystack;
-#line 43 "grammar.y"
+#line 71 "grammar.y"
 
 int yycolumn, yyline;
 
@@ -267,7 +277,7 @@ yyerror(char *str)
 
 #include "lex.yy.c"
 
-#line 269 "y.tab.c"
+#line 279 "y.tab.c"
 
 #if YYDEBUG
 #include <stdio.h>		/* needed for printf */
@@ -472,10 +482,10 @@ yyreduce:
 case 1:
 #line 28 "grammar.y"
 	{  
-                          /* $$ = MakeTree(ProgramOp, $4, NullExp());  */
-                          yyval.tptr = MakeTree(ProgramOp, yystack.l_mark[0].tptr, MakeLeaf(IDNode, yystack.l_mark[-2].intg)); 
-                          printtree(yyval.tptr, 0);
-                        }
+                         /* $$ = MakeTree(ProgramOp, $4, NullExp());  */
+                         yyval.tptr = MakeTree(ProgramOp, yystack.l_mark[0].tptr, MakeLeaf(IDNode, yystack.l_mark[-2].intg)); 
+                         printtree(yyval.tptr, 0);
+                       }
 break;
 case 2:
 #line 35 "grammar.y"
@@ -486,10 +496,42 @@ case 3:
 	{  yyval.tptr = MakeTree(ClassOp, yystack.l_mark[-1].tptr, yystack.l_mark[0].tptr); }
 break;
 case 4:
-#line 40 "grammar.y"
-	{  yyval.tptr = MakeTree(ClassDefOp, NullExp(), MakeLeaf(IDNode, yystack.l_mark[-2].intg)); }
+#line 43 "grammar.y"
+	{
+				yyval.tptr = MakeTree(ClassDefOp, yystack.l_mark[0].tptr, MakeLeaf(IDNode, yystack.l_mark[-1].intg));
+			}
 break;
-#line 491 "y.tab.c"
+case 5:
+#line 48 "grammar.y"
+	{
+				yyval.tptr = MakeTree(BodyOp, NullExp(), NullExp());
+			}
+break;
+case 6:
+#line 52 "grammar.y"
+	{
+				yyval.tptr = MakeTree(BodyOp, yystack.l_mark[-1].tptr, NullExp());
+			}
+break;
+case 7:
+#line 56 "grammar.y"
+	{
+				yyval.tptr = MakeTree(BodyOp, NullExp(), yystack.l_mark[-1].tptr);
+			}
+break;
+case 8:
+#line 60 "grammar.y"
+	{
+				yyval.tptr = MakeTree(BodyOp, yystack.l_mark[-2].tptr, yystack.l_mark[-1].tptr);
+			}
+break;
+case 9:
+#line 65 "grammar.y"
+	{
+				yyval.tptr = MakeTree(BodyOp, NullExp(), NullExp());
+			}
+break;
+#line 533 "y.tab.c"
     }
     yystack.s_mark -= yym;
     yystate = *yystack.s_mark;

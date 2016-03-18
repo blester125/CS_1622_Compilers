@@ -1,11 +1,12 @@
 /* EXAMPLE 1: A Hello World Program */
 
 program xyz;
-class Test
+class First
 {
-
+	declarations
+	enddeclarations
 }
-class YOOOOO
+class Second
 {}
-class tits
+class Thrid
 {}
