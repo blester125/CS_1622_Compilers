@@ -6,13 +6,8 @@ class First
 	
 	method void two ( ) 
 	{
-		>
-		>
+		return;
+		return;
+		return;
 	}
-	/*method void one ( := ; := ) ;*/
-	method void one ( )
-	declarations
-	<
-	enddeclarations
-	{ > }
 }

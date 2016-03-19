@@ -160,7 +160,11 @@ StatementList_rec:	Statement
 			}
 		;
 /* TODO Invetigate the SEMInum problem*/
-Statement	:	SEMInum
+Statement	:	
+			{
+				$$ = NullExp();
+			}	
+		|	SEMInum
 			{
 				$$ = NullExp();
 			}
