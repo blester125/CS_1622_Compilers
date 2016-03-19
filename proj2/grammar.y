@@ -12,7 +12,8 @@
 %token <intg>  LTnum LEnum EQnum NEnum GEnum GTnum PLUSnum MINUSnum ORnum TIMESnum DIVIDEnum ANDnum
 %token <intg>  NOTnum ICONSTnum SCONSTnum
 
-%type  <tptr>  Program ClassDecl_rec ClassDecl ClassBody MethodDecl_z1 MethodDecl_rec MethodDecl_List Decls
+%type  <tptr>  MethodDecl_List FieldDecl_List
+%type  <tptr>  Program ClassDecl_rec ClassDecl ClassBody MethodDecl_z1 MethodDecl_rec Decls
 %type  <tptr>  FieldDecl_rec FieldDecl Tail FieldDecl_body VariableDeclId Bracket_rec1 Bracket_rec2
 %type  <tptr>  VariableInitializer ArrayInitializer ArrayInitializer_body  ArrayCreationExpression
 %type  <tptr>  ArrayCreationExpression_tail MethodDecl FormalParameterList_z1 FormalParameterList
@@ -44,26 +45,70 @@ ClassDecl 	:	CLASSnum IDnum ClassBody
 				$$ = MakeTree(ClassDefOp, $3, MakeLeaf(IDNode, $2));
 			} 
 		;
-ClassBody	:	LBRACEnum RBRACEnum
+ClassBody	:	LBRACEnum MethodDecl_List RBRACEnum
+			{
+				$$ = $2;
+			}
+		;
+MethodDecl_List	:	MethodDecl_z1
+			{
+				$$ = $1;
+			}
+		|	MethodDecl_List MethodDecl
+			{
+				$$ = MakeTree(BodyOp, $1, $2);
+			}
+		;
+MethodDecl_z1	:	
 			{
 				$$ = MakeTree(BodyOp, NullExp(), NullExp());
 			}
-		|	LBRACEnum Decls RBRACEnum
+		|	Decls
 			{
-				$$ = MakeTree(BodyOp, $2, NullExp());
+				$$ = MakeTree(BodyOp, $1, NullExp());
 			}
-		|	LBRACEnum MethodDecl_List RBRACEnum
+		|	MethodDecl
 			{
-				$$ = MakeTree(BodyOp, NullExp(), $2);
+				$$ = MakeTree(BodyOp, NullExp(), $1);
 			}
-		|	LBRACEnum Decls MethodDecl_List RBRACEnum
+		|	Decls MethodDecl
 			{
-				$$ = MakeTree(BodyOp, $2, $3);
+				$$ = MakeTree(BodyOp, $1, $2);
+			}
+		;
+/* TODO */
+MethodDecl	:	LTnum
+			{
+				$$ = MakeTree(MethodOp, NullExp(), NullExp());
 			}
 		;
 Decls		:	DECLARATIONSnum ENDDECLARATIONSnum
 			{
 				$$ = MakeTree(BodyOp, NullExp(), NullExp());
+			}
+		|	DECLARATIONSnum FieldDecl ENDDECLARATIONSnum
+			{
+				$$ = MakeTree(BodyOp, NullExp(), $2);
+			}
+		|	DECLARATIONSnum FieldDecl_List FieldDecl ENDDECLARATIONSnum
+			{
+				$$ = MakeTree(BodyOp, $2, $3);
+			}  
+		;
+/* TODO */
+FieldDecl_List	:	FieldDecl
+			{
+				$$ = MakeTree(BodyOp, NullExp(), $1);
+			}
+		|	FieldDecl_List FieldDecl
+			{
+				$$ = MakeTree(BodyOp, $1, $2);
+			}
+		;
+/* TODO */
+FieldDecl	:	SEMInum
+			{
+				$$ = MakeTree(DeclOp, NullExp(), NullExp());
 			}
 		;
 

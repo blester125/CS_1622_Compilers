@@ -4,9 +4,10 @@ program xyz;
 class First
 {
 	declarations
+	;
+	;
 	enddeclarations
+	<
+	<
+	<
 }
-class Second
-{}
-class Thrid
-{}

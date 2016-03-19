@@ -7,12 +7,26 @@
 
    4  ClassDecl : CLASSnum IDnum ClassBody
 
-   5  ClassBody : LBRACEnum RBRACEnum
-   6            | LBRACEnum Decls RBRACEnum
-   7            | LBRACEnum MethodDecl_List RBRACEnum
-   8            | LBRACEnum Decls MethodDecl_List RBRACEnum
+   5  ClassBody : LBRACEnum MethodDecl_List RBRACEnum
 
-   9  Decls : DECLARATIONSnum ENDDECLARATIONSnum
+   6  MethodDecl_List : MethodDecl_z1
+   7                  | MethodDecl_List MethodDecl
+
+   8  MethodDecl_z1 :
+   9                | Decls
+  10                | MethodDecl
+  11                | Decls MethodDecl
+
+  12  MethodDecl : LTnum
+
+  13  Decls : DECLARATIONSnum ENDDECLARATIONSnum
+  14        | DECLARATIONSnum FieldDecl ENDDECLARATIONSnum
+  15        | DECLARATIONSnum FieldDecl_List FieldDecl ENDDECLARATIONSnum
+
+  16  FieldDecl_List : FieldDecl
+  17                 | FieldDecl_List FieldDecl
+
+  18  FieldDecl : SEMInum
 
 state 0
 	$accept : . Program $end  (0)
@@ -91,18 +105,19 @@ state 9
 	.  reduce 3
 
 
+10: shift/reduce conflict (shift 13, reduce 8) on LTnum
 state 10
-	ClassBody : LBRACEnum . RBRACEnum  (5)
-	ClassBody : LBRACEnum . Decls RBRACEnum  (6)
-	ClassBody : LBRACEnum . MethodDecl_List RBRACEnum  (7)
-	ClassBody : LBRACEnum . Decls MethodDecl_List RBRACEnum  (8)
+	ClassBody : LBRACEnum . MethodDecl_List RBRACEnum  (5)
+	MethodDecl_z1 : .  (8)
 
 	DECLARATIONSnum  shift 12
-	RBRACEnum  shift 13
-	MethodDecl_List  shift 14
-	.  error
+	LTnum  shift 13
+	RBRACEnum  reduce 8
 
-	Decls  goto 15
+	MethodDecl_List  goto 14
+	MethodDecl_z1  goto 15
+	Decls  goto 16
+	MethodDecl  goto 17
 
 
 state 11
@@ -112,64 +127,129 @@ state 11
 
 
 state 12
-	Decls : DECLARATIONSnum . ENDDECLARATIONSnum  (9)
+	Decls : DECLARATIONSnum . ENDDECLARATIONSnum  (13)
+	Decls : DECLARATIONSnum . FieldDecl ENDDECLARATIONSnum  (14)
+	Decls : DECLARATIONSnum . FieldDecl_List FieldDecl ENDDECLARATIONSnum  (15)
 
-	ENDDECLARATIONSnum  shift 16
+	SEMInum  shift 18
+	ENDDECLARATIONSnum  shift 19
 	.  error
+
+	FieldDecl_List  goto 20
+	FieldDecl  goto 21
 
 
 state 13
-	ClassBody : LBRACEnum RBRACEnum .  (5)
+	MethodDecl : LTnum .  (12)
 
-	.  reduce 5
+	.  reduce 12
 
 
 state 14
-	ClassBody : LBRACEnum MethodDecl_List . RBRACEnum  (7)
+	ClassBody : LBRACEnum MethodDecl_List . RBRACEnum  (5)
+	MethodDecl_List : MethodDecl_List . MethodDecl  (7)
 
-	RBRACEnum  shift 17
+	RBRACEnum  shift 22
+	LTnum  shift 13
 	.  error
+
+	MethodDecl  goto 23
 
 
 state 15
-	ClassBody : LBRACEnum Decls . RBRACEnum  (6)
-	ClassBody : LBRACEnum Decls . MethodDecl_List RBRACEnum  (8)
-
-	RBRACEnum  shift 18
-	MethodDecl_List  shift 19
-	.  error
-
-
-state 16
-	Decls : DECLARATIONSnum ENDDECLARATIONSnum .  (9)
-
-	.  reduce 9
-
-
-state 17
-	ClassBody : LBRACEnum MethodDecl_List RBRACEnum .  (7)
-
-	.  reduce 7
-
-
-state 18
-	ClassBody : LBRACEnum Decls RBRACEnum .  (6)
+	MethodDecl_List : MethodDecl_z1 .  (6)
 
 	.  reduce 6
 
 
-state 19
-	ClassBody : LBRACEnum Decls MethodDecl_List . RBRACEnum  (8)
+16: shift/reduce conflict (shift 13, reduce 9) on LTnum
+state 16
+	MethodDecl_z1 : Decls .  (9)
+	MethodDecl_z1 : Decls . MethodDecl  (11)
 
-	RBRACEnum  shift 20
-	.  error
+	LTnum  shift 13
+	RBRACEnum  reduce 9
+
+	MethodDecl  goto 24
+
+
+state 17
+	MethodDecl_z1 : MethodDecl .  (10)
+
+	.  reduce 10
+
+
+state 18
+	FieldDecl : SEMInum .  (18)
+
+	.  reduce 18
+
+
+state 19
+	Decls : DECLARATIONSnum ENDDECLARATIONSnum .  (13)
+
+	.  reduce 13
 
 
 state 20
-	ClassBody : LBRACEnum Decls MethodDecl_List RBRACEnum .  (8)
+	Decls : DECLARATIONSnum FieldDecl_List . FieldDecl ENDDECLARATIONSnum  (15)
+	FieldDecl_List : FieldDecl_List . FieldDecl  (17)
 
-	.  reduce 8
+	SEMInum  shift 18
+	.  error
+
+	FieldDecl  goto 25
 
 
-86 terminals, 6 nonterminals
-10 grammar rules, 21 states
+state 21
+	Decls : DECLARATIONSnum FieldDecl . ENDDECLARATIONSnum  (14)
+	FieldDecl_List : FieldDecl .  (16)
+
+	ENDDECLARATIONSnum  shift 26
+	SEMInum  reduce 16
+
+
+state 22
+	ClassBody : LBRACEnum MethodDecl_List RBRACEnum .  (5)
+
+	.  reduce 5
+
+
+state 23
+	MethodDecl_List : MethodDecl_List MethodDecl .  (7)
+
+	.  reduce 7
+
+
+state 24
+	MethodDecl_z1 : Decls MethodDecl .  (11)
+
+	.  reduce 11
+
+
+state 25
+	Decls : DECLARATIONSnum FieldDecl_List FieldDecl . ENDDECLARATIONSnum  (15)
+	FieldDecl_List : FieldDecl_List FieldDecl .  (17)
+
+	ENDDECLARATIONSnum  shift 27
+	SEMInum  reduce 17
+
+
+state 26
+	Decls : DECLARATIONSnum FieldDecl ENDDECLARATIONSnum .  (14)
+
+	.  reduce 14
+
+
+state 27
+	Decls : DECLARATIONSnum FieldDecl_List FieldDecl ENDDECLARATIONSnum .  (15)
+
+	.  reduce 15
+
+
+State 10 contains 1 shift/reduce conflict.
+State 16 contains 1 shift/reduce conflict.
+
+
+82 terminals, 11 nonterminals
+19 grammar rules, 28 states
