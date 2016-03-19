@@ -415,7 +415,6 @@ void printtree (nd, depth)
     case EXPRNode:  fprintf (treelst,"[%s]\n", 
 					opnodenames [NodeOp(nd) - ProgramOp]);
 		    break;
-
     default:	    fprintf (treelst,"INVALID!!!\n");
 		    break;
   }

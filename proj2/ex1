@@ -3,11 +3,16 @@
 program xyz;
 class First
 {
+	
+	method void two ( ) 
+	{
+		>
+		>
+	}
+	/*method void one ( := ; := ) ;*/
+	method void one ( )
 	declarations
-	;
-	;
+	<
 	enddeclarations
-	<
-	<
-	<
+	{ > }
 }

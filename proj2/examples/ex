@@ -1,0 +1,10 @@
+program xyz;
+class Test
+{
+	declarations
+	int x;
+	enddeclarations
+	method void main() {
+		return x;
+	}
+}
