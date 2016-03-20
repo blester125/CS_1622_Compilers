@@ -1,0 +1,6 @@
+program xyz;
+class First{
+	method void first(){}
+	method void second(){}
+}
+class Second{}

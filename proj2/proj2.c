@@ -215,6 +215,17 @@ int Op;
 		T->NodeOpType = Op;
 }
 
+tree MakeVal(T)
+tree T;
+{
+	if (IsNull(T) || NodeKind(T) != EXPRNode) {
+		return NULL;
+	}
+	SetNodeOp(T, VArgTypeOp);
+	MakeVal(RightChild(T));
+	return T;
+}
+
 /********************************************************
 *	This function sets the tree root and all its	*
 *	left subtree root to be a NewOp node, used only *

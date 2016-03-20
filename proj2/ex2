@@ -3,7 +3,7 @@
 program xyz;
 class First
 {
-	method void two ( :=z) 
+	method void two (val int x, y; int z) 
 	{
 	}
 }

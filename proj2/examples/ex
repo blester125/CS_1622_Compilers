@@ -3,6 +3,7 @@ class Test
 {
 	declarations
 	int x;
+	int y;
 	enddeclarations
 	method void main() {
 		return x;

@@ -14,8 +14,8 @@
 
 %type  <tptr>  MethodDecl_List FieldDecl_List Formal_Parameter_List
 
-%type  <tptr>  Formal_Parameter_Start Formal_Parameter_List Formal_Parameter
-%type  <tptr>  Statement StatementList StatementList_rec
+%type  <tptr>  Formal_Parameter_rec Formal_Parameter_List Formal_Parameter Formal_Parameter_List_rec
+%type  <tptr>  Statement StatementList StatementList_rec Formal_Parameter_rec
 
 %type  <tptr>  Program ClassDecl_rec ClassDecl ClassBody MethodDecl_z1 MethodDecl_rec Decls
 %type  <tptr>  FieldDecl_rec FieldDecl Tail FieldDecl_body VariableDeclId Bracket_rec1 Bracket_rec2
@@ -83,55 +83,81 @@ MethodDecl_z1	:
 			}
 		;
 /* TODO Store Type*/
-MethodDecl	:	METHODnum VOIDnum IDnum LPARENnum RPARENnum Block
+MethodDecl	/*:	METHODnum VOIDnum IDnum LPARENnum RPARENnum Block
 			{
 				tree headOp = MakeTree(HeadOp, MakeLeaf(IDNode, $3), NullExp());
 				$$ = MakeTree(MethodOp, headOp, $6); 
 			}
-		|	METHODnum Type IDnum LPARENnum RPARENnum Block
+		|*/:	METHODnum Type IDnum LPARENnum RPARENnum Block
 			{
 				tree headOp = MakeTree(HeadOp, MakeLeaf(IDNode, $3), NullExp());
 				$$ = MakeTree(MethodOp, headOp, $6);
 			}
-		|	METHODnum VOIDnum IDnum LPARENnum Formal_Parameter_Start RPARENnum Block
+		|	METHODnum VOIDnum IDnum LPARENnum Formal_Parameter_List RPARENnum Block
 			{
 				tree headOp = MakeTree(HeadOp, MakeLeaf(IDNode, $3), $5);
 				$$ = MakeTree(MethodOp, headOp, $7);
 			}
-		|	METHODnum Type IDnum LPARENnum Formal_Parameter_Start RPARENnum Block
+		|	METHODnum Type IDnum LPARENnum Formal_Parameter_List RPARENnum Block
 			{
 				tree headOp = MakeTree(HeadOp, MakeLeaf(IDNode, $3), $5);
 				$$ = MakeTree(MethodOp, headOp, $7);
 			}
 		;
+/* TODO */
 Type		:	GTnum
 			{
 				$$ = MakeLeaf(TypeIdOp, $1);
 			}
 		;
-Formal_Parameter_Start :Formal_Parameter_List
-			{
-				$$ = MakeTree(SpecOp, $1, NullExp());
-			}
-		;
-Formal_Parameter_List :	
-			{
-				$$ = NullExp();
-			}
-		|	Formal_Parameter
+
+Formal_Parameter_List_rec:	Formal_Parameter
 			{
 				$$ = $1;
 			}
-		|	Formal_Parameter SEMInum Formal_Parameter_List
+		|	Formal_Parameter SEMInum Formal_Parameter_List_rec
 			{
 				$$ = MkRightC($3, $1);
 			}
 		;
-/* TODO */
-Formal_Parameter:	ASSGNnum
+Formal_Parameter_List :	
 			{
-				$$ = MakeTree(RArgTypeOp, NullExp(), NullExp());
+				$$ = MakeTree(SpecOp, NullExp(), NullExp());
+			}
+		|	Formal_Parameter_List_rec
+			{
+				$$ = MakeTree(SpecOp, $1, NullExp());
+			}
+		;	
+/* TODO */
+Formal_Parameter:	VALnum INTnum Formal_Parameter_rec
+			{
+				//printf("VAL INT FOUND\n");
+				$$ = MakeVal($3);
 			}		
+		|	INTnum Formal_Parameter_rec
+			{
+				//printf("INT FOUND\n");
+				$$ = $2;
+			}
+		;
+/*
+Formal_Parameter:	ASSGNnum IDnum
+			{
+				$$ = MakeLeaf(IDNode, $2);
+			}
+		;*/
+Formal_Parameter_rec:	IDnum 	
+			{
+				tree idTree = MakeTree(CommaOp, MakeLeaf(IDNode, $1), MakeLeaf(INTEGERTNode, 0));
+				$$ = MakeTree(RArgTypeOp, idTree, NullExp());
+			}
+		|	IDnum COMMAnum Formal_Parameter_rec
+			{
+				tree idTree = MakeTree(CommaOp, MakeLeaf(IDNode, $1), MakeLeaf(INTEGERTNode, 0));
+				tree formalParameter = MakeTree(RArgTypeOp, idTree, NullExp());
+				$$ = MkRightC($3, formalParameter);
+			}
 		;
 /* Done */ 
 Block		:	StatementList
