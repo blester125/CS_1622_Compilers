@@ -1,6 +1,6 @@
 program xyz;
 class First{
-	method void first(){}
-	method void second(){}
+	declarations
+		int x[] = {1, 2, 3};
+	enddeclarations	
 }
-class Second{}

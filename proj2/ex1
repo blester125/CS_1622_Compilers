@@ -3,7 +3,7 @@
 program xyz;
 class First
 {
-	method void two ( :=z) 
-	{
+	method void x(int a; int b){
+		x();
 	}
 }

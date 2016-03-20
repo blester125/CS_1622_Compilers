@@ -3,7 +3,9 @@
 program xyz;
 class First
 {
-	method void two (val int x, y; int z) 
+	method void x(int a; int b)
 	{
+		x();
 	}
+
 }

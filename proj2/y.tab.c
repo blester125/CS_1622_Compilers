@@ -95,130 +95,146 @@ extern int YYPARSE_DECL();
 #define ICONSTnum 294
 #define SCONSTnum 295
 #define MethodDecl_rec 296
-#define FieldDecl_rec 297
-#define Tail 298
-#define FieldDecl_body 299
-#define Bracket_rec1 300
-#define Bracket_rec2 301
-#define ArrayInitializer 302
-#define ArrayInitializer_body 303
-#define ArrayCreationExpression 304
-#define ArrayCreationExpression_tail 305
-#define FormalParameterList_z1 306
-#define FormalParameterList 307
-#define FormalParameterList_rec 308
-#define IDENTIFIER_rec 309
-#define Type_front 310
-#define Statement_rec 311
-#define MethodCallStatement 312
-#define MethodCallStatement_tail 313
-#define Expression_rec 314
-#define IfStatement 315
-#define If_rec 316
-#define Comp_op 317
-#define SimpleExpression 318
-#define Term 319
-#define Expression_rec2 320
-#define Variable 321
-#define Variable_tail 322
-#define Variable_rec 323
-#define Variable_1 324
-#define RPRENnum 325
+#define Tail 297
+#define FieldDecl_body 298
+#define Bracket_rec1 299
+#define Bracket_rec2 300
+#define ArrayInitializer_body 301
+#define ArrayCreationExpression_tail 302
+#define FormalParameterList_z1 303
+#define FormalParameterList 304
+#define FormalParameterList_rec 305
+#define IDENTIFIER_rec 306
+#define Type_front 307
+#define Statement_rec 308
+#define MethodCallStatement_tail 309
+#define Expression_rec 310
+#define IfStatement 311
+#define If_rec 312
+#define Comp_op 313
+#define Term 314
+#define Expression_rec2 315
+#define Variable_tail 316
+#define Variable_rec 317
+#define Variable_1 318
 #define YYERRCODE 256
 static const short yylhs[] = {                           -1,
-    0,   10,   10,   11,   12,    1,    1,   13,   13,   13,
-   13,   18,   18,   18,   20,    3,    3,    6,    6,    5,
-    5,    4,    4,   19,   19,    8,    9,    9,    7,    7,
-    7,    7,    7,    7,    7,   14,   14,   14,    2,    2,
-   15,   16,   16,   27,   27,   17,   17,   17,   21,   22,
-   22,   23,   24,   24,   24,   24,   24,   24,   24,   25,
-   25,   25,   25,   25,   26,   26,
+    0,   15,   15,   16,   17,    1,    1,   18,   18,   18,
+   18,   26,   26,   28,    3,    3,    6,    6,    5,    5,
+    4,    4,   27,   27,    8,    9,    9,    7,    7,    7,
+    7,    7,    7,    7,   19,    2,    2,    2,   21,   20,
+   20,   11,   11,   22,   22,   38,   38,   23,   23,   23,
+   24,   12,   12,   25,   13,   13,   14,   29,   30,   10,
+   10,   10,   31,   31,   32,   33,   33,   33,   33,   33,
+   33,   33,   35,   35,   35,   35,   35,   36,   36,   34,
+   37,
 };
 static const short yylen[] = {                            2,
     4,    1,    2,    3,    3,    1,    2,    0,    1,    1,
-    2,    6,    7,    7,    1,    0,    1,    1,    3,    3,
-    2,    1,    3,    1,    2,    3,    1,    2,    0,    1,
-    2,    2,    2,    2,    2,    2,    3,    4,    1,    2,
-    1,    1,    2,    2,    3,    1,    1,    1,    3,    1,
-    2,    3,    1,    3,    3,    3,    3,    3,    3,    1,
-    1,    1,    3,    2,    1,    1,
+    2,    7,    7,    1,    0,    1,    1,    3,    3,    2,
+    1,    3,    1,    2,    3,    1,    2,    0,    1,    2,
+    2,    2,    2,    2,    3,    0,    1,    2,    3,    1,
+    3,    1,    3,    1,    2,    2,    3,    1,    1,    1,
+    3,    1,    3,    2,    1,    2,    3,    3,    4,    0,
+    1,    3,    1,    2,    3,    1,    3,    3,    3,    3,
+    3,    3,    1,    1,    1,    3,    2,    1,    1,    1,
+    1,
 };
 static const short yydefred[] = {                         0,
     0,    0,    0,    0,    0,    0,    2,    0,    3,    0,
-    4,    0,    0,    0,    6,    0,   10,   36,   41,    0,
-    0,    0,   15,    0,    5,    7,   11,    0,   37,    0,
-    0,   38,    0,    0,    0,    0,    0,    0,   17,    0,
-    0,    0,   21,    0,    0,    0,    0,   24,    0,   12,
-    0,    0,   20,   13,   19,   30,    0,    0,    0,    0,
-    0,   27,    0,    0,    0,    0,   25,   14,   23,    0,
-   51,    0,   32,   34,    0,   26,   28,   31,   33,   35,
-    0,    0,    0,    0,    0,    0,   52,   49,   54,   55,
-   56,   57,   58,   59,
+    4,    0,    0,    0,    6,    0,   10,   14,    0,   37,
+    0,    0,    0,    5,    7,   11,   35,   38,    0,   40,
+    0,    0,    0,    0,    0,    0,   39,    0,    0,    0,
+    0,   46,    0,   41,    0,    0,   80,   43,   49,   50,
+   48,    0,    0,    0,    0,    0,   16,    0,   47,    0,
+   52,    0,    0,   55,    0,    0,    0,    0,    0,    0,
+    0,   20,    0,    0,    0,    0,    0,   51,    0,   56,
+   67,   68,   69,   70,   71,   72,    0,   19,    0,   23,
+    0,   12,   18,   13,   53,   57,   22,   81,   29,    0,
+    0,    0,   26,    0,    0,    0,    0,    0,    0,   24,
+   64,    0,   33,   25,   27,   30,   31,   32,   34,    0,
+    0,   65,    0,    0,   58,   59,    0,   62,
 };
 static const short yydgoto[] = {                          2,
-   14,   20,   37,   43,   38,   39,   62,   48,   63,    6,
-    7,   11,   15,   49,   21,    0,    0,   17,   50,   24,
-   64,   65,   66,   71,    0,    0,    0,
+   14,   19,   55,   72,   56,   57,  103,   90,  104,  123,
+   30,   60,   63,   64,    6,    7,   11,   15,   91,   31,
+   20,   32,   48,   49,   50,   17,   92,   21,  105,  106,
+  107,  108,  124,   52,    0,    0,  109,   36,
 };
-static const short yysindex[] = {                      -245,
- -224,    0, -248, -217, -212, -217,    0, -218,    0, -247,
-    0, -257, -263, -260,    0, -225,    0,    0,    0, -232,
- -211, -208,    0, -206,    0,    0,    0, -207,    0, -210,
- -209,    0, -243, -242, -200, -205, -204, -198,    0, -220,
- -202, -199,    0, -200, -220, -243, -258,    0, -196,    0,
- -220, -200,    0,    0,    0,    0, -253, -253, -189, -188,
- -203,    0, -259, -187, -185, -184,    0,    0,    0, -246,
-    0, -196,    0,    0, -253,    0,    0,    0,    0,    0,
- -241, -240, -239, -238, -237, -236,    0,    0,    0,    0,
-    0,    0,    0,    0,
+static const short yysindex[] = {                      -242,
+ -227,    0, -222, -217, -213, -217,    0, -209,    0, -245,
+    0, -277, -266, -248,    0, -216,    0,    0, -250,    0,
+ -174, -173, -172,    0,    0,    0,    0,    0, -197,    0,
+ -188, -177, -181, -179, -176, -178,    0, -174, -261, -194,
+ -194,    0, -175,    0, -203, -171,    0,    0,    0,    0,
+    0, -233, -164, -170, -169, -162,    0, -167,    0, -249,
+    0, -203, -171,    0, -203, -203, -203, -203, -203, -203,
+ -168,    0, -164, -189, -194, -189, -203,    0, -163,    0,
+    0,    0,    0,    0,    0,    0, -164,    0, -251,    0,
+ -166,    0,    0,    0,    0,    0,    0,    0,    0, -203,
+ -203, -161,    0, -256, -159, -155, -153, -152, -229,    0,
+    0, -166,    0,    0,    0,    0,    0,    0,    0, -203,
+ -203,    0, -160, -154,    0,    0, -203,    0,
 };
 static const short yyrindex[] = {                         0,
-    0,    0,    0,    0,    0,   76,    0,    0,    0, -183,
-    0,    0,    0,    0,    0, -182,    0,    0,    0,    0,
- -195,    0,    0,    0,    0,    0,    0, -194,    0,    0,
-    0,    0, -181,    0,    0,    0,    0, -180,    0,    0,
-    0, -255,    0,    0,    0,    0, -178,    0,    0,    0,
-    0,    0,    0,    0,    0,    0, -174,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0, -249,
+    0,    0,    0,    0,    0,  108,    0,    0,    0, -151,
+    0, -150,    0,    0,    0, -149,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0, -205,    0,
+    0, -182,    0,    0,    0, -190,    0,    0,    0, -157,
+ -157,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0, -224,    0,    0,    0, -156,    0,    0,    0,    0,
+    0,    0, -180,    0,    0,    0,    0,    0,    0,    0,
+ -240,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0, -148,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0, -143,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0, -147,
+    0,    0,    0, -146,    0,    0, -147,    0,
 };
 static const short yygindex[] = {                         0,
-    0,    0,   57,  -35,    0,   46,   30,  -47,    0,    0,
-   88,    0,    0,   85,   77,    0,    0,   28,  -18,    0,
-    0,    0,    0,  -55,    0,    0,    0,
+    0,    0,   70,  -60,    0,   44,   16,  -90,    0,   -6,
+   84,    0,    0,   62,    0,  120,    0,    0,  117,    0,
+  109,    0,    0,    0,    0,   18,   53,  118,    0,    0,
+    0,    0,  -39,   -2,    0,    0,    0,    0,
 };
-#define YYTABLESIZE 97
-static const short yytable[] = {                         56,
-   56,   67,   72,   22,   18,   25,   76,   22,   53,   53,
-    4,    1,   13,   12,   22,   53,   69,   57,   57,   88,
-   58,   58,   23,   19,   87,   13,   54,   40,   35,   35,
-   36,   36,   68,    3,   81,   82,   83,   84,   85,   86,
-   12,   26,    5,   27,   47,    8,   10,   13,   19,   30,
-   29,   31,   59,   59,   32,   60,   60,   42,   33,   34,
-   46,   61,   61,   52,   70,   45,   44,   51,   47,   73,
-   74,   78,   75,   79,   80,    1,   89,   90,   91,   92,
-   93,   94,    8,    9,   50,   39,   40,   29,   16,   18,
-   41,   55,   77,    9,   16,    0,   28,
+#define YYTABLESIZE 131
+static const short yytable[] = {                         51,
+  110,   98,   99,   45,   22,   61,   98,   99,   18,  114,
+   46,   27,   88,   77,    1,   12,   78,   24,   21,   18,
+  100,  122,   79,  101,   13,  100,   97,   13,  101,   21,
+    3,   25,   47,   26,   66,   18,    4,   95,   66,  120,
+   66,   66,    5,   66,    8,   66,  121,   65,   66,   67,
+   68,   69,   70,   44,  102,   10,   13,   44,   44,  102,
+  111,  112,   81,   82,   83,   84,   85,   86,   45,   35,
+   37,   12,   45,   45,   38,   89,   42,   53,   54,   54,
+   42,  125,   54,   29,   33,   34,   39,   40,   43,   41,
+   47,   42,   59,   71,   87,   62,   75,  113,   89,  116,
+   74,   73,   76,  117,   96,  118,  119,    1,  127,  126,
+   58,   36,   15,   17,    8,   63,    9,   28,   93,  115,
+  128,   44,   60,   61,   80,    9,   16,   28,   94,    0,
+   23,
 };
-static const short yycheck[] = {                        259,
-  259,   49,   58,  259,  262,  266,  266,  271,   44,  259,
-  259,  257,  273,  261,  270,  265,   52,  277,  277,   75,
-  280,  280,  286,  281,   72,  273,   45,  270,  272,  272,
-  274,  274,   51,  258,  281,  282,  283,  284,  285,  286,
-  261,   14,  260,   16,  265,  258,  265,  273,  281,  258,
-  262,  258,  312,  312,  262,  315,  315,  258,  269,  269,
-  259,  321,  321,  263,  318,  270,  272,  270,  265,  259,
-  259,  259,  276,  259,  259,    0,  318,  318,  318,  318,
-  318,  318,  266,  266,  259,  281,  281,  266,  270,  270,
-   34,   46,   63,    6,   10,   -1,   20,
+static const short yycheck[] = {                         39,
+   91,  258,  259,  265,  271,   45,  258,  259,  286,  266,
+  272,  262,   73,  263,  257,  261,  266,  266,  259,  286,
+  277,  112,   62,  280,  273,  277,   87,  273,  280,  270,
+  258,   14,  294,   16,  259,  286,  259,   77,  263,  269,
+  265,  266,  260,  268,  258,  270,  276,  281,  282,  283,
+  284,  285,  286,  259,  311,  265,  273,  263,  264,  311,
+  100,  101,   65,   66,   67,   68,   69,   70,  259,  267,
+  259,  261,  263,  264,  263,  265,  259,  272,  259,  274,
+  263,  121,  263,  258,  258,  258,  264,  269,  267,  269,
+  294,  268,  268,  258,  263,  267,  259,  259,  265,  259,
+  270,  272,  270,  259,  268,  259,  259,    0,  263,  270,
+   41,  262,  270,  270,  266,  259,  266,  266,   75,  104,
+  127,   38,  270,  270,   63,    6,   10,   19,   76,   -1,
+   13,
 };
 #define YYFINAL 2
 #ifndef YYDEBUG
 #define YYDEBUG 0
 #endif
-#define YYMAXTOKEN 325
+#define YYMAXTOKEN 318
 #define YYTRANSLATE(a) ((a) > YYMAXTOKEN ? (YYMAXTOKEN + 1) : (a))
 #if YYDEBUG
 static const char *yyname[] = {
@@ -235,14 +251,12 @@ static const char *yyname[] = {
 "INTnum","METHODnum","VALnum","DOTnum","ASSGNnum","RETURNnum","IFnum","ELSEnum",
 "WHILEnum","LTnum","LEnum","EQnum","NEnum","GEnum","GTnum","PLUSnum","MINUSnum",
 "ORnum","TIMESnum","DIVIDEnum","ANDnum","NOTnum","ICONSTnum","SCONSTnum",
-"MethodDecl_rec","FieldDecl_rec","Tail","FieldDecl_body","Bracket_rec1",
-"Bracket_rec2","ArrayInitializer","ArrayInitializer_body",
-"ArrayCreationExpression","ArrayCreationExpression_tail",
-"FormalParameterList_z1","FormalParameterList","FormalParameterList_rec",
-"IDENTIFIER_rec","Type_front","Statement_rec","MethodCallStatement",
-"MethodCallStatement_tail","Expression_rec","IfStatement","If_rec","Comp_op",
-"SimpleExpression","Term","Expression_rec2","Variable","Variable_tail",
-"Variable_rec","Variable_1","RPRENnum","illegal-symbol",
+"MethodDecl_rec","Tail","FieldDecl_body","Bracket_rec1","Bracket_rec2",
+"ArrayInitializer_body","ArrayCreationExpression_tail","FormalParameterList_z1",
+"FormalParameterList","FormalParameterList_rec","IDENTIFIER_rec","Type_front",
+"Statement_rec","MethodCallStatement_tail","Expression_rec","IfStatement",
+"If_rec","Comp_op","Term","Expression_rec2","Variable_tail","Variable_rec",
+"Variable_1","illegal-symbol",
 };
 static const char *yyrule[] = {
 "$accept : Program",
@@ -257,7 +271,6 @@ static const char *yyrule[] = {
 "MethodDecl_z1 : Decls",
 "MethodDecl_z1 : MethodDecl",
 "MethodDecl_z1 : Decls MethodDecl",
-"MethodDecl : METHODnum Type IDnum LPARENnum RPARENnum Block",
 "MethodDecl : METHODnum VOIDnum IDnum LPARENnum Formal_Parameter_List RPARENnum Block",
 "MethodDecl : METHODnum Type IDnum LPARENnum Formal_Parameter_List RPARENnum Block",
 "Type : GTnum",
@@ -281,20 +294,34 @@ static const char *yyrule[] = {
 "Statement : ReturnStatement SEMInum",
 "Statement : IfStatement SEMInum",
 "Statement : WhileStatement SEMInum",
-"Decls : DECLARATIONSnum ENDDECLARATIONSnum",
-"Decls : DECLARATIONSnum FieldDecl ENDDECLARATIONSnum",
-"Decls : DECLARATIONSnum FieldDecl_List FieldDecl ENDDECLARATIONSnum",
+"Decls : DECLARATIONSnum FieldDecl_List ENDDECLARATIONSnum",
+"FieldDecl_List :",
 "FieldDecl_List : FieldDecl",
 "FieldDecl_List : FieldDecl_List FieldDecl",
-"FieldDecl : LTnum",
+"FieldDecl : Type FieldDecl_rec SEMInum",
+"FieldDecl_rec : FieldDecl_Id",
+"FieldDecl_rec : FieldDecl_rec COMMAnum FieldDecl_Id",
+"FieldDecl_Id : VariableDeclId",
+"FieldDecl_Id : VariableDeclId EQUALnum VariableInitializer",
 "VariableDeclId : IDnum",
 "VariableDeclId : IDnum BracketLoop",
-"BracketLoop : LBRACEnum RBRACEnum",
-"BracketLoop : BracketLoop LBRACEnum RBRACEnum",
+"BracketLoop : LBRACnum RBRACnum",
+"BracketLoop : BracketLoop LBRACnum RBRACnum",
 "VariableInitializer : Expression",
 "VariableInitializer : ArrayInitializer",
 "VariableInitializer : ArrayCreationExpression",
+"ArrayInitializer : LBRACEnum ArrayInitializer_rec RBRACEnum",
+"ArrayInitializer_rec : Expression",
+"ArrayInitializer_rec : ArrayInitializer_rec COMMAnum Expression",
+"ArrayCreationExpression : INTnum ArrayCreationExpression_rec",
+"ArrayCreationExpression_rec : ArrayExpression",
+"ArrayCreationExpression_rec : ArrayCreationExpression_rec ArrayExpression",
+"ArrayExpression : LBRACnum Expression RBRACnum",
 "AssignmentStatement : Variable ASSGNnum Expression",
+"MethodCallStatement : Variable LPARENnum ParameterList RPARENnum",
+"ParameterList :",
+"ParameterList : Expression",
+"ParameterList : Expression COMMAnum ParameterList",
 "ReturnStatement : RETURNnum",
 "ReturnStatement : RETURNnum Expression",
 "WhileStatement : WHILEnum Expression StatementList",
@@ -308,10 +335,12 @@ static const char *yyrule[] = {
 "Factor : UnsignedConstant",
 "Factor : Variable",
 "Factor : MethodCallStatement",
-"Factor : LPARENnum Expression RPRENnum",
+"Factor : LPARENnum Expression RPARENnum",
 "Factor : NOTnum Factor",
 "UnsignedConstant : ICONSTnum",
 "UnsignedConstant : SCONSTnum",
+"SimpleExpression : ICONSTnum",
+"Variable : IDnum",
 
 };
 #endif
@@ -349,7 +378,7 @@ typedef struct {
 } YYSTACKDATA;
 /* variables for the parser stack */
 static YYSTACKDATA yystack;
-#line 347 "grammar.y"
+#line 417 "grammar.y"
 
 int yycolumn, yyline;
 
@@ -368,7 +397,7 @@ yyerror(char *str)
 
 #include "lex.yy.c"
 
-#line 370 "y.tab.c"
+#line 399 "y.tab.c"
 
 #if YYDEBUG
 #include <stdio.h>		/* needed for printf */
@@ -578,387 +607,484 @@ case 1:
                        }
 break;
 case 2:
-#line 41 "grammar.y"
+#line 40 "grammar.y"
 	{  yyval.tptr = MakeTree(ClassOp, NullExp(), yystack.l_mark[0].tptr); }
 break;
 case 3:
-#line 43 "grammar.y"
+#line 42 "grammar.y"
 	{  yyval.tptr = MakeTree(ClassOp, yystack.l_mark[-1].tptr, yystack.l_mark[0].tptr); }
 break;
 case 4:
-#line 50 "grammar.y"
+#line 48 "grammar.y"
 	{
 				yyval.tptr = MakeTree(ClassDefOp, yystack.l_mark[0].tptr, MakeLeaf(IDNode, yystack.l_mark[-1].intg));
 			}
 break;
 case 5:
-#line 55 "grammar.y"
+#line 53 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[-1].tptr;
 			}
 break;
 case 6:
-#line 60 "grammar.y"
+#line 58 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[0].tptr;
 			}
 break;
 case 7:
-#line 64 "grammar.y"
+#line 62 "grammar.y"
 	{
 				yyval.tptr = MakeTree(BodyOp, yystack.l_mark[-1].tptr, yystack.l_mark[0].tptr);
 			}
 break;
 case 8:
-#line 69 "grammar.y"
+#line 67 "grammar.y"
 	{
-				yyval.tptr = MakeTree(BodyOp, NullExp(), NullExp());
+				yyval.tptr = NullExp();
 			}
 break;
 case 9:
-#line 73 "grammar.y"
+#line 71 "grammar.y"
 	{
-				yyval.tptr = MakeTree(BodyOp, yystack.l_mark[0].tptr, NullExp());
+				yyval.tptr = yystack.l_mark[0].tptr;
 			}
 break;
 case 10:
-#line 77 "grammar.y"
+#line 75 "grammar.y"
 	{
 				yyval.tptr = MakeTree(BodyOp, NullExp(), yystack.l_mark[0].tptr);
 			}
 break;
 case 11:
-#line 81 "grammar.y"
+#line 79 "grammar.y"
 	{
 				yyval.tptr = MakeTree(BodyOp, yystack.l_mark[-1].tptr, yystack.l_mark[0].tptr);
 			}
 break;
 case 12:
-#line 92 "grammar.y"
+#line 85 "grammar.y"
 	{
-				tree headOp = MakeTree(HeadOp, MakeLeaf(IDNode, yystack.l_mark[-3].intg), NullExp());
+				tree headOp = MakeTree(HeadOp, MakeLeaf(IDNode, yystack.l_mark[-4].intg), yystack.l_mark[-2].tptr);
 				yyval.tptr = MakeTree(MethodOp, headOp, yystack.l_mark[0].tptr);
 			}
 break;
 case 13:
-#line 97 "grammar.y"
+#line 90 "grammar.y"
 	{
 				tree headOp = MakeTree(HeadOp, MakeLeaf(IDNode, yystack.l_mark[-4].intg), yystack.l_mark[-2].tptr);
 				yyval.tptr = MakeTree(MethodOp, headOp, yystack.l_mark[0].tptr);
 			}
 break;
 case 14:
-#line 102 "grammar.y"
-	{
-				tree headOp = MakeTree(HeadOp, MakeLeaf(IDNode, yystack.l_mark[-4].intg), yystack.l_mark[-2].tptr);
-				yyval.tptr = MakeTree(MethodOp, headOp, yystack.l_mark[0].tptr);
-			}
-break;
-case 15:
-#line 109 "grammar.y"
+#line 97 "grammar.y"
 	{
 				yyval.tptr = MakeLeaf(TypeIdOp, yystack.l_mark[0].intg);
 			}
 break;
-case 16:
-#line 115 "grammar.y"
+case 15:
+#line 102 "grammar.y"
 	{
 				yyval.tptr = MakeTree(SpecOp, NullExp(), NullExp());
 			}
 break;
-case 17:
-#line 119 "grammar.y"
+case 16:
+#line 106 "grammar.y"
 	{
 				yyval.tptr = MakeTree(SpecOp, yystack.l_mark[0].tptr, NullExp());
 			}
 break;
-case 18:
-#line 125 "grammar.y"
+case 17:
+#line 111 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[0].tptr;
 			}
 break;
-case 19:
-#line 129 "grammar.y"
+case 18:
+#line 115 "grammar.y"
 	{
 				yyval.tptr = MkRightC(yystack.l_mark[0].tptr, yystack.l_mark[-2].tptr);
 			}
 break;
-case 20:
-#line 135 "grammar.y"
+case 19:
+#line 120 "grammar.y"
 	{
 				yyval.tptr = MakeVal(yystack.l_mark[0].tptr);
 			}
 break;
-case 21:
-#line 139 "grammar.y"
+case 20:
+#line 124 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[0].tptr;
 			}
 break;
-case 22:
-#line 145 "grammar.y"
+case 21:
+#line 129 "grammar.y"
 	{
 				tree idTree = MakeTree(CommaOp, MakeLeaf(IDNode, yystack.l_mark[0].intg), MakeLeaf(INTEGERTNode, 0));
 				yyval.tptr = MakeTree(RArgTypeOp, idTree, NullExp());
 			}
 break;
-case 23:
-#line 150 "grammar.y"
+case 22:
+#line 134 "grammar.y"
 	{
 				tree idTree = MakeTree(CommaOp, MakeLeaf(IDNode, yystack.l_mark[-2].intg), MakeLeaf(INTEGERTNode, 0));
 				tree formalParameter = MakeTree(RArgTypeOp, idTree, NullExp());
 				yyval.tptr = MkRightC(yystack.l_mark[0].tptr, formalParameter);
 			}
 break;
-case 24:
-#line 158 "grammar.y"
+case 23:
+#line 141 "grammar.y"
 	{
 				yyval.tptr = MakeTree(BodyOp, NullExp(), yystack.l_mark[0].tptr);
 			}
 break;
-case 25:
-#line 162 "grammar.y"
+case 24:
+#line 145 "grammar.y"
 	{
 				yyval.tptr = MakeTree(BodyOp, yystack.l_mark[-1].tptr, yystack.l_mark[0].tptr);
 			}
 break;
-case 26:
-#line 168 "grammar.y"
+case 25:
+#line 150 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[-1].tptr;
 			}
 break;
-case 27:
-#line 174 "grammar.y"
+case 26:
+#line 155 "grammar.y"
 	{
 				yyval.tptr = MakeTree(StmtOp, NullExp(), yystack.l_mark[0].tptr);
 			}
 break;
-case 28:
-#line 178 "grammar.y"
+case 27:
+#line 159 "grammar.y"
 	{
 				yyval.tptr = MakeTree(StmtOp, yystack.l_mark[-1].tptr, yystack.l_mark[0].tptr);
 			}
 break;
+case 28:
+#line 165 "grammar.y"
+	{
+				yyval.tptr = NullExp();
+			}
+break;
 case 29:
-#line 184 "grammar.y"
+#line 169 "grammar.y"
 	{
 				yyval.tptr = NullExp();
 			}
 break;
 case 30:
-#line 188 "grammar.y"
+#line 173 "grammar.y"
 	{
-				yyval.tptr = NullExp();
+				yyval.tptr = yystack.l_mark[-1].tptr;
 			}
 break;
 case 31:
-#line 192 "grammar.y"
+#line 177 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[-1].tptr;
 			}
 break;
 case 32:
-#line 196 "grammar.y"
+#line 181 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[-1].tptr;
 			}
 break;
 case 33:
-#line 200 "grammar.y"
+#line 185 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[-1].tptr;
 			}
 break;
 case 34:
-#line 204 "grammar.y"
+#line 189 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[-1].tptr;
 			}
 break;
 case 35:
-#line 208 "grammar.y"
+#line 194 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[-1].tptr;
 			}
 break;
 case 36:
-#line 214 "grammar.y"
+#line 205 "grammar.y"
 	{
 				yyval.tptr = MakeTree(BodyOp, NullExp(), NullExp());
 			}
 break;
 case 37:
-#line 218 "grammar.y"
-	{
-				yyval.tptr = MakeTree(BodyOp, NullExp(), yystack.l_mark[-1].tptr);
-			}
-break;
-case 38:
-#line 222 "grammar.y"
-	{
-				yyval.tptr = MakeTree(BodyOp, yystack.l_mark[-2].tptr, yystack.l_mark[-1].tptr);
-			}
-break;
-case 39:
-#line 228 "grammar.y"
+#line 209 "grammar.y"
 	{
 				yyval.tptr = MakeTree(BodyOp, NullExp(), yystack.l_mark[0].tptr);
 			}
 break;
-case 40:
-#line 232 "grammar.y"
+case 38:
+#line 213 "grammar.y"
 	{
 				yyval.tptr = MakeTree(BodyOp, yystack.l_mark[-1].tptr, yystack.l_mark[0].tptr);
 			}
 break;
-case 41:
-#line 238 "grammar.y"
+case 39:
+#line 219 "grammar.y"
 	{
-				yyval.tptr = MakeTree(DeclOp, NullExp(), NullExp());
+				/* Save Type */
+				yyval.tptr = yystack.l_mark[-1].tptr;
+			}
+break;
+case 40:
+#line 225 "grammar.y"
+	{
+				yyval.tptr = MakeTree(DeclOp, NullExp(), yystack.l_mark[0].tptr);
+			}
+break;
+case 41:
+#line 229 "grammar.y"
+	{
+				yyval.tptr = MakeTree(DeclOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
 			}
 break;
 case 42:
-#line 243 "grammar.y"
+#line 235 "grammar.y"
 	{
-				yyval.tptr = MakeLeaf(IDNode, yystack.l_mark[0].intg);
+				/* set Left child to Type */
+				tree commaTree = MakeTree(CommaOp, NullExp(), NullExp());
+				yyval.tptr = MakeTree(CommaOp, yystack.l_mark[0].tptr, commaTree);
 			}
 break;
 case 43:
-#line 247 "grammar.y"
+#line 241 "grammar.y"
+	{
+				/* set Left child to Type */
+				tree commaTree = MakeTree(CommaOp, NullExp(), yystack.l_mark[0].tptr);
+				yyval.tptr = MakeTree(CommaOp, yystack.l_mark[-2].tptr, commaTree);
+			}
+break;
+case 44:
+#line 248 "grammar.y"
+	{
+				printf("VarDecId");
+				yyval.tptr = MakeLeaf(IDNode, yystack.l_mark[0].intg);
+			}
+break;
+case 45:
+#line 253 "grammar.y"
 	{
 				yyval.tptr = MakeLeaf(IDNode, yystack.l_mark[-1].intg);
 			}
 break;
-case 46:
-#line 255 "grammar.y"
-	{
-				yyval.tptr = yystack.l_mark[0].tptr;
-			}
-break;
-case 47:
-#line 259 "grammar.y"
-	{
-				yyval.tptr = yystack.l_mark[0].tptr;
-			}
-break;
 case 48:
-#line 263 "grammar.y"
+#line 261 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[0].tptr;
 			}
 break;
 case 49:
-#line 268 "grammar.y"
-	{
-				tree assignOp = MakeTree(AssignOp, NullExp(), yystack.l_mark[-2].tptr);
-				yyval.tptr = MakeTree(AssignOp, assignOp, yystack.l_mark[0].tptr);
-			}
-break;
-case 50:
-#line 274 "grammar.y"
-	{
-				yyval.tptr = MakeTree(ReturnOp, NullExp(), NullExp());
-			}
-break;
-case 51:
-#line 278 "grammar.y"
-	{
-				yyval.tptr = MakeTree(ReturnOp, yystack.l_mark[0].tptr, NullExp());
-			}
-break;
-case 52:
-#line 283 "grammar.y"
-	{
-				yyval.tptr = MakeTree(LoopOp, yystack.l_mark[-1].tptr, yystack.l_mark[0].tptr);
-			}
-break;
-case 53:
-#line 288 "grammar.y"
+#line 265 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[0].tptr;
 			}
 break;
-case 54:
-#line 292 "grammar.y"
+case 50:
+#line 269 "grammar.y"
 	{
-				yyval.tptr = MakeTree(LTOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
+				yyval.tptr = yystack.l_mark[0].tptr;
+			}
+break;
+case 51:
+#line 274 "grammar.y"
+	{
+				/*TODO add type to right child*/
+				yyval.tptr = MakeTree(ArrayTypeOp, yystack.l_mark[-1].tptr, NullExp());
+			}
+break;
+case 52:
+#line 280 "grammar.y"
+	{
+				yyval.tptr = MakeTree(CommaOp, NullExp(), yystack.l_mark[0].tptr);
+			}
+break;
+case 53:
+#line 284 "grammar.y"
+	{
+				yyval.tptr = MakeTree(CommaOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
+			}
+break;
+case 54:
+#line 289 "grammar.y"
+	{
+				/* TODO Add the type subtree */
+				yyval.tptr = MakeTree(ArrayTypeOp, yystack.l_mark[0].tptr, NullExp());
 			}
 break;
 case 55:
-#line 296 "grammar.y"
+#line 295 "grammar.y"
 	{
-				yyval.tptr = MakeTree(LEOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
+				yyval.tptr = MakeTree(BoundOp, NullExp(), yystack.l_mark[0].tptr);
 			}
 break;
 case 56:
-#line 300 "grammar.y"
+#line 299 "grammar.y"
 	{
-				yyval.tptr = MakeTree(EQOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
+				yyval.tptr = MakeTree(BoundOp, yystack.l_mark[-1].tptr, yystack.l_mark[0].tptr);
 			}
 break;
 case 57:
 #line 304 "grammar.y"
 	{
-				yyval.tptr = MakeTree(NEOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
+				yyval.tptr = yystack.l_mark[-1].tptr;
 			}
 break;
 case 58:
-#line 308 "grammar.y"
+#line 309 "grammar.y"
+	{
+				tree assignOp = MakeTree(AssignOp, NullExp(), yystack.l_mark[-2].tptr);
+				yyval.tptr = MakeTree(AssignOp, assignOp, yystack.l_mark[0].tptr);
+			}
+break;
+case 59:
+#line 315 "grammar.y"
+	{
+				yyval.tptr = MakeTree(RoutineCallOp, yystack.l_mark[-3].tptr, yystack.l_mark[-1].tptr);
+			}
+break;
+case 60:
+#line 320 "grammar.y"
+	{
+				yyval.tptr = NullExp();
+			}
+break;
+case 61:
+#line 324 "grammar.y"
+	{
+				yyval.tptr = MakeTree(CommaOp, yystack.l_mark[0].tptr, NullExp());
+			}
+break;
+case 62:
+#line 328 "grammar.y"
+	{
+				yyval.tptr = MakeTree(CommaOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
+			}
+break;
+case 63:
+#line 333 "grammar.y"
+	{
+				yyval.tptr = MakeTree(ReturnOp, NullExp(), NullExp());
+			}
+break;
+case 64:
+#line 337 "grammar.y"
+	{
+				yyval.tptr = MakeTree(ReturnOp, yystack.l_mark[0].tptr, NullExp());
+			}
+break;
+case 65:
+#line 342 "grammar.y"
+	{
+				yyval.tptr = MakeTree(LoopOp, yystack.l_mark[-1].tptr, yystack.l_mark[0].tptr);
+			}
+break;
+case 66:
+#line 347 "grammar.y"
+	{
+				yyval.tptr = yystack.l_mark[0].tptr;
+			}
+break;
+case 67:
+#line 351 "grammar.y"
+	{
+				yyval.tptr = MakeTree(LTOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
+			}
+break;
+case 68:
+#line 355 "grammar.y"
+	{
+				yyval.tptr = MakeTree(LEOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
+			}
+break;
+case 69:
+#line 359 "grammar.y"
+	{
+				yyval.tptr = MakeTree(EQOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
+			}
+break;
+case 70:
+#line 363 "grammar.y"
+	{
+				yyval.tptr = MakeTree(NEOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
+			}
+break;
+case 71:
+#line 367 "grammar.y"
 	{
 				yyval.tptr = MakeTree(GEOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
 			}
 break;
-case 59:
-#line 312 "grammar.y"
+case 72:
+#line 371 "grammar.y"
 	{
 				yyval.tptr = MakeTree(GTOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
 			}
 break;
-case 60:
-#line 317 "grammar.y"
+case 73:
+#line 376 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[0].tptr;
 			}
 break;
-case 61:
-#line 321 "grammar.y"
+case 74:
+#line 380 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[0].tptr;
 			}
 break;
-case 62:
-#line 325 "grammar.y"
+case 75:
+#line 384 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[0].tptr;
 			}
 break;
-case 63:
-#line 329 "grammar.y"
+case 76:
+#line 388 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[-1].tptr;
 			}
 break;
-case 64:
-#line 333 "grammar.y"
+case 77:
+#line 392 "grammar.y"
 	{
 				yyval.tptr = MakeTree(UnaryNegOp, yystack.l_mark[0].tptr, NullExp());
 			}
 break;
-case 65:
-#line 338 "grammar.y"
+case 78:
+#line 397 "grammar.y"
 	{
 				yyval.tptr = MakeLeaf(INTEGERTNode, yystack.l_mark[0].intg);
 			}
 break;
-case 66:
-#line 342 "grammar.y"
+case 79:
+#line 401 "grammar.y"
 	{
 				yyval.tptr = MakeLeaf(STRINGNode, yystack.l_mark[0].intg);
 			}
 break;
-#line 960 "y.tab.c"
+case 80:
+#line 406 "grammar.y"
+	{
+				yyval.tptr = MakeLeaf(NUMNode, yystack.l_mark[0].intg);
+			}
+break;
+case 81:
+#line 412 "grammar.y"
+	{
+				yyval.tptr = MakeTree(VarOp, MakeLeaf(IDNode, yystack.l_mark[0].intg), NullExp());
+			}
+break;
+#line 1086 "y.tab.c"
     }
     yystack.s_mark -= yym;
     yystate = *yystack.s_mark;

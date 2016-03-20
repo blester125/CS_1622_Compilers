@@ -47,6 +47,7 @@ BADIDnum				{digit}({letter}|{digit})*
 "declarations" 			{pos(); return(DECLARATIONSnum);}
 "." 					{pos(); return(DOTnum);}
 "enddeclarations"		{pos(); return(ENDDECLARATIONSnum);}
+"="						{pos(); return(EQUALnum);}
 ">"						{pos(); return(GTnum);}
 "int" 					{pos(); return(INTnum);}
 "[" 					{pos(); return(LBRACnum);}
@@ -232,11 +233,18 @@ int insert(char a[]) {
 
 /* Search for the string in the table */
 int search(char a[]) {
-	int i;
-	for (i = 0; i < LIMIT1; i++) {
-		if (!strcasecmp(&(string_table[i]), a)) {
+	int i = 0;
+	char word[LIMIT1];
+	string_table[LIMIT1] = '\0';
+	while (i < LIMIT1) {
+		strcpy(&word[0], &(string_table[i]));
+		if (!strcasecmp(word, a)) {
 			return i;
-	    }
+		}
+		else {
+			i = i + strlen(word);
+		}
+		i++;
 	}
 	return -1;
 }

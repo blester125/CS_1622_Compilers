@@ -6,7 +6,6 @@
 #define LIMIT1 500
 
 extern int yycolumn, yylength, yyline, yylval;
-extern char symbolTable[LIMIT1];
 int st_index;
 int pos();
 void report_error(char str[]);
@@ -47,6 +46,7 @@ BADIDnum				{digit}({letter}|{digit})*
 "declarations" 			{pos(); return(DECLARATIONSnum);}
 "." 					{pos(); return(DOTnum);}
 "enddeclarations"		{pos(); return(ENDDECLARATIONSnum);}
+"="						{pos(); return(EQUALnum);}
 ">"						{pos(); return(GTnum);}
 "int" 					{pos(); return(INTnum);}
 "[" 					{pos(); return(LBRACnum);}
@@ -117,7 +117,7 @@ BADIDnum				{digit}({letter}|{digit})*
    						 report_error("Bad Lexeme");}
 
 %%
-char symbolTable[LIMIT1];
+char symbolTable[LIMIT1 + 1];
 int yyline = 1;
 int yycolumn = 1;
 int yylval = 0;
@@ -256,16 +256,41 @@ int insert(char a[]) {
 	return temp;
 }
 
-/* Search for the string in the table */
+
+int search(char a[]) {
+	int i = 0;
+	char word[LIMIT1];
+	symbolTable[LIMIT1] = '\0';
+	while (i < LIMIT1) {
+		strcpy(&word[0], &(symbolTable[i]));
+		if (!strcasecmp(word, a)) {
+			return i;
+		} else {
+			i = i + strlen(word);
+		}
+		i++;
+	}
+	return -1;
+}
+
+/* Search for the string in the table 
+This is rewritten in phase to because if you had the string 
+xyz in the table at position 0 and then the string z at position 
+14 seaching for the string z would return the one at 2 rather
+than the one at 14 which is the one we want
 int search(char a[]) {
 	int i;
+	char word[LIMIT1];
+	symbolTable[LIMIT1] = '\0';
 	for (i = 0; i < LIMIT1; i++) {
+		strcpy(word, &(symbolTable[i]));
+		printf("%s\n", word);
 		if (!strcasecmp(&(symbolTable[i]), a)) {
 			return i;
 	    }
 	}
 	return -1;
-}
+}*/
 
 /* report an error */
 void report_error(char a[]) {

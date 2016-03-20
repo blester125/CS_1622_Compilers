@@ -368,8 +368,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 54
-#define YY_END_OF_BUFFER 55
+#define YY_NUM_RULES 55
+#define YY_END_OF_BUFFER 56
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -379,20 +379,20 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[131] =
     {   0,
-        0,    0,    2,    2,    0,    0,   55,   53,   50,   51,
-       35,   53,   42,   14,   20,   39,   36,   25,   34,    9,
-       26,   41,   41,   53,   21,   33,   53,   11,   49,   13,
-       19,   49,   49,   49,   49,   49,   49,   49,   49,   49,
-       31,   53,   37,    2,    4,   54,   48,   44,   43,   48,
-       50,   16,    6,    1,   52,   41,    7,   32,   28,   29,
-       49,   49,   49,   49,   49,   30,   49,   49,   49,   49,
-       49,   49,   49,   17,    2,    3,    0,    5,   47,   45,
-       46,   49,   49,   49,   49,   12,   49,   49,   49,   22,
-       49,   49,   49,   49,   27,   49,   49,   49,   49,   40,
+        0,    0,    2,    2,    0,    0,   56,   54,   51,   52,
+       36,   54,   43,   15,   21,   40,   37,   26,   35,    9,
+       27,   42,   42,   54,   22,   34,   11,   12,   50,   14,
+       20,   50,   50,   50,   50,   50,   50,   50,   50,   50,
+       32,   54,   38,    2,    4,   55,   49,   45,   44,   49,
+       51,   17,    6,    1,   53,   42,    7,   33,   29,   30,
+       50,   50,   50,   50,   50,   31,   50,   50,   50,   50,
+       50,   50,   50,   18,    2,    3,    0,    5,   48,   46,
+       47,   50,   50,   50,   50,   13,   50,   50,   50,   23,
+       50,   50,   50,   50,   28,   50,   50,   50,   50,   41,
 
-       49,   24,   49,   49,   49,   49,   49,   23,   49,   49,
-       15,   49,   38,   49,   49,   18,   49,   49,   49,   49,
-       49,   49,   49,   49,    8,   49,   49,   49,   10,    0
+       50,   25,   50,   50,   50,   50,   50,   24,   50,   50,
+       16,   50,   39,   50,   50,   19,   50,   50,   50,   50,
+       50,   50,   50,   50,    8,   50,   50,   50,   10,    0
     } ;
 
 static yyconst flex_int32_t yy_ec[256] =
@@ -902,172 +902,177 @@ YY_RULE_SETUP
 case 11:
 YY_RULE_SETUP
 #line 50 "lex.l"
-{pos(); return(GTnum);}
+{pos(); return(EQUALnum);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 51 "lex.l"
-{pos(); return(INTnum);}
+{pos(); return(GTnum);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 52 "lex.l"
-{pos(); return(LBRACnum);}
+{pos(); return(INTnum);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 53 "lex.l"
-{pos(); return(LPARENnum);}
+{pos(); return(LBRACnum);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 54 "lex.l"
-{pos(); return(METHODnum);}
+{pos(); return(LPARENnum);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 55 "lex.l"
-{pos(); return(NEnum);}
+{pos(); return(METHODnum);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 56 "lex.l"
-{pos(); return(ORnum);}
+{pos(); return(NEnum);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 57 "lex.l"
-{pos(); return(PROGRAMnum);}
+{pos(); return(ORnum);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 58 "lex.l"
-{pos(); return(RBRACnum);}
+{pos(); return(PROGRAMnum);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 59 "lex.l"
-{pos(); return(RPARENnum);}
+{pos(); return(RBRACnum);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 60 "lex.l"
-{pos(); return(SEMInum);}
+{pos(); return(RPARENnum);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 61 "lex.l"
-{pos(); return(VALnum);}
+{pos(); return(SEMInum);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 62 "lex.l"
-{pos(); return(WHILEnum);}
+{pos(); return(VALnum);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 63 "lex.l"
-{pos(); return(CLASSnum);}
+{pos(); return(WHILEnum);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 64 "lex.l"
-{pos(); return(COMMAnum);}
+{pos(); return(CLASSnum);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 65 "lex.l"
-{pos();	return(DIVIDEnum);}
+{pos(); return(COMMAnum);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 #line 66 "lex.l"
-{pos(); return(ELSEnum);}
+{pos();	return(DIVIDEnum);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 67 "lex.l"
-{pos(); return(EQnum);}
+{pos(); return(ELSEnum);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 68 "lex.l"
-{pos(); return(GEnum);}
+{pos(); return(EQnum);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 69 "lex.l"
-{pos(); return(IFnum);}
+{pos(); return(GEnum);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 70 "lex.l"
-{pos(); return(LBRACEnum);}
+{pos(); return(IFnum);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 71 "lex.l"
-{pos(); return(LEnum);}
+{pos(); return(LBRACEnum);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
 #line 72 "lex.l"
-{pos(); return(LTnum);}
+{pos(); return(LEnum);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
 #line 73 "lex.l"
-{pos(); return(MINUSnum);}
+{pos(); return(LTnum);}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
 #line 74 "lex.l"
-{pos(); return(NOTnum);}
+{pos(); return(MINUSnum);}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
 #line 75 "lex.l"
-{pos(); return(PLUSnum);}
+{pos(); return(NOTnum);}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
 #line 76 "lex.l"
-{pos(); return(RBRACEnum);}
+{pos(); return(PLUSnum);}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
 #line 77 "lex.l"
-{pos(); return(RETURNnum);}
+{pos(); return(RBRACEnum);}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
 #line 78 "lex.l"
-{pos(); return(TIMESnum);}
+{pos(); return(RETURNnum);}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
 #line 79 "lex.l"
-{pos(); return(VOIDnum);}
+{pos(); return(TIMESnum);}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 81 "lex.l"
+#line 80 "lex.l"
+{pos(); return(VOIDnum);}
+	YY_BREAK
+case 42:
+YY_RULE_SETUP
+#line 82 "lex.l"
 {pos();
 						 yylval.intg = atoi(yytext); 
 						 return(ICONSTnum);}
 	YY_BREAK
-case 42:
+case 43:
 YY_RULE_SETUP
-#line 85 "lex.l"
+#line 86 "lex.l"
 {string_buf_ptr = string_buf;
 						 pos();
 						 *string_buf_ptr++ = '\'';						
 						 BEGIN(str);}
 	YY_BREAK
 
-case 43:
+case 44:
 YY_RULE_SETUP
-#line 90 "lex.l"
+#line 91 "lex.l"
 { /* Closing Quote, all done  */
 							
 							pos();
@@ -1077,75 +1082,75 @@ YY_RULE_SETUP
 							return(SCONSTnum);
 						}
 	YY_BREAK
-case 44:
-/* rule 44 can match eol */
-YY_RULE_SETUP
-#line 98 "lex.l"
-pos();
-	YY_BREAK
 case 45:
+/* rule 45 can match eol */
 YY_RULE_SETUP
 #line 99 "lex.l"
-pos(); *string_buf_ptr++ = '\n';
+pos();
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
 #line 100 "lex.l"
-pos(); *string_buf_ptr++ = '\t';
+pos(); *string_buf_ptr++ = '\n';
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
 #line 101 "lex.l"
-pos(); *string_buf_ptr++ = '\'';
-	YY_BREAK
-case YY_STATE_EOF(str):
-#line 102 "lex.l"
-{report_error("EOF Unterminated String"); BEGIN(INITIAL);}
+pos(); *string_buf_ptr++ = '\t';
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
+#line 102 "lex.l"
+pos(); *string_buf_ptr++ = '\'';
+	YY_BREAK
+case YY_STATE_EOF(str):
 #line 103 "lex.l"
+{report_error("EOF Unterminated String"); BEGIN(INITIAL);}
+	YY_BREAK
+case 49:
+YY_RULE_SETUP
+#line 104 "lex.l"
 {pos();
 						 *string_buf_ptr++ = *yytext;
 						}
 	YY_BREAK
 
-case 49:
+case 50:
 YY_RULE_SETUP
-#line 108 "lex.l"
+#line 109 "lex.l"
 {pos();
 						 add_to_string_table(yytext);
 						 return(IDnum);}
 	YY_BREAK
-case 50:
-YY_RULE_SETUP
-#line 112 "lex.l"
-{pos();}
-	YY_BREAK
 case 51:
-/* rule 51 can match eol */
 YY_RULE_SETUP
 #line 113 "lex.l"
 {pos();}
 	YY_BREAK
 case 52:
+/* rule 52 can match eol */
 YY_RULE_SETUP
 #line 114 "lex.l"
-{pos();
-						 report_error("Bad Identifier");}
+{pos();}
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 116 "lex.l"
+#line 115 "lex.l"
 {pos();
-   						 report_error("Bad Lexeme");}
+						 report_error("Bad Identifier");}
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 119 "lex.l"
+#line 117 "lex.l"
+{pos();
+   						 report_error("Bad Lexeme");}
+	YY_BREAK
+case 55:
+YY_RULE_SETUP
+#line 120 "lex.l"
 ECHO;
 	YY_BREAK
-#line 1149 "lex.yy.c"
+#line 1154 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2143,7 +2148,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 119 "lex.l"
+#line 120 "lex.l"
 
 
 YYSTYPE yylval;
@@ -2261,11 +2266,18 @@ int insert(char a[]) {
 
 /* Search for the string in the table */
 int search(char a[]) {
-	int i;
-	for (i = 0; i < LIMIT1; i++) {
-		if (!strcasecmp(&(string_table[i]), a)) {
+	int i = 0;
+	char word[LIMIT1];
+	string_table[LIMIT1] = '\0';
+	while (i < LIMIT1) {
+		strcpy(&word[0], &(string_table[i]));
+		if (!strcasecmp(word, a)) {
 			return i;
-	    }
+		}
+		else {
+			i = i + strlen(word);
+		}
+		i++;
 	}
 	return -1;
 }
