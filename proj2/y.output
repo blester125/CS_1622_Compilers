@@ -118,7 +118,18 @@
 
   80  SimpleExpression : ICONSTnum
 
-  81  Variable : IDnum
+  81  Variable : IDnum Variable_rec
+
+  82  Variable_rec :
+  83               | Index Variable_rec
+  84               | Field Variable_rec
+
+  85  Field : DOTnum IDnum
+
+  86  Index : LBRACnum Index_rec RBRACnum
+
+  87  Index_rec : Expression
+  88            | Expression COMMAnum Index_rec
 
 state 0
 	$accept : . Program $end  (0)
@@ -934,9 +945,17 @@ state 97
 
 
 state 98
-	Variable : IDnum .  (81)
+	Variable : IDnum . Variable_rec  (81)
+	Variable_rec : .  (82)
 
-	.  reduce 81
+	LBRACnum  shift 111
+	DOTnum  shift 112
+	LPARENnum  reduce 82
+	ASSGNnum  reduce 82
+
+	Field  goto 113
+	Index  goto 114
+	Variable_rec  goto 115
 
 
 state 99
@@ -952,7 +971,7 @@ state 100
 	ICONSTnum  shift 47
 	SEMInum  reduce 63
 
-	Expression  goto 111
+	Expression  goto 116
 	SimpleExpression  goto 52
 
 
@@ -962,14 +981,14 @@ state 101
 	ICONSTnum  shift 47
 	.  error
 
-	Expression  goto 112
+	Expression  goto 117
 	SimpleExpression  goto 52
 
 
 state 102
 	Statement : IfStatement . SEMInum  (33)
 
-	SEMInum  shift 113
+	SEMInum  shift 118
 	.  error
 
 
@@ -981,7 +1000,7 @@ state 103
 
 104: shift/reduce conflict (shift 98, reduce 28) on IDnum
 104: shift/reduce conflict (shift 99, reduce 28) on SEMInum
-104: shift/reduce conflict (shift 114, reduce 28) on RBRACEnum
+104: shift/reduce conflict (shift 119, reduce 28) on RBRACEnum
 104: shift/reduce conflict (shift 100, reduce 28) on RETURNnum
 104: shift/reduce conflict (shift 101, reduce 28) on WHILEnum
 104: shift/reduce conflict (shift 102, reduce 28) on IfStatement
@@ -992,12 +1011,12 @@ state 104
 
 	IDnum  shift 98
 	SEMInum  shift 99
-	RBRACEnum  shift 114
+	RBRACEnum  shift 119
 	RETURNnum  shift 100
 	WHILEnum  shift 101
 	IfStatement  shift 102
 
-	Statement  goto 115
+	Statement  goto 120
 	AssignmentStatement  goto 105
 	MethodCallStatement  goto 106
 	ReturnStatement  goto 107
@@ -1008,28 +1027,28 @@ state 104
 state 105
 	Statement : AssignmentStatement . SEMInum  (30)
 
-	SEMInum  shift 116
+	SEMInum  shift 121
 	.  error
 
 
 state 106
 	Statement : MethodCallStatement . SEMInum  (31)
 
-	SEMInum  shift 117
+	SEMInum  shift 122
 	.  error
 
 
 state 107
 	Statement : ReturnStatement . SEMInum  (32)
 
-	SEMInum  shift 118
+	SEMInum  shift 123
 	.  error
 
 
 state 108
 	Statement : WhileStatement . SEMInum  (34)
 
-	SEMInum  shift 119
+	SEMInum  shift 124
 	.  error
 
 
@@ -1037,8 +1056,8 @@ state 109
 	AssignmentStatement : Variable . ASSGNnum Expression  (58)
 	MethodCallStatement : Variable . LPARENnum ParameterList RPARENnum  (59)
 
-	LPARENnum  shift 120
-	ASSGNnum  shift 121
+	LPARENnum  shift 125
+	ASSGNnum  shift 126
 	.  error
 
 
@@ -1049,130 +1068,238 @@ state 110
 
 
 state 111
+	Index : LBRACnum . Index_rec RBRACnum  (86)
+
+	ICONSTnum  shift 47
+	.  error
+
+	Index_rec  goto 127
+	Expression  goto 128
+	SimpleExpression  goto 52
+
+
+state 112
+	Field : DOTnum . IDnum  (85)
+
+	IDnum  shift 129
+	.  error
+
+
+state 113
+	Variable_rec : Field . Variable_rec  (84)
+	Variable_rec : .  (82)
+
+	LBRACnum  shift 111
+	DOTnum  shift 112
+	LPARENnum  reduce 82
+	ASSGNnum  reduce 82
+
+	Field  goto 113
+	Index  goto 114
+	Variable_rec  goto 130
+
+
+state 114
+	Variable_rec : Index . Variable_rec  (83)
+	Variable_rec : .  (82)
+
+	LBRACnum  shift 111
+	DOTnum  shift 112
+	LPARENnum  reduce 82
+	ASSGNnum  reduce 82
+
+	Field  goto 113
+	Index  goto 114
+	Variable_rec  goto 131
+
+
+state 115
+	Variable : IDnum Variable_rec .  (81)
+
+	.  reduce 81
+
+
+state 116
 	ReturnStatement : RETURNnum Expression .  (64)
 
 	.  reduce 64
 
 
-state 112
+state 117
 	WhileStatement : WHILEnum Expression . StatementList  (65)
 
 	LBRACEnum  shift 89
 	.  error
 
-	StatementList  goto 122
+	StatementList  goto 132
 
 
-state 113
+state 118
 	Statement : IfStatement SEMInum .  (33)
 
 	.  reduce 33
 
 
-state 114
+state 119
 	StatementList : LBRACEnum StatementList_rec RBRACEnum .  (25)
 
 	.  reduce 25
 
 
-state 115
+state 120
 	StatementList_rec : StatementList_rec Statement .  (27)
 
 	.  reduce 27
 
 
-state 116
+state 121
 	Statement : AssignmentStatement SEMInum .  (30)
 
 	.  reduce 30
 
 
-state 117
+state 122
 	Statement : MethodCallStatement SEMInum .  (31)
 
 	.  reduce 31
 
 
-state 118
+state 123
 	Statement : ReturnStatement SEMInum .  (32)
 
 	.  reduce 32
 
 
-state 119
+state 124
 	Statement : WhileStatement SEMInum .  (34)
 
 	.  reduce 34
 
 
-state 120
+state 125
 	MethodCallStatement : Variable LPARENnum . ParameterList RPARENnum  (59)
 	ParameterList : .  (60)
 
 	ICONSTnum  shift 47
 	RPARENnum  reduce 60
 
-	ParameterList  goto 123
-	Expression  goto 124
+	ParameterList  goto 133
+	Expression  goto 134
 	SimpleExpression  goto 52
 
 
-state 121
+state 126
 	AssignmentStatement : Variable ASSGNnum . Expression  (58)
 
 	ICONSTnum  shift 47
 	.  error
 
-	Expression  goto 125
+	Expression  goto 135
 	SimpleExpression  goto 52
 
 
-state 122
+state 127
+	Index : LBRACnum Index_rec . RBRACnum  (86)
+
+	RBRACnum  shift 136
+	.  error
+
+
+state 128
+	Index_rec : Expression .  (87)
+	Index_rec : Expression . COMMAnum Index_rec  (88)
+
+	COMMAnum  shift 137
+	RBRACnum  reduce 87
+
+
+state 129
+	Field : DOTnum IDnum .  (85)
+
+	.  reduce 85
+
+
+state 130
+	Variable_rec : Field Variable_rec .  (84)
+
+	.  reduce 84
+
+
+state 131
+	Variable_rec : Index Variable_rec .  (83)
+
+	.  reduce 83
+
+
+state 132
 	WhileStatement : WHILEnum Expression StatementList .  (65)
 
 	.  reduce 65
 
 
-state 123
+state 133
 	MethodCallStatement : Variable LPARENnum ParameterList . RPARENnum  (59)
 
-	RPARENnum  shift 126
+	RPARENnum  shift 138
 	.  error
 
 
-state 124
+state 134
 	ParameterList : Expression .  (61)
 	ParameterList : Expression . COMMAnum ParameterList  (62)
 
-	COMMAnum  shift 127
+	COMMAnum  shift 139
 	RPARENnum  reduce 61
 
 
-state 125
+state 135
 	AssignmentStatement : Variable ASSGNnum Expression .  (58)
 
 	.  reduce 58
 
 
-state 126
+state 136
+	Index : LBRACnum Index_rec RBRACnum .  (86)
+
+	.  reduce 86
+
+
+state 137
+	Index_rec : Expression COMMAnum . Index_rec  (88)
+
+	ICONSTnum  shift 47
+	.  error
+
+	Index_rec  goto 140
+	Expression  goto 128
+	SimpleExpression  goto 52
+
+
+state 138
 	MethodCallStatement : Variable LPARENnum ParameterList RPARENnum .  (59)
 
 	.  reduce 59
 
 
-state 127
+state 139
 	ParameterList : Expression COMMAnum . ParameterList  (62)
 	ParameterList : .  (60)
 
 	ICONSTnum  shift 47
 	RPARENnum  reduce 60
 
-	ParameterList  goto 128
-	Expression  goto 124
+	ParameterList  goto 141
+	Expression  goto 134
 	SimpleExpression  goto 52
 
 
-state 128
+state 140
+	Index_rec : Expression COMMAnum Index_rec .  (88)
+
+	.  reduce 88
+
+
+state 141
 	ParameterList : Expression COMMAnum ParameterList .  (62)
 
 	.  reduce 62
@@ -1195,5 +1322,5 @@ State 89 contains 5 shift/reduce conflicts.
 State 104 contains 6 shift/reduce conflicts.
 
 
-64 terminals, 40 nonterminals
-82 grammar rules, 129 states
+64 terminals, 44 nonterminals
+89 grammar rules, 142 states

@@ -17,6 +17,7 @@
 %type  <tptr>  Formal_Parameter_rec Formal_Parameter_List Formal_Parameter Formal_Parameter_List_rec
 %type  <tptr>  Statement StatementList StatementList_rec Formal_Parameter_rec ParameterList
 %type  <tptr>  FieldDecl_Id ArrayInitializer_rec ArrayCreationExpression_rec ArrayExpression
+%type  <tptr>  Field Field_rec Index Index_rec
 
 %type  <tptr>  Program ClassDecl_rec ClassDecl ClassBody MethodDecl_z1 MethodDecl_rec Decls
 %type  <tptr>  FieldDecl_rec FieldDecl Tail FieldDecl_body VariableDeclId Bracket_rec1 Bracket_rec2
@@ -408,11 +409,43 @@ SimpleExpression:	ICONSTnum
 			}
 		;
 /* Stub */
-Variable	:	IDnum
+Variable	:	IDnum Variable_rec
 			{
-				$$ = MakeTree(VarOp, MakeLeaf(IDNode, $1), NullExp());
+				$$ = MakeTree(VarOp, MakeLeaf(IDNode, $1), $2);
 			}
 		;	
+Variable_rec	:	
+			{
+				$$ = NullExp();
+			}
+		|	Index Variable_rec
+			{
+				$$ = MakeTree(SelectOp, $1, $2);
+			}
+		|	Field Variable_rec
+			{
+				$$ = MakeTree(SelectOp, $1, $2);
+			}
+		;
+Field		:	DOTnum IDnum
+			{
+				$$ = MakeTree(FieldOp, MakeLeaf(IDNode, $2), NullExp());
+			}
+		;
+Index		:	LBRACnum Index_rec RBRACnum
+			{
+				$$ = $2;
+			}
+		;
+Index_rec	:	Expression
+			{
+				$$ = MakeTree(IndexOp, $1, NullExp());
+			}
+		|	Expression COMMAnum Index_rec
+			{
+				$$ = MakeTree(IndexOp, $1, $3);
+			}
+		;
 %%
 
 int yycolumn, yyline;

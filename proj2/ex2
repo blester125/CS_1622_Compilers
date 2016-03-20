@@ -5,6 +5,7 @@ class First
 {
 	method void x(int a; int b)
 	{
+		x[3,5].field[4].second();
 		x();
 	}
 
