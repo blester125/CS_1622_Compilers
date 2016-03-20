@@ -23,11 +23,11 @@
 
   15  Type : GTnum
 
-  16  Formal_Parameter_List_rec : Formal_Parameter
-  17                            | Formal_Parameter SEMInum Formal_Parameter_List_rec
+  16  Formal_Parameter_List :
+  17                        | Formal_Parameter_List_rec
 
-  18  Formal_Parameter_List :
-  19                        | Formal_Parameter_List_rec
+  18  Formal_Parameter_List_rec : Formal_Parameter
+  19                            | Formal_Parameter SEMInum Formal_Parameter_List_rec
 
   20  Formal_Parameter : VALnum INTnum Formal_Parameter_rec
   21                   | INTnum Formal_Parameter_rec
@@ -357,22 +357,22 @@ state 32
 
 state 33
 	MethodDecl : METHODnum VOIDnum IDnum LPARENnum . Formal_Parameter_List RPARENnum Block  (13)
-	Formal_Parameter_List : .  (18)
+	Formal_Parameter_List : .  (16)
 
 	INTnum  shift 35
 	VALnum  shift 36
-	RPARENnum  reduce 18
+	RPARENnum  reduce 16
 
 	Formal_Parameter_List  goto 37
 	Formal_Parameter  goto 38
 	Formal_Parameter_List_rec  goto 39
 
 
-34: shift/reduce conflict (shift 40, reduce 18) on RPARENnum
+34: shift/reduce conflict (shift 40, reduce 16) on RPARENnum
 state 34
 	MethodDecl : METHODnum Type IDnum LPARENnum . RPARENnum Block  (12)
 	MethodDecl : METHODnum Type IDnum LPARENnum . Formal_Parameter_List RPARENnum Block  (14)
-	Formal_Parameter_List : .  (18)
+	Formal_Parameter_List : .  (16)
 
 	RPARENnum  shift 40
 	INTnum  shift 35
@@ -407,17 +407,17 @@ state 37
 
 
 state 38
-	Formal_Parameter_List_rec : Formal_Parameter .  (16)
-	Formal_Parameter_List_rec : Formal_Parameter . SEMInum Formal_Parameter_List_rec  (17)
+	Formal_Parameter_List_rec : Formal_Parameter .  (18)
+	Formal_Parameter_List_rec : Formal_Parameter . SEMInum Formal_Parameter_List_rec  (19)
 
 	SEMInum  shift 46
-	RPARENnum  reduce 16
+	RPARENnum  reduce 18
 
 
 state 39
-	Formal_Parameter_List : Formal_Parameter_List_rec .  (19)
+	Formal_Parameter_List : Formal_Parameter_List_rec .  (17)
 
-	.  reduce 19
+	.  reduce 17
 
 
 state 40
@@ -476,7 +476,7 @@ state 45
 
 
 state 46
-	Formal_Parameter_List_rec : Formal_Parameter SEMInum . Formal_Parameter_List_rec  (17)
+	Formal_Parameter_List_rec : Formal_Parameter SEMInum . Formal_Parameter_List_rec  (19)
 
 	INTnum  shift 35
 	VALnum  shift 36
@@ -566,9 +566,9 @@ state 54
 
 
 state 55
-	Formal_Parameter_List_rec : Formal_Parameter SEMInum Formal_Parameter_List_rec .  (17)
+	Formal_Parameter_List_rec : Formal_Parameter SEMInum Formal_Parameter_List_rec .  (19)
 
-	.  reduce 17
+	.  reduce 19
 
 
 state 56

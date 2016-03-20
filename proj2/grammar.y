@@ -110,16 +110,7 @@ Type		:	GTnum
 				$$ = MakeLeaf(TypeIdOp, $1);
 			}
 		;
-
-Formal_Parameter_List_rec:	Formal_Parameter
-			{
-				$$ = $1;
-			}
-		|	Formal_Parameter SEMInum Formal_Parameter_List_rec
-			{
-				$$ = MkRightC($3, $1);
-			}
-		;
+/* Done */
 Formal_Parameter_List :	
 			{
 				$$ = MakeTree(SpecOp, NullExp(), NullExp());
@@ -128,25 +119,28 @@ Formal_Parameter_List :
 			{
 				$$ = MakeTree(SpecOp, $1, NullExp());
 			}
+		;
+/* Done */
+Formal_Parameter_List_rec:	Formal_Parameter
+			{
+				$$ = $1;
+			}
+		|	Formal_Parameter SEMInum Formal_Parameter_List_rec
+			{
+				$$ = MkRightC($3, $1);
+			}
 		;	
-/* TODO */
+/* Done */
 Formal_Parameter:	VALnum INTnum Formal_Parameter_rec
 			{
-				//printf("VAL INT FOUND\n");
 				$$ = MakeVal($3);
 			}		
 		|	INTnum Formal_Parameter_rec
 			{
-				//printf("INT FOUND\n");
 				$$ = $2;
 			}
 		;
-/*
-Formal_Parameter:	ASSGNnum IDnum
-			{
-				$$ = MakeLeaf(IDNode, $2);
-			}
-		;*/
+/* Done */
 Formal_Parameter_rec:	IDnum 	
 			{
 				tree idTree = MakeTree(CommaOp, MakeLeaf(IDNode, $1), MakeLeaf(INTEGERTNode, 0));
