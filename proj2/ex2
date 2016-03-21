@@ -1,8 +1,0 @@
-/* EXAMPLE 1: A Hello World Program */
-
-program xyz;
-class First
-{
-	method int[].field[] x() {
-	}
-}
