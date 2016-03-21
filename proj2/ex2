@@ -3,10 +3,8 @@
 program xyz;
 class First
 {
-	method void x(int a; int b)
-	{
-		if (!a||b&&c) {
-		}
+	method void x() {
+		x := y;
 	}
 
 }

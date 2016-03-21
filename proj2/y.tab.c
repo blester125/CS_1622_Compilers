@@ -440,7 +440,7 @@ typedef struct {
 } YYSTACKDATA;
 /* variables for the parser stack */
 static YYSTACKDATA yystack;
-#line 543 "grammar.y"
+#line 542 "grammar.y"
 
 int yycolumn, yyline;
 
@@ -927,130 +927,129 @@ break;
 case 43:
 #line 248 "grammar.y"
 	{
-				printf("VarDecId");
 				yyval.tptr = MakeLeaf(IDNode, yystack.l_mark[0].intg);
 			}
 break;
 case 44:
-#line 253 "grammar.y"
+#line 252 "grammar.y"
 	{
 				yyval.tptr = MakeLeaf(IDNode, yystack.l_mark[-1].intg);
 			}
 break;
 case 47:
-#line 261 "grammar.y"
+#line 260 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[0].tptr;
 			}
 break;
 case 48:
-#line 265 "grammar.y"
+#line 264 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[0].tptr;
 			}
 break;
 case 49:
-#line 269 "grammar.y"
+#line 268 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[0].tptr;
 			}
 break;
 case 50:
-#line 274 "grammar.y"
+#line 273 "grammar.y"
 	{
 				/*TODO add type to right child*/
 				yyval.tptr = MakeTree(ArrayTypeOp, yystack.l_mark[-1].tptr, NullExp());
 			}
 break;
 case 51:
-#line 280 "grammar.y"
+#line 279 "grammar.y"
 	{
 				yyval.tptr = MakeTree(CommaOp, NullExp(), yystack.l_mark[0].tptr);
 			}
 break;
 case 52:
-#line 284 "grammar.y"
+#line 283 "grammar.y"
 	{
 				yyval.tptr = MakeTree(CommaOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
 			}
 break;
 case 53:
-#line 289 "grammar.y"
+#line 288 "grammar.y"
 	{
 				/* TODO Add the type subtree */
 				yyval.tptr = MakeTree(ArrayTypeOp, yystack.l_mark[0].tptr, NullExp());
 			}
 break;
 case 54:
-#line 295 "grammar.y"
+#line 294 "grammar.y"
 	{
 				yyval.tptr = MakeTree(BoundOp, NullExp(), yystack.l_mark[0].tptr);
 			}
 break;
 case 55:
-#line 299 "grammar.y"
+#line 298 "grammar.y"
 	{
 				yyval.tptr = MakeTree(BoundOp, yystack.l_mark[-1].tptr, yystack.l_mark[0].tptr);
 			}
 break;
 case 56:
-#line 304 "grammar.y"
+#line 303 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[-1].tptr;
 			}
 break;
 case 57:
-#line 309 "grammar.y"
+#line 308 "grammar.y"
 	{
 				tree assignOp = MakeTree(AssignOp, NullExp(), yystack.l_mark[-2].tptr);
 				yyval.tptr = MakeTree(AssignOp, assignOp, yystack.l_mark[0].tptr);
 			}
 break;
 case 58:
-#line 315 "grammar.y"
+#line 314 "grammar.y"
 	{
 				yyval.tptr = MakeTree(RoutineCallOp, yystack.l_mark[-3].tptr, yystack.l_mark[-1].tptr);
 			}
 break;
 case 59:
-#line 320 "grammar.y"
+#line 319 "grammar.y"
 	{
 				yyval.tptr = NullExp();
 			}
 break;
 case 60:
-#line 324 "grammar.y"
+#line 323 "grammar.y"
 	{
 				yyval.tptr = MakeTree(CommaOp, yystack.l_mark[0].tptr, NullExp());
 			}
 break;
 case 61:
-#line 328 "grammar.y"
+#line 327 "grammar.y"
 	{
 				yyval.tptr = MakeTree(CommaOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
 			}
 break;
 case 62:
-#line 333 "grammar.y"
+#line 332 "grammar.y"
 	{
 				yyval.tptr = MakeTree(ReturnOp, NullExp(), NullExp());
 			}
 break;
 case 63:
-#line 337 "grammar.y"
+#line 336 "grammar.y"
 	{
 				yyval.tptr = MakeTree(ReturnOp, yystack.l_mark[0].tptr, NullExp());
 			}
 break;
 case 64:
-#line 342 "grammar.y"
+#line 341 "grammar.y"
 	{
 				tree commaTree = MakeTree(CommaOp, yystack.l_mark[-1].tptr, yystack.l_mark[0].tptr);
 				yyval.tptr = MakeTree(IfElseOp, NullExp(), commaTree);
 			}
 break;
 case 65:
-#line 347 "grammar.y"
+#line 346 "grammar.y"
 	{
 				tree commaTree = MakeTree(CommaOp, yystack.l_mark[-3].tptr, yystack.l_mark[-2].tptr);
 				tree ifTree = MakeTree(IfElseOp, NullExp(), commaTree);
@@ -1058,97 +1057,97 @@ case 65:
 			}
 break;
 case 66:
-#line 354 "grammar.y"
+#line 353 "grammar.y"
 	{
 				yyval.tptr = MakeTree(LoopOp, yystack.l_mark[-1].tptr, yystack.l_mark[0].tptr);
 			}
 break;
 case 67:
-#line 359 "grammar.y"
+#line 358 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[0].tptr;
 			}
 break;
 case 68:
-#line 363 "grammar.y"
+#line 362 "grammar.y"
 	{
 				yyval.tptr = MakeTree(LTOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
 			}
 break;
 case 69:
-#line 367 "grammar.y"
+#line 366 "grammar.y"
 	{
 				yyval.tptr = MakeTree(LEOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
 			}
 break;
 case 70:
-#line 371 "grammar.y"
+#line 370 "grammar.y"
 	{
 				yyval.tptr = MakeTree(EQOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
 			}
 break;
 case 71:
-#line 375 "grammar.y"
+#line 374 "grammar.y"
 	{
 				yyval.tptr = MakeTree(NEOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
 			}
 break;
 case 72:
-#line 379 "grammar.y"
+#line 378 "grammar.y"
 	{
 				yyval.tptr = MakeTree(GEOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
 			}
 break;
 case 73:
-#line 383 "grammar.y"
+#line 382 "grammar.y"
 	{
 				yyval.tptr = MakeTree(GTOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
 			}
 break;
 case 74:
-#line 388 "grammar.y"
+#line 387 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[0].tptr;
 			}
 break;
 case 75:
-#line 392 "grammar.y"
+#line 391 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[0].tptr;
 			}
 break;
 case 76:
-#line 396 "grammar.y"
+#line 395 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[0].tptr;
 			}
 break;
 case 77:
-#line 400 "grammar.y"
+#line 399 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[-1].tptr;
 			}
 break;
 case 78:
-#line 404 "grammar.y"
+#line 403 "grammar.y"
 	{
 				yyval.tptr = MakeTree(NotOp, yystack.l_mark[0].tptr, NullExp());
 			}
 break;
 case 79:
-#line 409 "grammar.y"
+#line 408 "grammar.y"
 	{
 				yyval.tptr = MakeLeaf(INTEGERTNode, yystack.l_mark[0].intg);
 			}
 break;
 case 80:
-#line 413 "grammar.y"
+#line 412 "grammar.y"
 	{
 				yyval.tptr = MakeLeaf(STRINGNode, yystack.l_mark[0].intg);
 			}
 break;
 case 81:
-#line 419 "grammar.y"
+#line 418 "grammar.y"
 	{
 				if (yystack.l_mark[0].tptr == NullExp()) {
 					yyval.tptr = yystack.l_mark[-1].tptr;
@@ -1158,7 +1157,7 @@ case 81:
 			}
 break;
 case 82:
-#line 427 "grammar.y"
+#line 426 "grammar.y"
 	{
 				if (yystack.l_mark[0].tptr == NullExp()) {
 					yyval.tptr = yystack.l_mark[-1].tptr;
@@ -1168,7 +1167,7 @@ case 82:
 			}
 break;
 case 83:
-#line 435 "grammar.y"
+#line 434 "grammar.y"
 	{
 				tree neg = MakeTree(UnaryNegOp, yystack.l_mark[-1].tptr, NullExp());
 				if (yystack.l_mark[0].tptr == NullExp()) {
@@ -1179,13 +1178,13 @@ case 83:
 			}
 break;
 case 84:
-#line 445 "grammar.y"
+#line 444 "grammar.y"
 	{
 				yyval.tptr = NullExp();
 			}
 break;
 case 85:
-#line 449 "grammar.y"
+#line 448 "grammar.y"
 	{
 				if (yystack.l_mark[0].tptr == NullExp()) {
 					yyval.tptr = yystack.l_mark[-1].tptr;
@@ -1195,25 +1194,25 @@ case 85:
 			}
 break;
 case 86:
-#line 458 "grammar.y"
+#line 457 "grammar.y"
 	{
 				yyval.tptr = MakeTree(AddOp, NullExp(), yystack.l_mark[0].tptr);
 			}
 break;
 case 87:
-#line 462 "grammar.y"
+#line 461 "grammar.y"
 	{
 				yyval.tptr = MakeTree(SubOp, NullExp(), yystack.l_mark[0].tptr);
 			}
 break;
 case 88:
-#line 466 "grammar.y"
+#line 465 "grammar.y"
 	{
 				yyval.tptr = MakeTree(OrOp, NullExp(), yystack.l_mark[0].tptr);
 			}
 break;
 case 89:
-#line 471 "grammar.y"
+#line 470 "grammar.y"
 	{
 				if (yystack.l_mark[0].tptr == NullExp()) {
 					yyval.tptr = yystack.l_mark[-1].tptr;
@@ -1223,13 +1222,13 @@ case 89:
 			}
 break;
 case 90:
-#line 480 "grammar.y"
+#line 479 "grammar.y"
 	{
 				yyval.tptr = NullExp();
 			}
 break;
 case 91:
-#line 484 "grammar.y"
+#line 483 "grammar.y"
 	{
 				if (yystack.l_mark[0].tptr == NullExp()) {
 					yyval.tptr = yystack.l_mark[-1].tptr;
@@ -1239,72 +1238,72 @@ case 91:
 			}
 break;
 case 92:
-#line 493 "grammar.y"
+#line 492 "grammar.y"
 	{
 				yyval.tptr = MakeTree(MultOp, NullExp(), yystack.l_mark[0].tptr);
 			}
 break;
 case 93:
-#line 497 "grammar.y"
+#line 496 "grammar.y"
 	{
 				yyval.tptr = MakeTree(DivOp, NullExp(), yystack.l_mark[0].tptr);
 			}
 break;
 case 94:
-#line 501 "grammar.y"
+#line 500 "grammar.y"
 	{
 				yyval.tptr = MakeTree(AndOp, NullExp(), yystack.l_mark[0].tptr);
 			}
 break;
 case 95:
-#line 506 "grammar.y"
+#line 505 "grammar.y"
 	{
 				yyval.tptr = MakeTree(VarOp, MakeLeaf(IDNode, yystack.l_mark[-1].intg), yystack.l_mark[0].tptr);
 			}
 break;
 case 96:
-#line 511 "grammar.y"
+#line 510 "grammar.y"
 	{
 				yyval.tptr = NullExp();
 			}
 break;
 case 97:
-#line 515 "grammar.y"
+#line 514 "grammar.y"
 	{
 				yyval.tptr = MakeTree(SelectOp, yystack.l_mark[-1].tptr, yystack.l_mark[0].tptr);
 			}
 break;
 case 98:
-#line 519 "grammar.y"
+#line 518 "grammar.y"
 	{
 				yyval.tptr = MakeTree(SelectOp, yystack.l_mark[-1].tptr, yystack.l_mark[0].tptr);
 			}
 break;
 case 99:
-#line 524 "grammar.y"
+#line 523 "grammar.y"
 	{
 				yyval.tptr = MakeTree(FieldOp, MakeLeaf(IDNode, yystack.l_mark[0].intg), NullExp());
 			}
 break;
 case 100:
-#line 529 "grammar.y"
+#line 528 "grammar.y"
 	{
 				yyval.tptr = yystack.l_mark[-1].tptr;
 			}
 break;
 case 101:
-#line 534 "grammar.y"
+#line 533 "grammar.y"
 	{
 				yyval.tptr = MakeTree(IndexOp, yystack.l_mark[0].tptr, NullExp());
 			}
 break;
 case 102:
-#line 538 "grammar.y"
+#line 537 "grammar.y"
 	{
 				yyval.tptr = MakeTree(IndexOp, yystack.l_mark[-2].tptr, yystack.l_mark[0].tptr);
 			}
 break;
-#line 1306 "y.tab.c"
+#line 1305 "y.tab.c"
     }
     yystack.s_mark -= yym;
     yystate = *yystack.s_mark;

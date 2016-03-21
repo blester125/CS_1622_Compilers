@@ -246,7 +246,6 @@ FieldDecl_Id	:	VariableDeclId
 		;
 VariableDeclId	:	IDnum
 			{
-				printf("VarDecId");
 				$$ = MakeLeaf(IDNode, $1);
 			}
 		|	IDnum BracketLoop

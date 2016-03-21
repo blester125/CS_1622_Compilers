@@ -3,3 +3,5 @@ lexer
 *~
 parser
 exparser
+declaration_example
+type_example
