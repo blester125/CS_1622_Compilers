@@ -41,7 +41,8 @@ ClassDecl_rec   :      ClassDecl                        /* 1 or More of ClassDec
                           {  $$ = MakeTree(ClassOp, NullExp(), $1); } 
                 |      ClassDecl_rec ClassDecl
 			  {  $$ = MakeTree(ClassOp, $1, $2); }
-		/* This Grammar Rule definition creates the tree in the order that the classes are made*/
+		/* This Grammar Rule definition creates the tree in the order that the classes are made
+		   This is not the behavior we want for this */
 		/*|	  ClassDecl ClassDecl_rec
 			  {  $$ = MakeTree(ClassOp, $2, $1); }*/
                 ;
@@ -93,7 +94,7 @@ MethodDecl	:	METHODnum VOIDnum IDnum LPARENnum Formal_Parameter_List RPARENnum B
 				$$ = MakeTree(MethodOp, headOp, $7);
 			}
 		;
-/* TODO */
+/* TODO  Last Thing! */
 Type		:	GTnum
 			{
 				$$ = MakeLeaf(TypeIdOp, $1);
@@ -413,7 +414,6 @@ UnsignedConstant:	ICONSTnum
 				$$ = MakeLeaf(STRINGNode, $1);
 			}
 		;
-/* TODO */
 SimpleExpression:	Term SimpleExpression_Op_rec
 			{
 				if ($2 == NullExp()) {
