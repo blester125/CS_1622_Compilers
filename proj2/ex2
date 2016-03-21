@@ -5,8 +5,14 @@ class First
 {
 	method void x(int a; int b)
 	{
-		x[3,5].field[4].second();
-		x();
+		if (x) {
+			if (y) {
+			} else {
+			}	
+		} else {
+			x := 13;
+		};
+		x := 3
 	}
 
 }

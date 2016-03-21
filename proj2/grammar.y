@@ -153,40 +153,40 @@ StatementList	:	LBRACEnum StatementList_rec RBRACEnum
 			}
 		;
 StatementList_rec:	Statement
-			{
+			{	
 				$$ = MakeTree(StmtOp, NullExp(), $1);
 			}
-		|	StatementList_rec Statement
-			{
-				$$ = MakeTree(StmtOp, $1, $2);
+		|	StatementList_rec SEMInum Statement
+			{	
+				if ($3 == NullExp()) {
+					$$ = $1;
+				} else { 
+					$$ = MakeTree(StmtOp, $1, $3);
+				}
 			}
 		;
-/* TODO Invetigate the SEMInum problem*/
 Statement	:	
 			{
 				$$ = NullExp();
 			}	
-		|	SEMInum
-			{
-				$$ = NullExp();
-			}
-		|	AssignmentStatement SEMInum
+		|	AssignmentStatement
 			{
 				$$ = $1;
 			}
-		|	MethodCallStatement SEMInum
+		|	MethodCallStatement
 			{
 				$$ = $1;
 			}
-		|	ReturnStatement SEMInum
+		|	ReturnStatement
 			{
 				$$ = $1;
 			}
-		|	IfStatement SEMInum
+		|	IfStatement 
 			{
+				printf("Found If");
 				$$ = $1;
 			}
-		|	WhileStatement SEMInum
+		|	WhileStatement 
 			{
 				$$ = $1;
 			}
@@ -339,6 +339,19 @@ ReturnStatement	:	RETURNnum
 				$$ = MakeTree(ReturnOp, $2, NullExp());
 			}
 		;
+/* TODO */
+IfStatement	:	IFnum Expression StatementList
+			{
+				tree commaTree = MakeTree(CommaOp, $2, $3);
+				$$ = MakeTree(IfElseOp, NullExp(), commaTree);
+			}
+		|	IFnum Expression StatementList ELSEnum StatementList
+			{
+				tree commaTree = MakeTree(CommaOp, $2, $3);
+				tree ifTree = MakeTree(IfElseOp, NullExp(), commaTree);
+				$$ = MakeTree(IfElseOp, ifTree, $5);	
+			}
+		;
 WhileStatement	:	WHILEnum Expression StatementList
 			{
 				$$ = MakeTree(LoopOp, $2, $3);
@@ -403,12 +416,16 @@ UnsignedConstant:	ICONSTnum
 				$$ = MakeLeaf(STRINGNode, $1);
 			}
 		;
+/* TODO */
 SimpleExpression:	ICONSTnum
 			{
 				$$ = MakeLeaf(NUMNode, $1);
 			}
+		|	LPARENnum Variable RPARENnum
+			{
+				$$ = $2;
+			}
 		;
-/* Stub */
 Variable	:	IDnum Variable_rec
 			{
 				$$ = MakeTree(VarOp, MakeLeaf(IDNode, $1), $2);
