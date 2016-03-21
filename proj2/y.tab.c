@@ -1036,7 +1036,7 @@ break;
 case 60:
 #line 317 "grammar.y"
 	{
-				yyval.tptr = MakeTree(ArrayTypeOp, yystack.l_mark[0].tptr, type_tree);
+				yyval.tptr = MakeTree(ArrayTypeOp, yystack.l_mark[0].tptr, MakeLeaf(INTEGERTNode, yystack.l_mark[-1].intg));
 			}
 break;
 case 61:

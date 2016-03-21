@@ -1,6 +1,0 @@
-program xyz;
-class First{
-	declarations
-		int x[] = {1, 2, 3};
-	enddeclarations	
-}

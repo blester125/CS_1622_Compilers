@@ -25,7 +25,7 @@ letter					[A-Za-z]
 digit					[0-9]
 delim					[ \t]
 ws						{delim}+
-newline					[\n]
+newline					[\n(\r\n)]
 declarations				((D|d)(E|e)(C|c)(L|l)(A|a)(R|r)(A|a)(T|t)(I|i)(O|o)(N|n)(S|s))
 enddeclarations				((E|e)(N|n)(D|d)(D|d)(E|e)(C|c)(L|l)(A|a)(R|r)(A|a)(T|t)(I|i)(O|o)(N|n)(S|s))
 int					((I|i)(N|n)(T|t))

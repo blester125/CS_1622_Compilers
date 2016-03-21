@@ -315,7 +315,7 @@ ArrayInitializer_rec:	Expression
 		;
 ArrayCreationExpression:INTnum ArrayCreationExpression_rec
 			{
-				$$ = MakeTree(ArrayTypeOp, $2, type_tree);
+				$$ = MakeTree(ArrayTypeOp, $2, MakeLeaf(INTEGERTNode, $1));
 			}
 		;
 ArrayCreationExpression_rec:ArrayExpression
