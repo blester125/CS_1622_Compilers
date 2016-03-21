@@ -3,8 +3,6 @@
 program xyz;
 class First
 {
-	method void x() {
-		x := y;
+	method int[].field[] x() {
 	}
-
 }

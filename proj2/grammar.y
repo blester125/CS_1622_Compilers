@@ -17,7 +17,7 @@
 %type  <tptr>  Formal_Parameter_rec Formal_Parameter_List Formal_Parameter Formal_Parameter_List_rec
 %type  <tptr>  Statement StatementList StatementList_rec Formal_Parameter_rec ParameterList
 %type  <tptr>  FieldDecl_Id ArrayInitializer_rec ArrayCreationExpression_rec ArrayExpression
-%type  <tptr>  Field Field_rec Index Index_rec Term_Op Term_Op_rec SimpleExpression_Op SimpleExpression_Op_rec
+%type  <tptr>  Field Field_rec Index Index_rec Term_Op Term_Op_rec SimpleExpression_Op SimpleExpression_Op_rec Type_rec
 
 %type  <tptr>  Program ClassDecl_rec ClassDecl ClassBody MethodDecl_z1 MethodDecl_rec Decls
 %type  <tptr>  FieldDecl_rec FieldDecl Tail FieldDecl_body VariableDeclId Bracket_rec1 Bracket_rec2
@@ -95,9 +95,40 @@ MethodDecl	:	METHODnum VOIDnum IDnum LPARENnum Formal_Parameter_List RPARENnum B
 			}
 		;
 /* TODO  Last Thing! */
-Type		:	GTnum
+Type		:	IDnum Type_rec
 			{
-				$$ = MakeLeaf(TypeIdOp, $1);
+				$$ = MakeTree(TypeIdOp, MakeLeaf(IDNode, $1), $2);
+				printtree($$, 0);
+			}
+		|	INTnum Type_rec
+			{
+				$$ = MakeTree(TypeIdOp, MakeLeaf(INTEGERTNode, $1), $2);
+				printtree($$, 0);
+			}
+		|	IDnum Type_rec DOTnum Type
+			{
+				tree typeTree = MakeTree(TypeIdOp, MakeLeaf(IDNode, $1), $2);
+				$$ = MkRightC($4, typeTree);
+				printtree($$, 0);
+			}
+		|	INTnum Type_rec DOTnum Type
+			{
+				tree typeTree = MakeTree(TypeIdOp, MakeLeaf(INTEGERTNode, $1), $2);
+				$$ = MkRightC($4, typeTree);
+				printtree($$, 0);
+			}
+		;
+Type_rec	:	
+			{
+				$$ = NullExp();
+			}
+		|	LBRACnum RBRACnum
+			{
+				$$ = MakeTree(IndexOp, NullExp(), NullExp());
+			}
+		|	Type_rec LBRACnum RBRACNum
+			{
+				$$ = MakeTree(IndexOp, NullExp(), $1);
 			}
 		;
 Formal_Parameter_List :	
