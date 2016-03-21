@@ -12,6 +12,11 @@ This will run a make file that runs the commands
 The parser can then be run on files with the command
 	./parser < file
 
+This parser is built on the lexer I made for project 1. This means
+that is uses my string_table which stores variables in the case that
+they were first seen in opposed to the all lower case versions that
+are stored in the example parser.
+
 This parser generates trees that are slightly different from
 the example parser (downloaded from the course website) because 
 the example parser generates trees that are different from the 
