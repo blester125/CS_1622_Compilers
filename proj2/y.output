@@ -27,7 +27,7 @@
 
   18  Type_rec :
   19           | LBRACnum RBRACnum
-  20           | Type_rec LBRACnum RBRACNum
+  20           | Type_rec LBRACnum RBRACum
 
   21  Formal_Parameter_List :
   22                        | Formal_Parameter_List_rec
@@ -415,7 +415,7 @@ state 28
 state 29
 	Type : IDnum Type_rec .  (14)
 	Type : IDnum Type_rec . DOTnum Type  (16)
-	Type_rec : Type_rec . LBRACnum RBRACNum  (20)
+	Type_rec : Type_rec . LBRACnum RBRACum  (20)
 
 	LBRACnum  shift 40
 	DOTnum  shift 41
@@ -425,7 +425,7 @@ state 29
 state 30
 	Type : INTnum Type_rec .  (15)
 	Type : INTnum Type_rec . DOTnum Type  (17)
-	Type_rec : Type_rec . LBRACnum RBRACNum  (20)
+	Type_rec : Type_rec . LBRACnum RBRACum  (20)
 
 	LBRACnum  shift 40
 	DOTnum  shift 42
@@ -501,9 +501,9 @@ state 39
 
 
 state 40
-	Type_rec : Type_rec LBRACnum . RBRACNum  (20)
+	Type_rec : Type_rec LBRACnum . RBRACum  (20)
 
-	RBRACNum  shift 50
+	RBRACum  shift 50
 	.  error
 
 
@@ -613,7 +613,7 @@ state 49
 
 
 state 50
-	Type_rec : Type_rec LBRACnum RBRACNum .  (20)
+	Type_rec : Type_rec LBRACnum RBRACum .  (20)
 
 	.  reduce 20
 
