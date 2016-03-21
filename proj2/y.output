@@ -249,8 +249,8 @@ state 10
 
 	MethodDecl_List  goto 14
 	MethodDecl_z1  goto 15
-	Decls  goto 16
-	MethodDecl  goto 17
+	MethodDecl  goto 16
+	Decls  goto 17
 
 
 state 11
@@ -269,9 +269,9 @@ state 12
 	INTnum  shift 19
 	ENDDECLARATIONSnum  reduce 42
 
-	FieldDecl_List  goto 20
-	FieldDecl  goto 21
-	Type  goto 22
+	Type  goto 20
+	FieldDecl_List  goto 21
+	FieldDecl  goto 22
 
 
 state 13
@@ -303,8 +303,14 @@ state 15
 	.  reduce 6
 
 
-16: shift/reduce conflict (shift 13, reduce 9) on METHODnum
 state 16
+	MethodDecl_z1 : MethodDecl .  (10)
+
+	.  reduce 10
+
+
+17: shift/reduce conflict (shift 13, reduce 9) on METHODnum
+state 17
 	MethodDecl_z1 : Decls .  (9)
 	MethodDecl_z1 : Decls . MethodDecl  (11)
 
@@ -312,12 +318,6 @@ state 16
 	RBRACEnum  reduce 9
 
 	MethodDecl  goto 27
-
-
-state 17
-	MethodDecl_z1 : MethodDecl .  (10)
-
-	.  reduce 10
 
 
 18: shift/reduce conflict (shift 28, reduce 19) on LBRACnum
@@ -347,33 +347,33 @@ state 19
 
 
 state 20
+	FieldDecl : Type . FieldDecl_rec SEMInum  (45)
+
+	IDnum  shift 31
+	.  error
+
+	FieldDecl_rec  goto 32
+	FieldDecl_Id  goto 33
+	VariableDeclId  goto 34
+
+
+state 21
 	Decls : DECLARATIONSnum FieldDecl_List . ENDDECLARATIONSnum  (41)
 	FieldDecl_List : FieldDecl_List . FieldDecl  (44)
 
 	IDnum  shift 18
-	ENDDECLARATIONSnum  shift 31
+	ENDDECLARATIONSnum  shift 35
 	INTnum  shift 19
 	.  error
 
-	FieldDecl  goto 32
-	Type  goto 22
-
-
-state 21
-	FieldDecl_List : FieldDecl .  (43)
-
-	.  reduce 43
+	Type  goto 20
+	FieldDecl  goto 36
 
 
 state 22
-	FieldDecl : Type . FieldDecl_rec SEMInum  (45)
+	FieldDecl_List : FieldDecl .  (43)
 
-	IDnum  shift 33
-	.  error
-
-	FieldDecl_Id  goto 34
-	FieldDecl_rec  goto 35
-	VariableDeclId  goto 36
+	.  reduce 43
 
 
 state 23
@@ -438,18 +438,6 @@ state 30
 
 
 state 31
-	Decls : DECLARATIONSnum FieldDecl_List ENDDECLARATIONSnum .  (41)
-
-	.  reduce 41
-
-
-state 32
-	FieldDecl_List : FieldDecl_List FieldDecl .  (44)
-
-	.  reduce 44
-
-
-state 33
 	VariableDeclId : IDnum .  (50)
 	VariableDeclId : IDnum . BracketLoop  (51)
 
@@ -461,13 +449,7 @@ state 33
 	BracketLoop  goto 44
 
 
-state 34
-	FieldDecl_rec : FieldDecl_Id .  (46)
-
-	.  reduce 46
-
-
-state 35
+state 32
 	FieldDecl : Type FieldDecl_rec . SEMInum  (45)
 	FieldDecl_rec : FieldDecl_rec . COMMAnum FieldDecl_Id  (47)
 
@@ -476,13 +458,31 @@ state 35
 	.  error
 
 
-state 36
+state 33
+	FieldDecl_rec : FieldDecl_Id .  (46)
+
+	.  reduce 46
+
+
+state 34
 	FieldDecl_Id : VariableDeclId .  (48)
 	FieldDecl_Id : VariableDeclId . EQUALnum VariableInitializer  (49)
 
 	EQUALnum  shift 47
 	SEMInum  reduce 48
 	COMMAnum  reduce 48
+
+
+state 35
+	Decls : DECLARATIONSnum FieldDecl_List ENDDECLARATIONSnum .  (41)
+
+	.  reduce 41
+
+
+state 36
+	FieldDecl_List : FieldDecl_List FieldDecl .  (44)
+
+	.  reduce 44
 
 
 state 37
@@ -558,11 +558,11 @@ state 45
 state 46
 	FieldDecl_rec : FieldDecl_rec COMMAnum . FieldDecl_Id  (47)
 
-	IDnum  shift 33
+	IDnum  shift 31
 	.  error
 
 	FieldDecl_Id  goto 55
-	VariableDeclId  goto 36
+	VariableDeclId  goto 34
 
 
 state 47
@@ -584,10 +584,10 @@ state 47
 	ArrayCreationExpression  goto 67
 	MethodCallStatement  goto 68
 	Expression  goto 69
-	SimpleExpression  goto 70
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 72
+	Term  goto 73
 	Variable  goto 74
 
 
@@ -607,8 +607,8 @@ state 49
 	RPARENnum  reduce 22
 
 	Formal_Parameter_List  goto 78
-	Formal_Parameter  goto 79
-	Formal_Parameter_List_rec  goto 80
+	Formal_Parameter_List_rec  goto 79
+	Formal_Parameter  goto 80
 
 
 state 50
@@ -675,9 +675,9 @@ state 56
 	DIVIDEnum  reduce 103
 	ANDnum  reduce 103
 
-	Field  goto 84
-	Index  goto 85
-	Variable_rec  goto 86
+	Variable_rec  goto 84
+	Field  goto 85
+	Index  goto 86
 
 
 state 57
@@ -695,10 +695,10 @@ state 57
 	ArrayInitializer_rec  goto 87
 	MethodCallStatement  goto 68
 	Expression  goto 88
-	SimpleExpression  goto 70
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 72
+	Term  goto 73
 	Variable  goto 74
 
 
@@ -716,10 +716,10 @@ state 58
 
 	MethodCallStatement  goto 68
 	Expression  goto 89
-	SimpleExpression  goto 70
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 72
+	Term  goto 73
 	Variable  goto 74
 
 
@@ -744,9 +744,9 @@ state 60
 	.  error
 
 	MethodCallStatement  goto 68
+	Factor  goto 70
+	UnsignedConstant  goto 71
 	Term  goto 93
-	Factor  goto 72
-	UnsignedConstant  goto 73
 	Variable  goto 74
 
 
@@ -761,9 +761,9 @@ state 61
 	.  error
 
 	MethodCallStatement  goto 68
+	Factor  goto 70
+	UnsignedConstant  goto 71
 	Term  goto 94
-	Factor  goto 72
-	UnsignedConstant  goto 73
 	Variable  goto 74
 
 
@@ -779,7 +779,7 @@ state 62
 
 	MethodCallStatement  goto 68
 	Factor  goto 95
-	UnsignedConstant  goto 73
+	UnsignedConstant  goto 71
 	Variable  goto 74
 
 
@@ -826,59 +826,12 @@ state 69
 
 
 state 70
-	Expression : SimpleExpression .  (74)
-	Expression : SimpleExpression . LTnum SimpleExpression  (75)
-	Expression : SimpleExpression . LEnum SimpleExpression  (76)
-	Expression : SimpleExpression . EQnum SimpleExpression  (77)
-	Expression : SimpleExpression . NEnum SimpleExpression  (78)
-	Expression : SimpleExpression . GEnum SimpleExpression  (79)
-	Expression : SimpleExpression . GTnum SimpleExpression  (80)
-
-	LTnum  shift 96
-	LEnum  shift 97
-	EQnum  shift 98
-	NEnum  shift 99
-	GEnum  shift 100
-	GTnum  shift 101
-	SEMInum  reduce 74
-	COMMAnum  reduce 74
-	LBRACEnum  reduce 74
-	RBRACEnum  reduce 74
-	RBRACnum  reduce 74
-	RPARENnum  reduce 74
-
-
-state 71
-	SimpleExpression : Term . SimpleExpression_Op_rec  (88)
-	SimpleExpression_Op_rec : .  (91)
-
-	PLUSnum  shift 102
-	MINUSnum  shift 103
-	ORnum  shift 104
-	SEMInum  reduce 91
-	COMMAnum  reduce 91
-	LBRACEnum  reduce 91
-	RBRACEnum  reduce 91
-	RBRACnum  reduce 91
-	RPARENnum  reduce 91
-	LTnum  reduce 91
-	LEnum  reduce 91
-	EQnum  reduce 91
-	NEnum  reduce 91
-	GEnum  reduce 91
-	GTnum  reduce 91
-
-	SimpleExpression_Op  goto 105
-	SimpleExpression_Op_rec  goto 106
-
-
-state 72
 	Term : Factor . Term_Op_rec  (96)
 	Term_Op_rec : .  (97)
 
-	TIMESnum  shift 107
-	DIVIDEnum  shift 108
-	ANDnum  shift 109
+	TIMESnum  shift 96
+	DIVIDEnum  shift 97
+	ANDnum  shift 98
 	SEMInum  reduce 97
 	COMMAnum  reduce 97
 	LBRACEnum  reduce 97
@@ -895,14 +848,61 @@ state 72
 	MINUSnum  reduce 97
 	ORnum  reduce 97
 
-	Term_Op  goto 110
-	Term_Op_rec  goto 111
+	Term_Op_rec  goto 99
+	Term_Op  goto 100
 
 
-state 73
+state 71
 	Factor : UnsignedConstant .  (81)
 
 	.  reduce 81
+
+
+state 72
+	Expression : SimpleExpression .  (74)
+	Expression : SimpleExpression . LTnum SimpleExpression  (75)
+	Expression : SimpleExpression . LEnum SimpleExpression  (76)
+	Expression : SimpleExpression . EQnum SimpleExpression  (77)
+	Expression : SimpleExpression . NEnum SimpleExpression  (78)
+	Expression : SimpleExpression . GEnum SimpleExpression  (79)
+	Expression : SimpleExpression . GTnum SimpleExpression  (80)
+
+	LTnum  shift 101
+	LEnum  shift 102
+	EQnum  shift 103
+	NEnum  shift 104
+	GEnum  shift 105
+	GTnum  shift 106
+	SEMInum  reduce 74
+	COMMAnum  reduce 74
+	LBRACEnum  reduce 74
+	RBRACEnum  reduce 74
+	RBRACnum  reduce 74
+	RPARENnum  reduce 74
+
+
+state 73
+	SimpleExpression : Term . SimpleExpression_Op_rec  (88)
+	SimpleExpression_Op_rec : .  (91)
+
+	PLUSnum  shift 107
+	MINUSnum  shift 108
+	ORnum  shift 109
+	SEMInum  reduce 91
+	COMMAnum  reduce 91
+	LBRACEnum  reduce 91
+	RBRACEnum  reduce 91
+	RBRACnum  reduce 91
+	RPARENnum  reduce 91
+	LTnum  reduce 91
+	LEnum  reduce 91
+	EQnum  reduce 91
+	NEnum  reduce 91
+	GEnum  reduce 91
+	GTnum  reduce 91
+
+	SimpleExpression_Op_rec  goto 110
+	SimpleExpression_Op  goto 111
 
 
 state 74
@@ -939,8 +939,8 @@ state 75
 	RPARENnum  reduce 22
 
 	Formal_Parameter_List  goto 113
-	Formal_Parameter  goto 79
-	Formal_Parameter_List_rec  goto 80
+	Formal_Parameter_List_rec  goto 79
+	Formal_Parameter  goto 80
 
 
 state 76
@@ -967,17 +967,17 @@ state 78
 
 
 state 79
+	Formal_Parameter_List : Formal_Parameter_List_rec .  (23)
+
+	.  reduce 23
+
+
+state 80
 	Formal_Parameter_List_rec : Formal_Parameter .  (24)
 	Formal_Parameter_List_rec : Formal_Parameter . SEMInum Formal_Parameter_List_rec  (25)
 
 	SEMInum  shift 118
 	RPARENnum  reduce 24
-
-
-state 80
-	Formal_Parameter_List : Formal_Parameter_List_rec .  (23)
-
-	.  reduce 23
 
 
 state 81
@@ -998,14 +998,14 @@ state 82
 	SCONSTnum  shift 64
 	.  error
 
-	Index_rec  goto 119
 	MethodCallStatement  goto 68
-	Expression  goto 120
-	SimpleExpression  goto 70
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
+	Expression  goto 119
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 72
+	Term  goto 73
 	Variable  goto 74
+	Index_rec  goto 120
 
 
 state 83
@@ -1016,6 +1016,12 @@ state 83
 
 
 state 84
+	Variable : IDnum Variable_rec .  (102)
+
+	.  reduce 102
+
+
+state 85
 	Variable_rec : Field . Variable_rec  (105)
 	Variable_rec : .  (103)
 
@@ -1042,12 +1048,12 @@ state 84
 	DIVIDEnum  reduce 103
 	ANDnum  reduce 103
 
-	Field  goto 84
-	Index  goto 85
 	Variable_rec  goto 122
+	Field  goto 85
+	Index  goto 86
 
 
-state 85
+state 86
 	Variable_rec : Index . Variable_rec  (104)
 	Variable_rec : .  (103)
 
@@ -1074,15 +1080,9 @@ state 85
 	DIVIDEnum  reduce 103
 	ANDnum  reduce 103
 
-	Field  goto 84
-	Index  goto 85
 	Variable_rec  goto 123
-
-
-state 86
-	Variable : IDnum Variable_rec .  (102)
-
-	.  reduce 102
+	Field  goto 85
+	Index  goto 86
 
 
 state 87
@@ -1121,10 +1121,10 @@ state 90
 
 	MethodCallStatement  goto 68
 	Expression  goto 127
-	SimpleExpression  goto 70
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 72
+	Term  goto 73
 	Variable  goto 74
 
 
@@ -1149,9 +1149,9 @@ state 93
 	SimpleExpression : PLUSnum Term . SimpleExpression_Op_rec  (89)
 	SimpleExpression_Op_rec : .  (91)
 
-	PLUSnum  shift 102
-	MINUSnum  shift 103
-	ORnum  shift 104
+	PLUSnum  shift 107
+	MINUSnum  shift 108
+	ORnum  shift 109
 	SEMInum  reduce 91
 	COMMAnum  reduce 91
 	LBRACEnum  reduce 91
@@ -1165,17 +1165,17 @@ state 93
 	GEnum  reduce 91
 	GTnum  reduce 91
 
-	SimpleExpression_Op  goto 105
 	SimpleExpression_Op_rec  goto 129
+	SimpleExpression_Op  goto 111
 
 
 state 94
 	SimpleExpression : MINUSnum Term . SimpleExpression_Op_rec  (90)
 	SimpleExpression_Op_rec : .  (91)
 
-	PLUSnum  shift 102
-	MINUSnum  shift 103
-	ORnum  shift 104
+	PLUSnum  shift 107
+	MINUSnum  shift 108
+	ORnum  shift 109
 	SEMInum  reduce 91
 	COMMAnum  reduce 91
 	LBRACEnum  reduce 91
@@ -1189,8 +1189,8 @@ state 94
 	GEnum  reduce 91
 	GTnum  reduce 91
 
-	SimpleExpression_Op  goto 105
 	SimpleExpression_Op_rec  goto 130
+	SimpleExpression_Op  goto 111
 
 
 state 95
@@ -1200,207 +1200,6 @@ state 95
 
 
 state 96
-	Expression : SimpleExpression LTnum . SimpleExpression  (75)
-
-	IDnum  shift 56
-	LPARENnum  shift 58
-	PLUSnum  shift 60
-	MINUSnum  shift 61
-	NOTnum  shift 62
-	ICONSTnum  shift 63
-	SCONSTnum  shift 64
-	.  error
-
-	MethodCallStatement  goto 68
-	SimpleExpression  goto 131
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
-	Variable  goto 74
-
-
-state 97
-	Expression : SimpleExpression LEnum . SimpleExpression  (76)
-
-	IDnum  shift 56
-	LPARENnum  shift 58
-	PLUSnum  shift 60
-	MINUSnum  shift 61
-	NOTnum  shift 62
-	ICONSTnum  shift 63
-	SCONSTnum  shift 64
-	.  error
-
-	MethodCallStatement  goto 68
-	SimpleExpression  goto 132
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
-	Variable  goto 74
-
-
-state 98
-	Expression : SimpleExpression EQnum . SimpleExpression  (77)
-
-	IDnum  shift 56
-	LPARENnum  shift 58
-	PLUSnum  shift 60
-	MINUSnum  shift 61
-	NOTnum  shift 62
-	ICONSTnum  shift 63
-	SCONSTnum  shift 64
-	.  error
-
-	MethodCallStatement  goto 68
-	SimpleExpression  goto 133
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
-	Variable  goto 74
-
-
-state 99
-	Expression : SimpleExpression NEnum . SimpleExpression  (78)
-
-	IDnum  shift 56
-	LPARENnum  shift 58
-	PLUSnum  shift 60
-	MINUSnum  shift 61
-	NOTnum  shift 62
-	ICONSTnum  shift 63
-	SCONSTnum  shift 64
-	.  error
-
-	MethodCallStatement  goto 68
-	SimpleExpression  goto 134
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
-	Variable  goto 74
-
-
-state 100
-	Expression : SimpleExpression GEnum . SimpleExpression  (79)
-
-	IDnum  shift 56
-	LPARENnum  shift 58
-	PLUSnum  shift 60
-	MINUSnum  shift 61
-	NOTnum  shift 62
-	ICONSTnum  shift 63
-	SCONSTnum  shift 64
-	.  error
-
-	MethodCallStatement  goto 68
-	SimpleExpression  goto 135
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
-	Variable  goto 74
-
-
-state 101
-	Expression : SimpleExpression GTnum . SimpleExpression  (80)
-
-	IDnum  shift 56
-	LPARENnum  shift 58
-	PLUSnum  shift 60
-	MINUSnum  shift 61
-	NOTnum  shift 62
-	ICONSTnum  shift 63
-	SCONSTnum  shift 64
-	.  error
-
-	MethodCallStatement  goto 68
-	SimpleExpression  goto 136
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
-	Variable  goto 74
-
-
-state 102
-	SimpleExpression_Op : PLUSnum . Term  (93)
-
-	IDnum  shift 56
-	LPARENnum  shift 58
-	NOTnum  shift 62
-	ICONSTnum  shift 63
-	SCONSTnum  shift 64
-	.  error
-
-	MethodCallStatement  goto 68
-	Term  goto 137
-	Factor  goto 72
-	UnsignedConstant  goto 73
-	Variable  goto 74
-
-
-state 103
-	SimpleExpression_Op : MINUSnum . Term  (94)
-
-	IDnum  shift 56
-	LPARENnum  shift 58
-	NOTnum  shift 62
-	ICONSTnum  shift 63
-	SCONSTnum  shift 64
-	.  error
-
-	MethodCallStatement  goto 68
-	Term  goto 138
-	Factor  goto 72
-	UnsignedConstant  goto 73
-	Variable  goto 74
-
-
-state 104
-	SimpleExpression_Op : ORnum . Term  (95)
-
-	IDnum  shift 56
-	LPARENnum  shift 58
-	NOTnum  shift 62
-	ICONSTnum  shift 63
-	SCONSTnum  shift 64
-	.  error
-
-	MethodCallStatement  goto 68
-	Term  goto 139
-	Factor  goto 72
-	UnsignedConstant  goto 73
-	Variable  goto 74
-
-
-state 105
-	SimpleExpression_Op_rec : SimpleExpression_Op . SimpleExpression_Op_rec  (92)
-	SimpleExpression_Op_rec : .  (91)
-
-	PLUSnum  shift 102
-	MINUSnum  shift 103
-	ORnum  shift 104
-	SEMInum  reduce 91
-	COMMAnum  reduce 91
-	LBRACEnum  reduce 91
-	RBRACEnum  reduce 91
-	RBRACnum  reduce 91
-	RPARENnum  reduce 91
-	LTnum  reduce 91
-	LEnum  reduce 91
-	EQnum  reduce 91
-	NEnum  reduce 91
-	GEnum  reduce 91
-	GTnum  reduce 91
-
-	SimpleExpression_Op  goto 105
-	SimpleExpression_Op_rec  goto 140
-
-
-state 106
-	SimpleExpression : Term SimpleExpression_Op_rec .  (88)
-
-	.  reduce 88
-
-
-state 107
 	Term_Op : TIMESnum . Factor  (99)
 
 	IDnum  shift 56
@@ -1411,12 +1210,12 @@ state 107
 	.  error
 
 	MethodCallStatement  goto 68
-	Factor  goto 141
-	UnsignedConstant  goto 73
+	Factor  goto 131
+	UnsignedConstant  goto 71
 	Variable  goto 74
 
 
-state 108
+state 97
 	Term_Op : DIVIDEnum . Factor  (100)
 
 	IDnum  shift 56
@@ -1427,12 +1226,12 @@ state 108
 	.  error
 
 	MethodCallStatement  goto 68
-	Factor  goto 142
-	UnsignedConstant  goto 73
+	Factor  goto 132
+	UnsignedConstant  goto 71
 	Variable  goto 74
 
 
-state 109
+state 98
 	Term_Op : ANDnum . Factor  (101)
 
 	IDnum  shift 56
@@ -1443,18 +1242,24 @@ state 109
 	.  error
 
 	MethodCallStatement  goto 68
-	Factor  goto 143
-	UnsignedConstant  goto 73
+	Factor  goto 133
+	UnsignedConstant  goto 71
 	Variable  goto 74
 
 
-state 110
+state 99
+	Term : Factor Term_Op_rec .  (96)
+
+	.  reduce 96
+
+
+state 100
 	Term_Op_rec : Term_Op . Term_Op_rec  (98)
 	Term_Op_rec : .  (97)
 
-	TIMESnum  shift 107
-	DIVIDEnum  shift 108
-	ANDnum  shift 109
+	TIMESnum  shift 96
+	DIVIDEnum  shift 97
+	ANDnum  shift 98
 	SEMInum  reduce 97
 	COMMAnum  reduce 97
 	LBRACEnum  reduce 97
@@ -1471,14 +1276,209 @@ state 110
 	MINUSnum  reduce 97
 	ORnum  reduce 97
 
-	Term_Op  goto 110
-	Term_Op_rec  goto 144
+	Term_Op_rec  goto 134
+	Term_Op  goto 100
+
+
+state 101
+	Expression : SimpleExpression LTnum . SimpleExpression  (75)
+
+	IDnum  shift 56
+	LPARENnum  shift 58
+	PLUSnum  shift 60
+	MINUSnum  shift 61
+	NOTnum  shift 62
+	ICONSTnum  shift 63
+	SCONSTnum  shift 64
+	.  error
+
+	MethodCallStatement  goto 68
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 135
+	Term  goto 73
+	Variable  goto 74
+
+
+state 102
+	Expression : SimpleExpression LEnum . SimpleExpression  (76)
+
+	IDnum  shift 56
+	LPARENnum  shift 58
+	PLUSnum  shift 60
+	MINUSnum  shift 61
+	NOTnum  shift 62
+	ICONSTnum  shift 63
+	SCONSTnum  shift 64
+	.  error
+
+	MethodCallStatement  goto 68
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 136
+	Term  goto 73
+	Variable  goto 74
+
+
+state 103
+	Expression : SimpleExpression EQnum . SimpleExpression  (77)
+
+	IDnum  shift 56
+	LPARENnum  shift 58
+	PLUSnum  shift 60
+	MINUSnum  shift 61
+	NOTnum  shift 62
+	ICONSTnum  shift 63
+	SCONSTnum  shift 64
+	.  error
+
+	MethodCallStatement  goto 68
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 137
+	Term  goto 73
+	Variable  goto 74
+
+
+state 104
+	Expression : SimpleExpression NEnum . SimpleExpression  (78)
+
+	IDnum  shift 56
+	LPARENnum  shift 58
+	PLUSnum  shift 60
+	MINUSnum  shift 61
+	NOTnum  shift 62
+	ICONSTnum  shift 63
+	SCONSTnum  shift 64
+	.  error
+
+	MethodCallStatement  goto 68
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 138
+	Term  goto 73
+	Variable  goto 74
+
+
+state 105
+	Expression : SimpleExpression GEnum . SimpleExpression  (79)
+
+	IDnum  shift 56
+	LPARENnum  shift 58
+	PLUSnum  shift 60
+	MINUSnum  shift 61
+	NOTnum  shift 62
+	ICONSTnum  shift 63
+	SCONSTnum  shift 64
+	.  error
+
+	MethodCallStatement  goto 68
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 139
+	Term  goto 73
+	Variable  goto 74
+
+
+state 106
+	Expression : SimpleExpression GTnum . SimpleExpression  (80)
+
+	IDnum  shift 56
+	LPARENnum  shift 58
+	PLUSnum  shift 60
+	MINUSnum  shift 61
+	NOTnum  shift 62
+	ICONSTnum  shift 63
+	SCONSTnum  shift 64
+	.  error
+
+	MethodCallStatement  goto 68
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 140
+	Term  goto 73
+	Variable  goto 74
+
+
+state 107
+	SimpleExpression_Op : PLUSnum . Term  (93)
+
+	IDnum  shift 56
+	LPARENnum  shift 58
+	NOTnum  shift 62
+	ICONSTnum  shift 63
+	SCONSTnum  shift 64
+	.  error
+
+	MethodCallStatement  goto 68
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	Term  goto 141
+	Variable  goto 74
+
+
+state 108
+	SimpleExpression_Op : MINUSnum . Term  (94)
+
+	IDnum  shift 56
+	LPARENnum  shift 58
+	NOTnum  shift 62
+	ICONSTnum  shift 63
+	SCONSTnum  shift 64
+	.  error
+
+	MethodCallStatement  goto 68
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	Term  goto 142
+	Variable  goto 74
+
+
+state 109
+	SimpleExpression_Op : ORnum . Term  (95)
+
+	IDnum  shift 56
+	LPARENnum  shift 58
+	NOTnum  shift 62
+	ICONSTnum  shift 63
+	SCONSTnum  shift 64
+	.  error
+
+	MethodCallStatement  goto 68
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	Term  goto 143
+	Variable  goto 74
+
+
+state 110
+	SimpleExpression : Term SimpleExpression_Op_rec .  (88)
+
+	.  reduce 88
 
 
 state 111
-	Term : Factor Term_Op_rec .  (96)
+	SimpleExpression_Op_rec : SimpleExpression_Op . SimpleExpression_Op_rec  (92)
+	SimpleExpression_Op_rec : .  (91)
 
-	.  reduce 96
+	PLUSnum  shift 107
+	MINUSnum  shift 108
+	ORnum  shift 109
+	SEMInum  reduce 91
+	COMMAnum  reduce 91
+	LBRACEnum  reduce 91
+	RBRACEnum  reduce 91
+	RBRACnum  reduce 91
+	RPARENnum  reduce 91
+	LTnum  reduce 91
+	LEnum  reduce 91
+	EQnum  reduce 91
+	NEnum  reduce 91
+	GEnum  reduce 91
+	GTnum  reduce 91
+
+	SimpleExpression_Op_rec  goto 144
+	SimpleExpression_Op  goto 111
 
 
 state 112
@@ -1494,13 +1494,13 @@ state 112
 	SCONSTnum  shift 64
 	RPARENnum  reduce 66
 
-	ParameterList  goto 145
 	MethodCallStatement  goto 68
+	ParameterList  goto 145
 	Expression  goto 146
-	SimpleExpression  goto 70
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 72
+	Term  goto 73
 	Variable  goto 74
 
 
@@ -1542,9 +1542,9 @@ state 117
 	LBRACEnum  shift 150
 	.  error
 
-	StatementList  goto 151
-	Decls  goto 152
-	Block  goto 153
+	Block  goto 151
+	StatementList  goto 152
+	Decls  goto 153
 
 
 state 118
@@ -1554,23 +1554,23 @@ state 118
 	VALnum  shift 77
 	.  error
 
-	Formal_Parameter  goto 79
 	Formal_Parameter_List_rec  goto 154
+	Formal_Parameter  goto 80
 
 
 state 119
-	Index : LBRACnum Index_rec . RBRACnum  (107)
-
-	RBRACnum  shift 155
-	.  error
-
-
-state 120
 	Index_rec : Expression .  (108)
 	Index_rec : Expression . COMMAnum Index_rec  (109)
 
-	COMMAnum  shift 156
+	COMMAnum  shift 155
 	RBRACnum  reduce 108
+
+
+state 120
+	Index : LBRACnum Index_rec . RBRACnum  (107)
+
+	RBRACnum  shift 156
+	.  error
 
 
 state 121
@@ -1605,10 +1605,10 @@ state 124
 
 	MethodCallStatement  goto 68
 	Expression  goto 157
-	SimpleExpression  goto 70
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 72
+	Term  goto 73
 	Variable  goto 74
 
 
@@ -1650,87 +1650,87 @@ state 130
 
 
 state 131
-	Expression : SimpleExpression LTnum SimpleExpression .  (75)
-
-	.  reduce 75
-
-
-state 132
-	Expression : SimpleExpression LEnum SimpleExpression .  (76)
-
-	.  reduce 76
-
-
-state 133
-	Expression : SimpleExpression EQnum SimpleExpression .  (77)
-
-	.  reduce 77
-
-
-state 134
-	Expression : SimpleExpression NEnum SimpleExpression .  (78)
-
-	.  reduce 78
-
-
-state 135
-	Expression : SimpleExpression GEnum SimpleExpression .  (79)
-
-	.  reduce 79
-
-
-state 136
-	Expression : SimpleExpression GTnum SimpleExpression .  (80)
-
-	.  reduce 80
-
-
-state 137
-	SimpleExpression_Op : PLUSnum Term .  (93)
-
-	.  reduce 93
-
-
-state 138
-	SimpleExpression_Op : MINUSnum Term .  (94)
-
-	.  reduce 94
-
-
-state 139
-	SimpleExpression_Op : ORnum Term .  (95)
-
-	.  reduce 95
-
-
-state 140
-	SimpleExpression_Op_rec : SimpleExpression_Op SimpleExpression_Op_rec .  (92)
-
-	.  reduce 92
-
-
-state 141
 	Term_Op : TIMESnum Factor .  (99)
 
 	.  reduce 99
 
 
-state 142
+state 132
 	Term_Op : DIVIDEnum Factor .  (100)
 
 	.  reduce 100
 
 
-state 143
+state 133
 	Term_Op : ANDnum Factor .  (101)
 
 	.  reduce 101
 
 
-state 144
+state 134
 	Term_Op_rec : Term_Op Term_Op_rec .  (98)
 
 	.  reduce 98
+
+
+state 135
+	Expression : SimpleExpression LTnum SimpleExpression .  (75)
+
+	.  reduce 75
+
+
+state 136
+	Expression : SimpleExpression LEnum SimpleExpression .  (76)
+
+	.  reduce 76
+
+
+state 137
+	Expression : SimpleExpression EQnum SimpleExpression .  (77)
+
+	.  reduce 77
+
+
+state 138
+	Expression : SimpleExpression NEnum SimpleExpression .  (78)
+
+	.  reduce 78
+
+
+state 139
+	Expression : SimpleExpression GEnum SimpleExpression .  (79)
+
+	.  reduce 79
+
+
+state 140
+	Expression : SimpleExpression GTnum SimpleExpression .  (80)
+
+	.  reduce 80
+
+
+state 141
+	SimpleExpression_Op : PLUSnum Term .  (93)
+
+	.  reduce 93
+
+
+state 142
+	SimpleExpression_Op : MINUSnum Term .  (94)
+
+	.  reduce 94
+
+
+state 143
+	SimpleExpression_Op : ORnum Term .  (95)
+
+	.  reduce 95
+
+
+state 144
+	SimpleExpression_Op_rec : SimpleExpression_Op SimpleExpression_Op_rec .  (92)
+
+	.  reduce 92
 
 
 state 145
@@ -1755,9 +1755,9 @@ state 147
 	LBRACEnum  shift 150
 	.  error
 
-	StatementList  goto 151
-	Decls  goto 152
 	Block  goto 161
+	StatementList  goto 152
+	Decls  goto 153
 
 
 state 148
@@ -1786,8 +1786,8 @@ state 150
 	SEMInum  reduce 35
 	RBRACEnum  reduce 35
 
-	Statement  goto 166
-	StatementList_rec  goto 167
+	StatementList_rec  goto 166
+	Statement  goto 167
 	AssignmentStatement  goto 168
 	MethodCallStatement  goto 169
 	ReturnStatement  goto 170
@@ -1797,24 +1797,24 @@ state 150
 
 
 state 151
+	MethodDecl : METHODnum Type IDnum LPARENnum Formal_Parameter_List RPARENnum Block .  (12)
+
+	.  reduce 12
+
+
+state 152
 	Block : StatementList .  (30)
 
 	.  reduce 30
 
 
-state 152
+state 153
 	Block : Decls . StatementList  (31)
 
 	LBRACEnum  shift 150
 	.  error
 
 	StatementList  goto 174
-
-
-state 153
-	MethodDecl : METHODnum Type IDnum LPARENnum Formal_Parameter_List RPARENnum Block .  (12)
-
-	.  reduce 12
 
 
 state 154
@@ -1824,12 +1824,6 @@ state 154
 
 
 state 155
-	Index : LBRACnum Index_rec RBRACnum .  (107)
-
-	.  reduce 107
-
-
-state 156
 	Index_rec : Expression COMMAnum . Index_rec  (109)
 
 	IDnum  shift 56
@@ -1841,14 +1835,20 @@ state 156
 	SCONSTnum  shift 64
 	.  error
 
-	Index_rec  goto 175
 	MethodCallStatement  goto 68
-	Expression  goto 120
-	SimpleExpression  goto 70
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
+	Expression  goto 119
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 72
+	Term  goto 73
 	Variable  goto 74
+	Index_rec  goto 175
+
+
+state 156
+	Index : LBRACnum Index_rec RBRACnum .  (107)
+
+	.  reduce 107
 
 
 state 157
@@ -1882,13 +1882,13 @@ state 160
 	SCONSTnum  shift 64
 	RPARENnum  reduce 66
 
-	ParameterList  goto 176
 	MethodCallStatement  goto 68
+	ParameterList  goto 176
 	Expression  goto 146
-	SimpleExpression  goto 70
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 72
+	Term  goto 73
 	Variable  goto 74
 
 
@@ -1920,10 +1920,10 @@ state 163
 
 	MethodCallStatement  goto 68
 	Expression  goto 177
-	SimpleExpression  goto 70
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 72
+	Term  goto 73
 	Variable  goto 74
 
 
@@ -1942,10 +1942,10 @@ state 164
 
 	MethodCallStatement  goto 68
 	Expression  goto 178
-	SimpleExpression  goto 70
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 72
+	Term  goto 73
 	Variable  goto 74
 
 
@@ -1963,26 +1963,26 @@ state 165
 
 	MethodCallStatement  goto 68
 	Expression  goto 179
-	SimpleExpression  goto 70
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 72
+	Term  goto 73
 	Variable  goto 74
 
 
 state 166
-	StatementList_rec : Statement .  (33)
-
-	.  reduce 33
-
-
-state 167
 	StatementList : LBRACEnum StatementList_rec . RBRACEnum  (32)
 	StatementList_rec : StatementList_rec . SEMInum Statement  (34)
 
 	SEMInum  shift 180
 	RBRACEnum  shift 181
 	.  error
+
+
+state 167
+	StatementList_rec : Statement .  (33)
+
+	.  reduce 33
 
 
 state 168
@@ -2107,10 +2107,10 @@ state 182
 
 	MethodCallStatement  goto 68
 	Expression  goto 186
-	SimpleExpression  goto 70
-	Term  goto 71
-	Factor  goto 72
-	UnsignedConstant  goto 73
+	Factor  goto 70
+	UnsignedConstant  goto 71
+	SimpleExpression  goto 72
+	Term  goto 73
 	Variable  goto 74
 
 
@@ -2158,10 +2158,10 @@ state 188
 
 State 10 contains 1 shift/reduce conflict.
 State 12 contains 2 shift/reduce conflicts.
-State 16 contains 1 shift/reduce conflict.
+State 17 contains 1 shift/reduce conflict.
 State 18 contains 1 shift/reduce conflict.
 State 19 contains 1 shift/reduce conflict.
 
 
-62 terminals, 52 nonterminals
+41 terminals, 52 nonterminals
 110 grammar rules, 189 states

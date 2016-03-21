@@ -12,35 +12,37 @@
 %token <intg>  LTnum LEnum EQnum NEnum GEnum GTnum PLUSnum MINUSnum ORnum TIMESnum DIVIDEnum ANDnum
 %token <intg>  NOTnum ICONSTnum SCONSTnum
 
-%type  <tptr>  MethodDecl_List FieldDecl_List Formal_Parameter_List
+%type  <tptr>  Program ClassDecl_rec ClassDecl ClassBody MethodDecl_List 
+%type  <tptr>  MethodDecl_z1 MethodDecl Type Type_rec Formal_Parameter_List 
+%type  <tptr>  Formal_Parameter_List_rec Formal_Parameter 
+%type  <tptr>  Formal_Parameter_rec Block StatementList StatementList_rec
+%type  <tptr>  Statement Decls FieldDecl_List FieldDecl FieldDecl_rec
+%type  <tptr>  FieldDecl_Id VariableDeclId BracketLoop VariableInitializer 
+%type  <tptr>  ArrayInitializer ArrayInitializer_rec BracketLoop
+%type  <tptr>  ArrayCreationExpression ArrayCreationExpression_rec 
+%type  <tptr>  ArrayExpression AssignmentStatement MethodCallStatement
+%type  <tptr>  ParameterList ReturnStatement IfStatement WhileStatement
+%type  <tptr>  Expression Factor UnsignedConstant SimpleExpression
+%type  <tptr>  SimpleExpression_Op_rec SimpleExpression_Op Term Term_Op_rec
+%type  <tptr>  Term_Op Variable Variable_rec Field Index Index_rec
 
-%type  <tptr>  Formal_Parameter_rec Formal_Parameter_List Formal_Parameter Formal_Parameter_List_rec
-%type  <tptr>  Statement StatementList StatementList_rec Formal_Parameter_rec ParameterList
-%type  <tptr>  FieldDecl_Id ArrayInitializer_rec ArrayCreationExpression_rec ArrayExpression
-%type  <tptr>  Field Field_rec Index Index_rec Term_Op Term_Op_rec SimpleExpression_Op SimpleExpression_Op_rec Type_rec
-
-%type  <tptr>  Program ClassDecl_rec ClassDecl ClassBody MethodDecl_z1 MethodDecl_rec Decls
-%type  <tptr>  FieldDecl_rec FieldDecl Tail FieldDecl_body VariableDeclId Bracket_rec1 Bracket_rec2
-%type  <tptr>  VariableInitializer ArrayInitializer ArrayInitializer_body  ArrayCreationExpression
-%type  <tptr>  ArrayCreationExpression_tail MethodDecl FormalParameterList_z1 FormalParameterList
-%type  <tptr>  FormalParameterList_rec IDENTIFIER_rec Block Type Type_front 
-%type  <tptr>  StatementList Statement_rec Statement AssignmentStatement MethodCallStatement
-%type  <tptr>  MethodCallStatement_tail Expression_rec ReturnStatement IfStatement If_rec WhileStatement
-%type  <tptr>  Expression Comp_op SimpleExpression Term Factor Expression_rec2
-%type  <tptr>  UnsignedConstant Variable Variable_tail Variable_rec Variable_1 
 
 
 %%/* yacc specification*/
-Program         :      PROGRAMnum IDnum SEMInum ClassDecl_rec
-                       {  
-                         $$ = MakeTree(ProgramOp, $4, MakeLeaf(IDNode, $2)); 
-                         printtree($$, 0);
-                       }
+Program		:	PROGRAMnum IDnum SEMInum ClassDecl_rec
+                     	{  
+                       		$$ = MakeTree(ProgramOp, $4, MakeLeaf(IDNode, $2)); 
+                      		printtree($$, 0);
+			}
                 ;
-ClassDecl_rec   :      ClassDecl                       
-                          {  $$ = MakeTree(ClassOp, NullExp(), $1); } 
-                |      ClassDecl_rec ClassDecl
-			  {  $$ = MakeTree(ClassOp, $1, $2); }
+ClassDecl_rec   :	ClassDecl                       
+			{
+				$$ = MakeTree(ClassOp, NullExp(), $1);
+			} 
+		|	ClassDecl_rec ClassDecl
+			{
+				$$ = MakeTree(ClassOp, $1, $2);
+			}
                 ;
 ClassDecl 	:	CLASSnum IDnum ClassBody
 			{
@@ -92,7 +94,6 @@ MethodDecl	:	METHODnum Type IDnum LPARENnum Formal_Parameter_List RPARENnum Bloc
 			}
 		;
 /* This currently creates a tree that looks tree given in the notes */
-/* TODO: Make a note in the README */
 Type		:	IDnum Type_rec
 			{
 				$$ = type_tree = MakeTree(TypeIdOp, MakeLeaf(IDNode, $1), $2);
@@ -229,7 +230,6 @@ Decls		:	DECLARATIONSnum FieldDecl_List ENDDECLARATIONSnum
 				$$ = $2;
 			}  
 		;
-/* TODO: Make a note of this in the README */
 FieldDecl_List	/* This Epsilon rule makes a dummy node of there are no Decls like the trees in the assignment */
 		:	/* Epsilon */
 			{
@@ -284,7 +284,13 @@ VariableDeclId	:	IDnum
 			}
 		;
 BracketLoop	:	LBRACnum RBRACnum
+			{
+				$$ = $$;
+			}
 		|	BracketLoop LBRACnum RBRACnum
+			{
+				$$ = $$;
+			}
 		;
 VariableInitializer:	Expression
 			{
