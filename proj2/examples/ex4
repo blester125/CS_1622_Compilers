@@ -10,7 +10,7 @@ class Point {
 }
 
 class Test {
-        method int main( VAL int par1; int par2)
+        method int main( VaL int par1; int par2)
 	     declarations
                Point p;
 	     enddeclarations

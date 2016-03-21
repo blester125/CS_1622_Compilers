@@ -83,13 +83,17 @@ MethodDecl	:	METHODnum Type IDnum LPARENnum Formal_Parameter_List RPARENnum Bloc
 				tree headOp = MakeTree(HeadOp, MakeLeaf(IDNode, $3), $5);
 				$$ = MakeTree(MethodOp, headOp, $7);
 			}
-		;
-/* This currently creates a tree that looks like the given parser */
-Type		:	VOIDnum 
+		/* This is a way to handle void (Setting the global type pointer in the RHS semantic action) This is done rather than including 
+		   Void as a type so that void cannot be used as the type for field declarations */
+		|	METHODnum VOIDnum {type_tree = NullExp();} IDnum LPARENnum Formal_Parameter_List RPARENnum Block
 			{
-				$$ = type_tree = NullExp();
-			}	
-		|	IDnum Type_rec
+				tree headOp = MakeTree(HeadOp, MakeLeaf(IDNode, $4), $6);
+				$$ = MakeTree(MethodOp, headOp, $8);
+			}
+		;
+/* This currently creates a tree that looks tree given in the notes */
+/* TODO: Make a note in the README */
+Type		:	IDnum Type_rec
 			{
 				$$ = type_tree = MakeTree(TypeIdOp, MakeLeaf(IDNode, $1), $2);
 			}
@@ -100,18 +104,20 @@ Type		:	VOIDnum
 		|	IDnum Type_rec DOTnum Type
 			{
 				tree typeTree = MakeTree(TypeIdOp, MakeLeaf(IDNode, $1), $2);
-				/* This code creates a tree that looks like the assignment pdf				
+				/* This code creates a tree that looks like the assignment pdf */			
 				tree fieldTree = MakeTree(FieldOp, $4, NullExp());
-				$$ = MkRightC(fieldTree, typeTree); */
-				$$ = type_tree = MkRightC($4, typeTree);
+				$$ = type_tree = MkRightC(fieldTree, typeTree); 
+				/* This code creates a tree that looks like the example parser */
+				//$$ = type_tree = MkRightC($4, typeTree);
 			}
 		|	INTnum Type_rec DOTnum Type
 			{
 				tree typeTree = MakeTree(TypeIdOp, MakeLeaf(INTEGERTNode, $1), $2);
-				/* This code creates a tree that looks like the assignment pdf
+				/* This code creates a tree that looks like the assignment pdf */
 				tree fieldTree = MakeTree(FieldOp, $4, NullExp());
-				$$ = MkRightC(fieldTree, typeTree); */
-				$$ = type_tree = MkRightC($4, typeTree);
+				$$ = type_tree = MkRightC(fieldTree, typeTree);
+				/* This code creates a tree that looks like the example parser */
+				//$$ = type_tree = MkRightC($4, typeTree);
 			}
 		;
 Type_rec	:	/* Epsilon */
@@ -120,11 +126,11 @@ Type_rec	:	/* Epsilon */
 			}
 		|	LBRACnum RBRACnum
 			{
-				$$ = MakeTree(IndexOp, NullExp(), NullExp());
+				$$ = type_tree = MakeTree(IndexOp, NullExp(), NullExp());
 			}
-		|	Type_rec LBRACnum RBRACum
+		|	Type_rec LBRACnum RBRACnum
 			{
-				$$ = MakeTree(IndexOp, NullExp(), $1);
+				$$ = type_tree = MakeTree(IndexOp, NullExp(), $1);
 			}
 		;
 Formal_Parameter_List :	/* Epsilon */
@@ -223,6 +229,7 @@ Decls		:	DECLARATIONSnum FieldDecl_List ENDDECLARATIONSnum
 				$$ = $2;
 			}  
 		;
+/* TODO: Make a note of this in the README */
 FieldDecl_List	/* This Epsilon rule makes a dummy node of there are no Decls like the trees in the assignment */
 		:	/* Epsilon */
 			{

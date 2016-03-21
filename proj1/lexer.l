@@ -26,6 +26,18 @@ digit					[0-9]
 delim					[ \t]
 ws						{delim}+
 newline					[\n]
+declarations				((D|d)(E|e)(C|c)(L|l)(A|a)(R|r)(A|a)(T|t)(I|i)(O|o)(N|n)(S|s))
+enddeclarations				((E|e)(N|n)(D|d)(D|d)(E|e)(C|c)(L|l)(A|a)(R|r)(A|a)(T|t)(I|i)(O|o)(N|n)(S|s))
+int					((I|i)(N|n)(T|t))
+method					((M|m)(E|e)(T|t)(H|h)(O|o)(D|d))
+program					((P|p)(R|r)(O|o)(G|g)(R|r)(A|a)(M|m))
+val					((V|v)(A|a)(L|l))
+while_def				((W|w)(H|h)(I|i)(L|l)(E|e))
+class					((C|c)(L|l)(A|a)(S|s)(S|s))
+else_def				((E|e)(L|l)(S|s)(E|e))
+if_def					((I|i)(F|f))
+return_def				((R|r)(E|e)(T|t)(U|u)(R|r)(N|n))
+void					((V|v)(O|o)(I|i)(D|d))
 ICONSTnum				([1-9]{digit}*|0)
 IDnum					{letter}({letter}|{digit})*
 BADIDnum				{digit}({letter}|{digit})*
@@ -43,30 +55,30 @@ BADIDnum				{digit}({letter}|{digit})*
 }
 "&&"					{pos(); return(ANDnum);}
 ":="					{pos(); return(ASSGNnum);}
-"declarations" 			{pos(); return(DECLARATIONSnum);}
+{declarations} 			{pos(); return(DECLARATIONSnum);}
 "." 					{pos(); return(DOTnum);}
-"enddeclarations"		{pos(); return(ENDDECLARATIONSnum);}
+{enddeclarations}		{pos(); return(ENDDECLARATIONSnum);}
 "="						{pos(); return(EQUALnum);}
 ">"						{pos(); return(GTnum);}
-"int" 					{pos(); return(INTnum);}
+{int} 					{pos(); return(INTnum);}
 "[" 					{pos(); return(LBRACnum);}
 "(" 					{pos(); return(LPARENnum);}
-"method" 				{pos(); return(METHODnum);}
+{method} 				{pos(); return(METHODnum);}
 "!="					{pos(); return(NEnum);}
 "||"					{pos(); return(ORnum);}
-"program"				{pos(); return(PROGRAMnum);}
+{program}				{pos(); return(PROGRAMnum);}
 "]"						{pos(); return(RBRACnum);}
 ")"						{pos(); return(RPARENnum);}
 ";"						{pos(); return(SEMInum);}
-"val"					{pos(); return(VALnum);}
-"while"					{pos(); return(WHILEnum);}
-"class"					{pos(); return(CLASSnum);}
+{val}					{pos(); return(VALnum);}
+{while_def}					{pos(); return(WHILEnum);}
+{class}					{pos(); return(CLASSnum);}
 ","						{pos(); return(COMMAnum);}
 "/"						{pos();	return(DIVIDEnum);}
-"else"					{pos(); return(ELSEnum);}
+{else_def}					{pos(); return(ELSEnum);}
 "=="					{pos(); return(EQnum);}
 ">="					{pos(); return(GEnum);}
-"if"					{pos(); return(IFnum);}
+{if_def}					{pos(); return(IFnum);}
 "{"						{pos(); return(LBRACEnum);}
 "<="					{pos(); return(LEnum);}
 "<"						{pos(); return(LTnum);}
@@ -74,9 +86,9 @@ BADIDnum				{digit}({letter}|{digit})*
 "!"						{pos(); return(NOTnum);}
 "+" 					{pos(); return(PLUSnum);}
 "}"						{pos(); return(RBRACEnum);}
-"return"				{pos(); return(RETURNnum);}
+{return_def}				{pos(); return(RETURNnum);}
 "*"						{pos(); return(TIMESnum);}
-"void"					{pos(); return(VOIDnum);}
+{void}					{pos(); return(VOIDnum);}
 
 {ICONSTnum}				{pos();
 						 yylval = atoi(yytext); 
