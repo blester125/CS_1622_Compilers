@@ -2,7 +2,7 @@
 #include  "proj2.h"
 #include  <stdio.h>
 
-  tree type_record, type_method, argtype, bractemp; /* globals used to store treenode pointers */
+  tree type_record, type_method, argtype, bractemp, type_tree; /* globals used to store treenode pointers */
 
 %}
 
@@ -37,14 +37,10 @@ Program         :      PROGRAMnum IDnum SEMInum ClassDecl_rec
                          printtree($$, 0);
                        }
                 ;
-ClassDecl_rec   :      ClassDecl                        /* 1 or More of ClassDecl */
+ClassDecl_rec   :      ClassDecl                       
                           {  $$ = MakeTree(ClassOp, NullExp(), $1); } 
                 |      ClassDecl_rec ClassDecl
 			  {  $$ = MakeTree(ClassOp, $1, $2); }
-		/* This Grammar Rule definition creates the tree in the order that the classes are made
-		   This is not the behavior we want for this */
-		/*|	  ClassDecl ClassDecl_rec
-			  {  $$ = MakeTree(ClassOp, $2, $1); }*/
                 ;
 ClassDecl 	:	CLASSnum IDnum ClassBody
 			{
@@ -65,7 +61,7 @@ MethodDecl_List	:	MethodDecl_z1
 				$$ = MakeTree(BodyOp, $1, $2);
 			}
 		;
-MethodDecl_z1	:	
+MethodDecl_z1	:	/* Epsilon */
 			{
 				$$ = NullExp();
 			}
@@ -82,27 +78,24 @@ MethodDecl_z1	:
 				$$ = MakeTree(BodyOp, $1, $2);
 			}
 		;
-/* TODO Store Type*/
-MethodDecl	:	METHODnum VOIDnum IDnum LPARENnum Formal_Parameter_List RPARENnum Block
+MethodDecl	:	METHODnum Type IDnum LPARENnum Formal_Parameter_List RPARENnum Block
 			{
-				tree headOp = MakeTree(HeadOp, MakeLeaf(IDNode, $3), $5);
-				$$ = MakeTree(MethodOp, headOp, $7);
-			}
-		|	METHODnum Type IDnum LPARENnum Formal_Parameter_List RPARENnum Block
-			{
-				//type_method = $2;
 				tree headOp = MakeTree(HeadOp, MakeLeaf(IDNode, $3), $5);
 				$$ = MakeTree(MethodOp, headOp, $7);
 			}
 		;
 /* This currently creates a tree that looks like the given parser */
-Type		:	IDnum Type_rec
+Type		:	VOIDnum 
 			{
-				$$ = MakeTree(TypeIdOp, MakeLeaf(IDNode, $1), $2);
+				$$ = type_tree = NullExp();
+			}	
+		|	IDnum Type_rec
+			{
+				$$ = type_tree = MakeTree(TypeIdOp, MakeLeaf(IDNode, $1), $2);
 			}
 		|	INTnum Type_rec
 			{
-				$$ = MakeTree(TypeIdOp, MakeLeaf(INTEGERTNode, $1), $2);
+				$$ = type_tree = MakeTree(TypeIdOp, MakeLeaf(INTEGERTNode, $1), $2);
 			}
 		|	IDnum Type_rec DOTnum Type
 			{
@@ -110,7 +103,7 @@ Type		:	IDnum Type_rec
 				/* This code creates a tree that looks like the assignment pdf				
 				tree fieldTree = MakeTree(FieldOp, $4, NullExp());
 				$$ = MkRightC(fieldTree, typeTree); */
-				$$ = MkRightC($4, typeTree);
+				$$ = type_tree = MkRightC($4, typeTree);
 			}
 		|	INTnum Type_rec DOTnum Type
 			{
@@ -118,12 +111,12 @@ Type		:	IDnum Type_rec
 				/* This code creates a tree that looks like the assignment pdf
 				tree fieldTree = MakeTree(FieldOp, $4, NullExp());
 				$$ = MkRightC(fieldTree, typeTree); */
-				$$ = MkRightC($4, typeTree);
+				$$ = type_tree = MkRightC($4, typeTree);
 			}
 		;
-Type_rec	:	
+Type_rec	:	/* Epsilon */
 			{
-				$$ = NullExp();
+				$$ = type_tree = NullExp();
 			}
 		|	LBRACnum RBRACnum
 			{
@@ -134,15 +127,13 @@ Type_rec	:
 				$$ = MakeTree(IndexOp, NullExp(), $1);
 			}
 		;
-Formal_Parameter_List :	
+Formal_Parameter_List :	/* Epsilon */
 			{
-				//$$ = MakeTree(SpecOp, NullExp(), type_method);
-				$$ = MakeTree(SpecOp, NullExp(), NullExp());
+				$$ = MakeTree(SpecOp, NullExp(), type_tree);
 			}
 		|	Formal_Parameter_List_rec
 			{
-				//$$ = MakeTree(SpecOp, $1, type_method);
-				$$ = MakeTree(SpecOp, $1, NullExp());
+				$$ = MakeTree(SpecOp, $1, type_tree);
 			}
 		;
 Formal_Parameter_List_rec:	Formal_Parameter
@@ -202,7 +193,7 @@ StatementList_rec:	Statement
 				}
 			}
 		;
-Statement	:	
+Statement	:	/* Epsilon */
 			{
 				$$ = NullExp();
 			}	
@@ -232,16 +223,16 @@ Decls		:	DECLARATIONSnum FieldDecl_List ENDDECLARATIONSnum
 				$$ = $2;
 			}  
 		;
-FieldDecl_List	/* This Epsilon rule makes a dummy node of there are no Decls like the trees in the assignment 
-		:	
+FieldDecl_List	/* This Epsilon rule makes a dummy node of there are no Decls like the trees in the assignment */
+		:	/* Epsilon */
 			{
 				$$ = NullExp();
-			}*/
-		/* This Epsilon rule makes a body node with two dummy nodes like the example parser */
-		:	
+			}
+		/* This Epsilon rule makes a body node with two dummy nodes like the example parser 
+		: 	Epsilon 	
 			{
 				$$ = MakeTree(BodyOp, NullExp(), NullExp());
-			}
+			} */
 		|	FieldDecl
 			{
 				$$ = MakeTree(BodyOp, NullExp(), $1);
@@ -251,11 +242,8 @@ FieldDecl_List	/* This Epsilon rule makes a dummy node of there are no Decls lik
 				$$ = MakeTree(BodyOp, $1, $2);
 			}
 		;
-/* TODO */
 FieldDecl	:	Type FieldDecl_rec SEMInum
 			{
-				/* Save Type */
-				//type_record = $1;
 				$$ = $2;
 			}
 		;
@@ -268,19 +256,14 @@ FieldDecl_rec	:	FieldDecl_Id
 				$$ = MakeTree(DeclOp, $1, $3);
 			}
 		;
-/* TODO */
 FieldDecl_Id	:	VariableDeclId
 			{
-				/* set Left child to Type */
-				//tree commaTree = MakeTree(CommaOp, type_record, NullExp());
-				tree commaTree = MakeTree(CommaOp, NullExp(), NullExp());
+				tree commaTree = MakeTree(CommaOp, type_tree, NullExp());
 				$$ = MakeTree(CommaOp, $1, commaTree);
 			}
 		|	VariableDeclId EQUALnum VariableInitializer
 			{
-				/* set Left child to Type */
-				//tree commaTree = MakeTree(CommaOp, type_record, $3);
-				tree commaTree = MakeTree(CommaOp, NullExp(), $3);
+				tree commaTree = MakeTree(CommaOp, type_tree, $3);
 				$$ = MakeTree(CommaOp, $1, commaTree);
 			}
 		;
@@ -311,9 +294,7 @@ VariableInitializer:	Expression
 		;
 ArrayInitializer:	LBRACEnum ArrayInitializer_rec RBRACEnum
 			{
-				/*TODO add type to right child*/
-				//$$ = MakeTree(ArrayTypeOp, $2, type_record);
-				$$ = MakeTree(ArrayTypeOp, $2, NullExp());
+				$$ = MakeTree(ArrayTypeOp, $2, type_tree);
 			}
 		;
 ArrayInitializer_rec:	Expression
@@ -327,9 +308,7 @@ ArrayInitializer_rec:	Expression
 		;
 ArrayCreationExpression:INTnum ArrayCreationExpression_rec
 			{
-				/* TODO Add the type subtree */
-				//$$ = MakeTree(ArrayTypeOp, $2, type_record);
-				$$ = MakeTree(ArrayTypeOp, $2, NullExp());
+				$$ = MakeTree(ArrayTypeOp, $2, type_tree);
 			}
 		;
 ArrayCreationExpression_rec:ArrayExpression
@@ -357,7 +336,7 @@ MethodCallStatement:	Variable LPARENnum ParameterList RPARENnum
 				$$ = MakeTree(RoutineCallOp, $1, $3);
 			}
 		;
-ParameterList	:	
+ParameterList	:	/* Epsilon */
 			{
 				$$ = NullExp();
 			}
@@ -448,7 +427,7 @@ Factor		:	UnsignedConstant
 		;
 UnsignedConstant:	ICONSTnum
 			{
-				$$ = MakeLeaf(INTEGERTNode, $1);
+				$$ = MakeLeaf(NUMNode, $1);
 			}
 		|	SCONSTnum
 			{
@@ -481,7 +460,7 @@ SimpleExpression:	Term SimpleExpression_Op_rec
 				}
 			}
 		;
-SimpleExpression_Op_rec:
+SimpleExpression_Op_rec:/* Epsilon */
 			{
 				$$ = NullExp();
 			}
@@ -516,7 +495,7 @@ Term		:	Factor Term_Op_rec
 				}
 			}
 		;
-Term_Op_rec	:	
+Term_Op_rec	:	/* Epsilon */
 			{
 				$$ = NullExp();
 			}
@@ -547,7 +526,7 @@ Variable	:	IDnum Variable_rec
 				$$ = MakeTree(VarOp, MakeLeaf(IDNode, $1), $2);
 			}
 		;	
-Variable_rec	:	
+Variable_rec	:	/* Epsilon */
 			{
 				$$ = NullExp();
 			}
