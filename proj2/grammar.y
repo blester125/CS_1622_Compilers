@@ -17,7 +17,7 @@
 %type  <tptr>  Formal_Parameter_rec Formal_Parameter_List Formal_Parameter Formal_Parameter_List_rec
 %type  <tptr>  Statement StatementList StatementList_rec Formal_Parameter_rec ParameterList
 %type  <tptr>  FieldDecl_Id ArrayInitializer_rec ArrayCreationExpression_rec ArrayExpression
-%type  <tptr>  Field Field_rec Index Index_rec
+%type  <tptr>  Field Field_rec Index Index_rec Term_Op Term_Op_rec SimpleExpression_Op SimpleExpression_Op_rec
 
 %type  <tptr>  Program ClassDecl_rec ClassDecl ClassBody MethodDecl_z1 MethodDecl_rec Decls
 %type  <tptr>  FieldDecl_rec FieldDecl Tail FieldDecl_body VariableDeclId Bracket_rec1 Bracket_rec2
@@ -183,7 +183,6 @@ Statement	:
 			}
 		|	IfStatement 
 			{
-				printf("Found If");
 				$$ = $1;
 			}
 		|	WhileStatement 
@@ -339,7 +338,6 @@ ReturnStatement	:	RETURNnum
 				$$ = MakeTree(ReturnOp, $2, NullExp());
 			}
 		;
-/* TODO */
 IfStatement	:	IFnum Expression StatementList
 			{
 				tree commaTree = MakeTree(CommaOp, $2, $3);
@@ -404,7 +402,7 @@ Factor		:	UnsignedConstant
 			}
 		|	NOTnum Factor
 			{
-				$$ = MakeTree(UnaryNegOp, $2, NullExp());
+				$$ = MakeTree(NotOp, $2, NullExp());
 			}
 		;
 UnsignedConstant:	ICONSTnum
@@ -417,13 +415,91 @@ UnsignedConstant:	ICONSTnum
 			}
 		;
 /* TODO */
-SimpleExpression:	ICONSTnum
+SimpleExpression:	Term SimpleExpression_Op_rec
 			{
-				$$ = MakeLeaf(NUMNode, $1);
+				if ($2 == NullExp()) {
+					$$ = $1;
+				} else {
+					$$ = MkLeftC($1, $2);
+				}
 			}
-		|	LPARENnum Variable RPARENnum
+		|	PLUSnum Term SimpleExpression_Op_rec
 			{
-				$$ = $2;
+				if ($3 == NullExp()) {
+					$$ = $2;
+				} else {
+					$$ = MkLeftC($2, $3);
+				}
+			}
+		|	MINUSnum Term SimpleExpression_Op_rec
+			{
+				tree neg = MakeTree(UnaryNegOp, $2, NullExp());
+				if ($3 == NullExp()) {
+					$$ = neg;
+				} else {
+					$$ = MkLeftC(neg, $3);
+				}
+			}
+		;
+SimpleExpression_Op_rec:
+			{
+				$$ = NullExp();
+			}
+		|	SimpleExpression_Op SimpleExpression_Op_rec
+			{
+				if ($2 == NullExp()) {
+					$$ = $1;
+				} else {
+					$$ = MkLeftC($1, $2);
+				}
+			}	
+		;
+SimpleExpression_Op:	PLUSnum Term
+			{
+				$$ = MakeTree(AddOp, NullExp(), $2);
+			}
+		|	MINUSnum Term
+			{
+				$$ = MakeTree(SubOp, NullExp(), $2);
+			}
+		|	ORnum Term
+			{
+				$$ = MakeTree(OrOp, NullExp(), $2);
+			}
+		;
+Term		:	Factor Term_Op_rec
+			{
+				if ($2 == NullExp()) {
+					$$ = $1;
+				} else {
+					$$ = MkLeftC($1, $2);
+				}
+			}
+		;
+Term_Op_rec	:	
+			{
+				$$ = NullExp();
+			}
+		|	Term_Op Term_Op_rec
+			{
+				if ($2 == NullExp()) {
+					$$ = $1;
+				} else {
+					$$ = MkLeftC($1, $2);
+				}
+			}
+		;
+Term_Op		:	TIMESnum Factor
+			{
+				$$ = MakeTree(MultOp, NullExp(), $2);
+			}
+		|	DIVIDEnum Factor
+			{
+				$$ = MakeTree(DivOp, NullExp(), $2);
+			}
+		|	ANDnum Factor
+			{
+				$$ = MakeTree(AndOp, NullExp(), $2);
 			}
 		;
 Variable	:	IDnum Variable_rec

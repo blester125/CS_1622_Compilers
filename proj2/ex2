@@ -5,14 +5,8 @@ class First
 {
 	method void x(int a; int b)
 	{
-		if (x) {
-			if (y) {
-			} else {
-			}	
-		} else {
-			x := 13;
-		};
-		x := 3
+		if (!a||b&&c) {
+		}
 	}
 
 }
