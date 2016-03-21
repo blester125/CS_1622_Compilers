@@ -4,7 +4,7 @@
 
 extern int yycolumn, yylength, yyline, yylval;
 %}
-
+/* Skeleton code given as a starting point by Dr. Zhang */
 /* regular definitions */
 
 id            [a-z]+
