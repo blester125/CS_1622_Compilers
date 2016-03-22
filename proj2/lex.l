@@ -9,6 +9,7 @@ extern YYSTYPE yylval;
 extern char string_table[LIMIT1];
 int st_index;
 int pos();
+char * tolowercase(char a[]);
 void report_error(char str[]);
 void print_string_table();
 void add_to_string_table(char str[]);
@@ -214,6 +215,17 @@ void print_string_table() {
 	printf("\n");
 }
 
+char * tolowercase(char a[]) {
+/* transform an identifier to lower case representation */
+  int i;
+  for( i=0; i<yyleng; i++ )
+  {
+     if ( 'A'<=a[i] && a[i]<='Z' )
+        a[i] = a[i] - 'A' + 'a';
+  }
+  return a;
+}
+
 /* Method to handle addition to the string_table */
 void add_to_string_table(char a[]) {
 	/* Search for the string in the table */
@@ -221,6 +233,7 @@ void add_to_string_table(char a[]) {
 	/* if it was not found insert into table and return index where
 	   it was inserted */
 	if (search_index == -1) {
+		a = tolowercase(a);
 		yylval.intg = insert(a);
 	/* if found return index it was found at */
 	} else {

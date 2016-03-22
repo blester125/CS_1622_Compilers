@@ -8,6 +8,7 @@
 extern int yycolumn, yylength, yyline, yylval;
 int st_index;
 int pos();
+char * tolowercase(char a[]);
 void report_error(char str[]);
 void print_symbolTable();
 void string_table(char str[]);
@@ -220,11 +221,23 @@ void string_table(char a[]) {
 	/* if it was not found insert into table and return index where
 	   it was inserted */
 	if (search_index == -1) {
+		a = tolowercase(a);
 		yylval = insert(a);
 	/* if found return index it was found at */
 	} else {
 		yylval = search_index;
 	}
+}
+
+char * tolowercase(char a[]) {
+/* transform an identifier to lower case representation */
+  int i;
+  for( i=0; i<yyleng; i++ )
+  {
+     if ( 'A'<=a[i] && a[i]<='Z' )
+        a[i] = a[i] - 'A' + 'a';
+  }
+  return a;
 }
 
 /* insert into the symboltable */

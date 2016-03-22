@@ -11,11 +11,7 @@ This will run a make file that runs the commands
 	gcc -g -o parser y.tab.c proj2.c -lfl
 The parser can then be run on files with the command
 	./parser < file
-
-This parser is built on the lexer I made for project 1. This means
-that is uses my string_table which stores variables in the case that
-they were first seen in opposed to the all lower case versions that
-are stored in the example parser.
+This was compiled and tested on my computer running gcc version 4.8.4
 
 This parser generates trees that are slightly different from
 the example parser (downloaded from the course website) because 
