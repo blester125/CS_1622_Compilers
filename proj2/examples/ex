@@ -6,6 +6,9 @@ class Test
 	int y;
 	enddeclarations
 	method void main() {
-		return x;
+		if (!x){
+		};
+	 	if (-x) {
+		}
 	}
 }
