@@ -49,9 +49,14 @@ ClassDecl 	:	CLASSnum IDnum ClassBody
 				$$ = MakeTree(ClassDefOp, $3, MakeLeaf(IDNode, $2));
 			} 
 		;
-ClassBody	:	LBRACEnum MethodDecl_List RBRACEnum
+ClassBody	:	LBRACEnum Decls MethodDecl_List RBRACEnum
 			{
-				$$ = $2;
+				if ($3 == NullExp()) {
+					$$ = $2;
+				}
+				else {
+					$$ = MkLeftC($2, $3);
+				}
 			}
 		;
 MethodDecl_List	:	MethodDecl_z1
@@ -67,17 +72,9 @@ MethodDecl_z1	:	/* Epsilon */
 			{
 				$$ = NullExp();
 			}
-		|	Decls
-			{
-				$$ = $1;
-			}
 		|	MethodDecl
 			{
 				$$ = MakeTree(BodyOp, NullExp(), $1);
-			}
-		|	Decls MethodDecl
-			{
-				$$ = MakeTree(BodyOp, $1, $2);
 			}
 		;
 MethodDecl	:	METHODnum Type IDnum LPARENnum Formal_Parameter_List RPARENnum Block
@@ -225,7 +222,11 @@ Statement	:	/* Epsilon */
 				$$ = $1;
 			}
 		;
-Decls		:	DECLARATIONSnum FieldDecl_List ENDDECLARATIONSnum
+Decls		:	/* Epsilon */
+			{
+				$$ = NullExp();
+			}	
+		|	DECLARATIONSnum FieldDecl_List ENDDECLARATIONSnum
 			{
 				$$ = $2;
 			}  

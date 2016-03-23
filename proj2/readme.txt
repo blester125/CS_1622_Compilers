@@ -13,6 +13,11 @@ The parser can then be run on files with the command
 	./parser < file
 This was compiled and tested on my computer running gcc version 4.8.4
 
+This project is based on me project 1 and therefore uses my string table
+created for that project. As such some of the index for strings and 
+variables into the string table my be different from that of the example 
+parser.
+
 This parser generates trees that are slightly different from
 the example parser (downloaded from the course website) because 
 the example parser generates trees that are different from the 

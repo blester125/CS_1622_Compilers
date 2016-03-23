@@ -1,0 +1,26 @@
+#!/bin/bash
+FILEROOT="./examples/ex"
+file="ex"
+out="./examples/myTest"
+out2="./examples/theirTest"
+myout="myTest"
+theirout="theirTest"
+for i in `seq 1 10`;
+do
+        filein="$FILEROOT$i"
+	fileout="$out$i"
+        ./parser < $filein > $fileout
+        filein="$FILEROOT$i"
+        fileout="$out2$i"
+	./examples/exparser < $filein > $fileout
+done
+cd ./examples
+for i in `seq 1 10`;
+do
+	diff -c "$myout$i" "$theirout$i"  
+done
+for i in `seq 1 10`;
+do 
+	rm "$myout$i"
+	rm "$theirout$i"
+done
