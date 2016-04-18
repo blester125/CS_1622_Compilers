@@ -1,0 +1,22 @@
+/* Example I am using with Seman atm */
+program xyz;
+class Test
+{
+	declarations
+	int x;
+	int[][] y = int[2][2];
+	enddeclarations
+
+	method int  main ( val int x, z ; int y, a)
+	declarations
+	int h;
+	Point p;
+	enddeclarations
+
+	{
+		y[3][h] := 7;
+		p.value.p1 := 4;
+		System.println('ex');
+	}
+}
+

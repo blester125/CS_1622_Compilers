@@ -3,6 +3,13 @@ lexer
 *~
 parser
 exparser
+seman
+seman.linux
 declaration_example
 type_example
 proj2/BrianLesterProj2/*
+proj3/BrianLesterProj3/*
+proj4/BrianLesterProj4/*
+*/output.txt
+*/lex.yy.c
+*/y.tab.c
