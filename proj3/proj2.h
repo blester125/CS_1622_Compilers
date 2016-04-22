@@ -91,5 +91,6 @@ void SetLeftTreeOp(tree, int);
 void SetRightTreeOp(tree, int);
 void SetLeftChild(tree, tree);
 void SetRightChild(tree, tree); 
+int NodeOp(tree);
 
 #endif

@@ -16,6 +16,7 @@ Aggelos Varvitsiotis.
 #include <stdio.h>
 #include <stdlib.h>
 #include "proj2.h"
+#include "proj3.h"
 
 
 ILTree dummy = { DUMMYNode, 0, 0, 0, 0 };
@@ -405,7 +406,7 @@ void printtree (nd, depth)
 		    else 
 		      fprintf (treelst,"[IDNode,%d,\"%s\"]\n", indx, "err");
 		    break;
-
+	#ifndef parser	
     case STNode:
                     indx = IntVal(nd);
                     if (indx > 0)
@@ -417,7 +418,7 @@ void printtree (nd, depth)
                     else 
                       fprintf (treelst,"[IDNode,%d,\"%s\"]\n", indx, "err");
                     break;
-
+	#endif
     case INTEGERTNode:
                       fprintf (treelst,"[INTEGERTNode]\n");
                     break;

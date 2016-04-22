@@ -3,20 +3,16 @@ program xyz;
 class Test
 {
 	declarations
-	int x;
-	int[][] y = int[2][2];
+		int a, b, c;
+		int x, y;
 	enddeclarations
-
-	method int  main ( val int x, z ; int y, a)
+	method int main()
 	declarations
-	int h;
-	Point p;
-	enddeclarations
-
+	enddeclarations 
 	{
-		y[3][h] := 7;
-		p.value.p1 := 4;
-		System.println('ex');
+	}
+
+	method int second(int x, y; Val int v) {
 	}
 }
 

@@ -80,6 +80,7 @@ int attr_top = 0;	     /* attribute array counter */
 extern int yyline;
 extern char string_table[];      /* string table in table.c */
 
+int mainDef = 0;
 /************************ routines *****************************/
 
 
@@ -233,9 +234,21 @@ int
 InsertEntry(id)
 int id;
 {
+	/* Look for main in whole program */
+	if (!strncmp(getname(id), "main", 4)) {
+		if (mainDef == 1) {
+			error_msg(MULTI_MAIN, ABORT, 0, 0);
+			return 0;
+		}
+		mainDef = 1;
+	}
 	/* id is already declared in the current block */
 	if (LookUpHere(id))
 	{
+		if (!strncmp(getname(id), "main", 4)) {
+			error_msg(MULTI_MAIN, ABORT, 0, 0);
+			return 0;
+		}
 		error_msg(REDECLARATION, CONTINUE, id, 0);
 		return (0);
 	}
@@ -270,6 +283,9 @@ int id;
 			stack[i].used = true;
 			return (stack[i].st_ptr);
 		}
+	}
+	if (!strncmp(getname(id), "main", 4)) {
+		return 0;
 	}
 	/* id is undefined, push a dummy element onto stack */
 	error_msg(UNDECLARATION, CONTINUE, id, 0);
