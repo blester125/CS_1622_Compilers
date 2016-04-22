@@ -6,13 +6,13 @@ class Test
 		int a, b, c;
 		int x, y;
 	enddeclarations
-	method int main()
+	method int main(val int q, w)
 	declarations
 	enddeclarations 
 	{
 	}
 
-	method int second(int x, y; Val int v) {
+	method int second(int x, y; Val int v, w; int a, g) {
 	}
 }
 

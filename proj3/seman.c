@@ -16,7 +16,11 @@ void analyze_ClassOp(tree root);
 void analyze_BodyOp(tree root);
 void analyze_DeclOp(tree root);
 void analyze_MethodOp(tree root);
-void explore_left(tree root);
+void analyze_Arg(tree root);
+int count_Args(tree root);
+void bottomUp(tree root);
+void topDownLeft(tree root);
+void topDownRight(tree root);
 int countDimension(tree root);
 
 int main() {
@@ -31,42 +35,54 @@ int main() {
 }
 
 void traversetree() {
-	explore_left(root);
+	bottomUp(root);
 }
 
 //rewrite
-void explore_left(tree root) {
+void bottomUp(tree root) {
 	if (IsNull(root)) {
 		return;
 	}
-	explore_left(LeftChild(root));
+	bottomUp(LeftChild(root));
 	process(root);
+}
+
+void topDownLeft(tree root) {
+	if (IsNull(root)) {
+		return;
+	}
+	process(root);
+	topDownLeft(LeftChild(root));
+}
+
+void topDownRight(tree root) {
+	if (IsNull(root)) {
+		return;
+	}
+	process(root);
+	topDownRight(RightChild(root));
 }
 
 //rewrite
 void process(tree root) {
 	if (NodeKind(root) == EXPRNode) {
-		process_node(root);
+		switch (NodeOp(root))
+		{
+			case ClassOp:
+				analyze_ClassOp(root);
+				break;
+			case BodyOp:
+				analyze_BodyOp(root);
+				break;
+			case DeclOp:
+				analyze_DeclOp(root);
+				break;
+			default:
+				break;
+		}
 	}
 	else {
 		process_leaf(root);
-	}
-}
-
-// rewrite
-void process_node(tree root) {
-	switch (NodeOp(root))
-	{
-		case ClassOp:
-			analyze_ClassOp(root);
-			break;
-		case BodyOp:
-			analyze_BodyOp(root);
-			break;
-		case DeclOp:
-			analyze_DeclOp(root);
-		default:
-			break;
 	}
 }
 
@@ -86,7 +102,7 @@ void analyze_ClassOp(tree root) {
 			SetIntVal(classname, nSymInd);
 			tree body = LeftChild(node);
 			OpenBlock();
-			explore_left(node);
+			bottomUp(node);
 			CloseBlock();
 		}
 	}
@@ -97,7 +113,7 @@ void analyze_BodyOp(tree root) {
 	switch(NodeOp(node))
 	{
 		case DeclOp:
-			explore_left(node);
+			topDownLeft(node);
 			break;
 		case MethodOp:
 			analyze_MethodOp(node);
@@ -116,10 +132,38 @@ void analyze_MethodOp(tree root) {
 	SetAttr(nSymInd, KIND_ATTR, FUNC);
 	SetNodeKind(name, STNode);
 	SetIntVal(name, nSymInd);
+	tree type = RightChild(RightChild(LeftChild(root)));
+	//printtree(type, 0);
+	SetAttr(nSymInd, TYPE_ATTR, (uintptr_t)type); 
 	OpenBlock();
-	explore_left(RightChild(root));
+	// Prase arguments
+	int numArgs = count_Args(LeftChild(RightChild(LeftChild(root))));
+	SetAttr(nSymInd, ARGNUM_ATTR, numArgs);
+	bottomUp(RightChild(root));
 	CloseBlock();
 }	
+
+int count_Args(tree root) {
+	if (IsNull(root)) {
+		return 0;
+	}
+	analyze_Arg(root);
+	return count_Args(RightChild(root)) + 1;
+}
+
+void analyze_Arg(tree root) {
+	tree name = LeftChild(LeftChild(root));
+	tree type = RightChild(LeftChild(root));
+	int nSymInd = InsertEntry(IntVal(name));
+	if (NodeOp(root) == RArgTypeOp) {
+		SetAttr(nSymInd, KIND_ATTR, REF_ARG);
+	} else {
+		SetAttr(nSymInd, KIND_ATTR, VALUE_ARG);
+	} 
+	SetAttr(nSymInd, TYPE_ATTR, (uintptr_t)type);
+	SetNodeKind(name, STNode);
+	SetIntVal(name, nSymInd);
+}
 
 // rewrite
 void analyze_DeclOp(tree root) {
