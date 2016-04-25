@@ -4,8 +4,8 @@ Semantic Error--line: 21, symbol main: redeclared.
           Name Nest-Level  Tree-Node Predefined        Kind       Type      Value  Offset Dimension   Argnum
 
   1     mytest          0                            class                                                       
-  2          y          1                         variable  143820128                                            
-  3          x          1                         variable  143820128                                            
+  2          y          1                         variable  153961824                                            
+  3          x          1                         variable  153961824                                            
   4       main          1                        procedure                                                       
   5      test1          0                            class                                                       
 ************* SYNTAX TREE PRINTOUT ***********

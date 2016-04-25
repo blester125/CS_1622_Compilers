@@ -5,12 +5,12 @@
 > Semantic Error--line: 20, symbol x: redeclared.
 > Semantic Error--line: 20, symbol m: redeclared.
 8,13c8,13
-<   2          y          1                         variable   27945136                                            
-<   3          x          1                         variable   27945136                                            
+<   2          y          1                         variable   19024048                                            
+<   3          x          1                         variable   19024048                                            
 <   4       main          1                        procedure                                                      0
-<   5       func          1                         function   27946336                                           2
-<   6          m          2                          ref_arg   27946576                                            
-<   7          n          2                          ref_arg   27946384                                            
+<   5       func          1                         function   19025248                                           2
+<   6          m          2                          ref_arg   19025488                                            
+<   7          n          2                          ref_arg   19025296                                            
 ---
 >   2          y          1                         variable   33330368                                            
 >   3          x          1                         variable   33330368                                            

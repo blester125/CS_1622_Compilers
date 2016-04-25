@@ -3,13 +3,13 @@
           Name Nest-Level  Tree-Node Predefined        Kind       Type      Value  Offset Dimension   Argnum
 
   1      point          0                            class                                                       
-  2          y          1                         variable   14071984                                            
-  3          x          1                         variable   14071984                                            
+  2          y          1                         variable   20822192                                            
+  3          x          1                         variable   20822192                                            
   4       test          0                            class                                                       
-  5         p0          1                         variable   14072656                                            
+  5         p0          1                         variable   20822864                                            
   6       main          1                        procedure                                                      0
-  7          p          2                         variable   14073040                                            
-  8        xxx          2                         variable   14073376                                            
+  7          p          2                         variable   20823248                                            
+  8        xxx          2                         variable   20823584                                            
 ************* SYNTAX TREE PRINTOUT ***********
 
   +-[IDNode,0,"x4"]

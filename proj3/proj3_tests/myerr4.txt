@@ -7,21 +7,21 @@ Semantic Error--line: 78, symbol f0: is an undeclared field name.
   1     system          0                   yes      class                                                       
   2    println          1                   yes  procedure                                                      1
   3     point0          0                            class                                                       
-  4      parr0          1                            array   20822240                                1           
-  5          y          1                         variable   20822768                                            
-  6          x          1                         variable   20822768                                            
+  4      parr0          1                            array   32622816                                1           
+  5          y          1                         variable   32623344                                            
+  6          x          1                         variable   32623344                                            
   7         f0          1                        procedure                                                      0
   8     point1          0                            class                                                       
-  9         t1          1                         variable   20828000                                            
- 10         p1          1                         variable   20828384                                            
+  9         t1          1                         variable   32628576                                            
+ 10         p1          1                         variable   32628960                                            
  11         f1          1                        procedure                                                      0
  12     point2          0                            class                                                       
- 13        p21          1                         variable   20831600                                            
- 14        p20          1                         variable   20831936                                            
- 15         xy          1                         variable   20832272                                            
+ 13        p21          1                         variable   32632176                                            
+ 14        p20          1                         variable   32632512                                            
+ 15         xy          1                         variable   32632848                                            
  16       main          1                        procedure                                                      0
- 17         xx          2                         variable   20832656                                            
- 18         px          2                         variable   20833040                                            
+ 17         xx          2                         variable   32633232                                            
+ 18         px          2                         variable   32633616                                            
 ************* SYNTAX TREE PRINTOUT ***********
 
   +-[IDNode,0,"x4"]

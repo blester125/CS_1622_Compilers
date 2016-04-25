@@ -3,9 +3,9 @@
 ---
 >   2    println          1                   yes  procedure                                                       
 8,11c8,11
-<   4        sum          1                         function   14633136                                           1
-<   5          i          2                          val_arg   14633184                                            
-<   6          s          2                         variable   14633472                                            
+<   4        sum          1                         function   28432560                                           1
+<   5          i          2                          val_arg   28432608                                            
+<   6          s          2                         variable   28432896                                            
 <   7       main          1                        procedure                                                      0
 ---
 >   4        sum          1                         function   11035840                                            

@@ -3,13 +3,13 @@
           Name Nest-Level  Tree-Node Predefined        Kind       Type      Value  Offset Dimension   Argnum
 
   1     mytest          0                            class                                                       
-  2       func          1                         function  160032096                                            
-  3          x          2                          ref_arg  160032192                                            
-  4          y          2                          ref_arg  160032288                                            
-  5          z          2                          ref_arg  160032408                                            
+  2       func          1                         function  150173024                                            
+  3          x          2                          ref_arg  150173120                                            
+  4          y          2                          ref_arg  150173216                                            
+  5          z          2                          ref_arg  150173336                                            
   6      test1          0                            class                                                       
   7       main          1                        procedure                                                       
-  8          w          2                         variable  160033056                                            
+  8          w          2                         variable  150173984                                            
 ************* SYNTAX TREE PRINTOUT ***********
 
   +-[DUMMYnode]

@@ -4,13 +4,13 @@ Semantic Error--line: 22, routine func: argument number is different with the pr
           Name Nest-Level  Tree-Node Predefined        Kind       Type      Value  Offset Dimension   Argnum
 
   1     mytest          0                            class                                                       
-  2       func          1                         function   37550256                                           3
-  3          x          2                          ref_arg   37550688                                            
-  4          y          2                          ref_arg   37550496                                            
-  5          z          2                          ref_arg   37550304                                            
+  2       func          1                         function   23517360                                           3
+  3          x          2                          ref_arg   23517792                                            
+  4          y          2                          ref_arg   23517600                                            
+  5          z          2                          ref_arg   23517408                                            
   6      test1          0                            class                                                       
   7       main          1                        procedure                                                      0
-  8          w          2                         variable   37551888                                            
+  8          w          2                         variable   23518992                                            
 ************* SYNTAX TREE PRINTOUT ***********
 
   +-[IDNode,0,"err4"]

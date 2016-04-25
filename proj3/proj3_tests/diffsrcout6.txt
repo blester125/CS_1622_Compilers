@@ -3,13 +3,13 @@
 ---
 >   2    println          1                   yes  procedure                                                       
 8,14c8,14
-<   4    product          1                         function   24066224                                           3
-<   5          p          2                          ref_arg   24066272                                            
-<   6          x          2                          val_arg   24066656                                            
-<   7          y          2                          val_arg   24066464                                            
+<   4    product          1                         function   20273328                                           3
+<   5          p          2                          ref_arg   20273376                                            
+<   6          x          2                          val_arg   20273760                                            
+<   7          y          2                          val_arg   20273568                                            
 <   8       main          1                        procedure                                                      0
-<   9          p          2                         variable   24068048                                            
-<  10          x          2                         variable   24068048                                            
+<   9          p          2                         variable   20275152                                            
+<  10          x          2                         variable   20275152                                            
 ---
 >   4    product          1                         function   26408128                                            
 >   5          p          2                          ref_arg   26408304                                            

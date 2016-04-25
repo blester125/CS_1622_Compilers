@@ -4,8 +4,8 @@ Semantic Error--line: 13, symbol z: undeclared.
           Name Nest-Level  Tree-Node Predefined        Kind       Type      Value  Offset Dimension   Argnum
 
   1     mytest          0                            class                                                       
-  2          y          1                         variable   32442544                                            
-  3          x          1                         variable   32442544                                            
+  2          y          1                         variable   29534384                                            
+  3          x          1                         variable   29534384                                            
   4       main          1                        procedure                                                      0
 ************* SYNTAX TREE PRINTOUT ***********
 

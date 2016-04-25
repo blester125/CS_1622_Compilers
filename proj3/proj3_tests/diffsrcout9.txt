@@ -3,9 +3,9 @@
 ---
 >   2    println          1                   yes  procedure                                                       
 8,11c8,11
-<   4      parr0          1                            array   33978592                                1           
-<   5          y          1                         variable   33979120                                            
-<   6          x          1                         variable   33979120                                            
+<   4      parr0          1                            array   11069664                                1           
+<   5          y          1                         variable   11070192                                            
+<   6          x          1                         variable   11070192                                            
 <   7         f0          1                        procedure                                                      0
 ---
 >   4      parr0          1                            array   24769776                                1           
@@ -13,20 +13,20 @@
 >   6          x          1                         variable   24770336                                            
 >   7         f0          1                        procedure                                                       
 13,15c13,15
-<   9         t1          1                         variable   33984352                                            
-<  10         p1          1                         variable   33984736                                            
+<   9         t1          1                         variable   11075424                                            
+<  10         p1          1                         variable   11075808                                            
 <  11         f1          1                        procedure                                                      0
 ---
 >   9         t1          1                         variable   24775824                                            
 >  10         p1          1                         variable   24776240                                            
 >  11         f1          1                        procedure                                                       
 17,22c17,22
-<  13        p21          1                         variable   33987952                                            
-<  14        p20          1                         variable   33988288                                            
-<  15         xy          1                         variable   33988624                                            
+<  13        p21          1                         variable   11079024                                            
+<  14        p20          1                         variable   11079360                                            
+<  15         xy          1                         variable   11079696                                            
 <  16       main          1                        procedure                                                      0
-<  17         xx          2                         variable   33989008                                            
-<  18         px          2                         variable   33989392                                            
+<  17         xx          2                         variable   11080080                                            
+<  18         px          2                         variable   11080464                                            
 ---
 >  13        p21          1                         variable   24779616                                            
 >  14        p20          1                         variable   24779984                                            

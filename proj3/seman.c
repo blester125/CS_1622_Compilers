@@ -201,29 +201,39 @@ void analyze_BodyOp(tree root) {
 }
 
 // Analyze Method
+// The node passed in is the MethodOp Node
 void analyze_MethodOp(tree root) {	
-	// Left Head Stuff
 	// Add the name
 	tree name = LeftChild(LeftChild(root));
 	int nSymInd = InsertEntry(IntVal(name));
 	if (nSymInd == -1) {
 		return;
 	}
+	// Transform the node
 	SetNodeKind(name, STNode);
 	SetIntVal(name, nSymInd);
+	// fetch the type tree
 	tree type = RightChild(RightChild(LeftChild(root)));
 	if (IsNull(type)) {
+		// If there is no type then it is void and a procedure
 		SetAttr(nSymInd, KIND_ATTR, PROCE);	
 	} else {
+		// if there is a type it is a function and save the type
 		SetAttr(nSymInd, KIND_ATTR, FUNC);	
 		SetAttr(nSymInd, TYPE_ATTR, (uintptr_t)type); 
 	}
+	// Open a new scope
 	OpenBlock();
 	// Prase arguments
+	// Count the number or arguments
 	int numArgs = count_Args(LeftChild(RightChild(LeftChild(root))));
+	// Analyze each argument
 	topDownRight(LeftChild(RightChild(LeftChild(root))));
+	// set the number or agrs
 	SetAttr(nSymInd, ARGNUM_ATTR, numArgs);
+	// analyze the statements
 	bottomUp(RightChild(root));
+	// close scope
 	CloseBlock();
 }	
 
@@ -237,21 +247,27 @@ int count_Args(tree root) {
 }
 
 // Analyze a VArgTypeOp or RArgType
+// The node passed in is the R/VArgNode
 void analyze_Arg(tree root) {
 	tree name = LeftChild(LeftChild(root));
 	tree type = RightChild(LeftChild(root));
+	// Insert the arg
 	int nSymInd = InsertEntry(IntVal(name));
+	// Set it to a Value arg or reference arg
 	if (NodeOp(root) == RArgTypeOp) {
 		SetAttr(nSymInd, KIND_ATTR, REF_ARG);
 	} else {
 		SetAttr(nSymInd, KIND_ATTR, VALUE_ARG);
 	} 
+	// Set the type
 	SetAttr(nSymInd, TYPE_ATTR, (uintptr_t)type);
+	// Transform the node
 	SetNodeKind(name, STNode);
 	SetIntVal(name, nSymInd);
 }
 
-// rewrite
+// Analyze a DeclOp
+// the DeclOp is passed in
 void analyze_DeclOp(tree root) {
 	int id, nSymInd;	
 	int dimension = 0;
@@ -277,22 +293,27 @@ void analyze_DeclOp(tree root) {
 	}
 	// Array Stuff
 	dimension = countDimensions(RightChild(typeTree));
+	// Set the number of dimensions for arrays
 	if (dimension != 0) {
 		SetAttr(nSymInd, KIND_ATTR, ARR);
 		SetAttr(nSymInd, DIMEN_ATTR, dimension);
 	}
 	tree varInt = RightChild(RightChild(RightChild(root)));
+	// Analyze if the var's are being initialized
 	analyze_VarInt(varInt, dimension, nSymInd);
 }
 
+// Analyze var initilizations
 void analyze_VarInt(tree root, int dimension, int arr) {
 	if (IsNull(root)) {
 		return;
 	}
 	if (NodeKind(root) == EXPRNode) {
+		// If it is an array check the bounds
 		if (NodeOp(root) == ArrayTypeOp) {
 			analyze_Array(root, dimension, arr);
 		} else {
+			// if it is a normal var it is just an expression
 			analyze_Exp(root);
 		}
 	}
@@ -309,29 +330,36 @@ void analyze_VarInt(tree root, int dimension, int arr) {
 	}
 }
 
+// Analyze if an array is initalized
 void analyze_Array(tree root, int dimension, int arr) {
-	//printf("%d\n", dimension);
 	tree start = LeftChild(root);
 	if (IsNull(start)) {
 		return;
 	}
+	// if there are Comma nodes it is an Array Initilization
 	if (NodeOp(start) == CommaOp) {
 		analyze_ArrayInit(start, dimension, arr);
+	// else there itis an Array Creation
 	} else {
 		analyze_ArrayCreate(start, dimension, arr);
 	}
 }
 
+// analyze an array initilization
 void analyze_ArrayInit(tree root, int dimension, int arr) {
 	if (IsNull(root)) {
 		return;
 	}
+	// recurse to the last one
 	analyze_ArrayInit(LeftChild(root), dimension, arr);
+	// analyze the var initializeation
 	analyze_VarInt(RightChild(root), dimension, arr);
 }
 
+// analyze the creation of an array
 void analyze_ArrayCreate(tree root, int dimension, int arr) {
 	int dimensions = countDimensionsLeft(root);
+	// the dimensions are incorrect report error
 	if (dimensions != dimension) {
 		error_msg(
 			INDX_MIS, 
@@ -342,7 +370,7 @@ void analyze_ArrayCreate(tree root, int dimension, int arr) {
 	bottomUp(root);
 }
 
-// rewrite with tree checks
+// recursivly count the number of nodes to the right before a Dummy
 int countDimensions(tree root) {
 	if (IsNull(root)) {
 		return 0;
@@ -350,6 +378,7 @@ int countDimensions(tree root) {
 	return countDimensions(RightChild(root)) + 1;
 }
 
+// recurisvly count the number of nodes to the left before a Dummy
 int countDimensionsLeft(tree root) {
 	if (IsNull(root)) {
 		return 0;
@@ -357,7 +386,7 @@ int countDimensionsLeft(tree root) {
 	return countDimensionsLeft(LeftChild(root)) + 1;
 }
 
-// finish
+// Analyze a Statement
 void analyze_Stmt(tree root) {
 	tree op = RightChild(root);
 	if (IsNull(op)) {
@@ -396,44 +425,50 @@ void analyze_Stmt(tree root) {
 	}
 }
 
+// Analyze an IfElse Construct
 void analyze_IfElseOp(tree root) {
 	if (IsNull(root)) {
 		return;
 	}
+	// recurse to the bottom of the IfElse trees
 	analyze_IfElseOp(LeftChild(root));
 	if (NodeOp(RightChild(root)) == CommaOp) {	
 		// Comma Tree
+		// (This is used on 'if' and 'else if'
 		// Analyze the Exp
 		analyze_Exp(LeftChild(RightChild(root)));
 		// Analyze the statement list
 		bottomUp(RightChild(RightChild(root)));
 	}
+	// analyze the statements to the right (final else block)
 	if (NodeOp(RightChild(root)) == StmtOp) {
 		bottomUp(RightChild(root));
 	}
 }
 
+// Analyze a return
 void analyze_ReturnOp(tree root) {
 	if (!IsNull(LeftChild(root))) {
 		analyze_Exp(LeftChild(root));
 	}
 }
 
+// Analyze a loop
 void analyze_LoopOp(tree root) {
 	analyze_Exp(LeftChild(root));
 	bottomUp(RightChild(root));
 }
 
-// type checking
+// Analyze an Assignment
 void analyze_AssignOp(tree root) {
 	tree var = RightChild(LeftChild(root));
 	analyze_Var(var);
-	//int lhs = analyze_Var(var);
 	tree exp = RightChild(root);
-	//int rhs = analyze_Exp(exp);
 	analyze_Exp(exp);
 	// For use when type checking
 	/*
+	int lhs = analyze_Var(var);
+	int rhs = analyze_Exp(exp);
 	if (IsAttr(lhs, TYPE_ATTR) && IsAttr(rhs, TYPE_ATTR)) {
 		check and compare types
 		if not equal
@@ -546,7 +581,6 @@ int analyze_Var(tree root) {
 			// Grab the field name node
 			tree fieldName = LeftChild(LeftChild(select));
 			// Look up and find the one in the right scope
-			//printf("%d\n", IntVal(fieldName));
 			nSymInd = LookUpField(classIndex, IntVal(fieldName));
 			if (nSymInd == 0) {
 				return 0;
@@ -555,7 +589,6 @@ int analyze_Var(tree root) {
 			SetIntVal(fieldName, nSymInd);
 			// Find class index of the field
 			classIndex = findClass(nSymInd);
-			//kind = GetAttr(nSymInd, KIND_ATTR);
 			usedDim = 0;
 		}
 		// grab next node for loop
@@ -575,11 +608,10 @@ int analyze_Var(tree root) {
 			}
 		}
 	}
-	//printf("%d\n", kind);
-	//printf("%d\n", nSymInd);	
 	return nSymInd;
 }
 
+// Analyze an Expression
 void analyze_Exp(tree root) {
 	if (NodeKind(root) == EXPRNode) {
 		switch(NodeOp(root))
@@ -611,20 +643,12 @@ void analyze_Exp(tree root) {
 	}
 }
 
+// Analyze a simple expression
 void analyze_SimpleExp(tree root) {
 	int last = 0;
 	if (IsNull(root)) {
 		return;
 	}
-	/*if (NodeKind(root) == STRINGNode) {
-		if (outputMethod == 0) {
-			error_msg(
-				STRING_MIS,
-				CONTINUE,
-				IntVal(root),
-				0);
-		}
-	}*/
 	if (NodeKind(root) == EXPRNode) {
 		switch (NodeOp(root)) {
 			case AddOp:
@@ -658,6 +682,7 @@ void analyze_SimpleExp(tree root) {
 	}
 }
 
+// Analyze a Term
 void analyze_Term(tree root) {
 	int last = 0;
 	if (IsNull(root)) {
@@ -692,6 +717,7 @@ void analyze_Term(tree root) {
 	}
 }
 
+// Analyze a Factor
 void analyze_Factor(tree root) {
 	if (IsNull(root)) {
 		return;
@@ -723,6 +749,7 @@ void analyze_Factor(tree root) {
 	}
 }
 
+// Analyze a Rountine Call
 // Add type checking?
 void analyze_RoutineCallOp(tree root) {
 	tree var = LeftChild(root);	
@@ -730,12 +757,12 @@ void analyze_RoutineCallOp(tree root) {
 	if (name == 0) {
 		return;
 	}
+	// Set a global to mark if we are currently using an output function
 	if (!strcmp(getname(GetAttr(name, NAME_ATTR)), "println")) {
 		outputMethod = 1;
 	}
-	//printf("%s\n", getname(GetAttr(name, NAME_ATTR)));
-	//printf("%d\n",outputMethod);
-	if (GetAttr(name, KIND_ATTR) != FUNC 
+	// If this is not a procedure or function report error
+	if (GetAttr(name, KIND_ATTR) != FUNC
 			&& GetAttr(name, KIND_ATTR) != PROCE) {
 		error_msg(
 			PROCE_MISMATCH,
@@ -744,6 +771,7 @@ void analyze_RoutineCallOp(tree root) {
 			0);
 		return;
 	}
+	// check the argument numbers
 	int args = countDimensions(RightChild(root));
 	if (IsAttr(name, ARGNUM_ATTR)) { 
 		if (args != GetAttr(name, ARGNUM_ATTR)) {

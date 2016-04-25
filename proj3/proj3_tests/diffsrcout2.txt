@@ -3,17 +3,17 @@
 ---
 >   2    println          1                   yes  procedure                                                       
 8,10c8,10
-<   4     length          1                         variable   18290864                                            
-<   5      width          1                         variable   18290864                                            
-<   6    getarea          1                         function   18291488                                           0
+<   4     length          1                         variable   11163824                                            
+<   5      width          1                         variable   11163824                                            
+<   6    getarea          1                         function   11164448                                           0
 ---
 >   4     length          1                         variable   16209088                                            
 >   5      width          1                         variable   16209088                                            
 >   6    getarea          1                         function   16209776                                            
 12,14c12,14
-<   8        len          1                         variable   18293744                                            
+<   8        len          1                         variable   11166704                                            
 <   9       main          1                        procedure                                                      0
-<  10       area          2                         variable   18294128                                            
+<  10       area          2                         variable   11167088                                            
 ---
 >   8        len          1                         variable   16212192                                            
 >   9       main          1                        procedure                                                       

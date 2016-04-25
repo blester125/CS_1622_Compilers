@@ -7,11 +7,11 @@
   3    println          1                   yes  procedure                                                      1
   4       test          0                            class                                                       
   5       main          1                        procedure                                                      0
-  6          x          2                         variable   20469984                                            
-  7          i          2                         variable   20470320                                            
+  6          x          2                         variable    6703328                                            
+  7          i          2                         variable    6703664                                            
   8      test2          0                            class                                                       
   9      test3          0                            class                                                       
- 10      hahah          1                         function   20474736                                           0
+ 10      hahah          1                         function    6708080                                           0
 ************* SYNTAX TREE PRINTOUT ***********
 
   +-[IDNode,0,"p6"]

@@ -7,8 +7,8 @@
   3    println          1                   yes  procedure                                                      1
   4         c3          0                            class                                                       
   5       main          1                        procedure                                                      0
-  6          x          2                         variable   37259488                                            
-  7          y          2                         variable   37259824                                            
+  6          x          2                         variable   36903136                                            
+  7          y          2                         variable   36903472                                            
 ************* SYNTAX TREE PRINTOUT ***********
 
   +-[IDNode,0,"ex3"]

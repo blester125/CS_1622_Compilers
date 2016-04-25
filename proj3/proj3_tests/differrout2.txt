@@ -3,8 +3,8 @@
 ---
 > Semantic Error--line: 12, symbol z: undeclared.
 7,9c7,9
-<   2          y          1                         variable   32442544                                            
-<   3          x          1                         variable   32442544                                            
+<   2          y          1                         variable   29534384                                            
+<   3          x          1                         variable   29534384                                            
 <   4       main          1                        procedure                                                      0
 ---
 >   2          y          1                         variable   10855616                                            
