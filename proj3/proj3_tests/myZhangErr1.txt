@@ -5,12 +5,12 @@ Semantic Error--line: 21, symbol m: redeclared.
           Name Nest-Level  Tree-Node Predefined        Kind       Type      Value  Offset Dimension   Argnum
 
   1     mytest          0                            class                                                       
-  2          y          1                         variable   12978352                                            
-  3          x          1                         variable   12978352                                            
+  2          y          1                         variable   28637360                                            
+  3          x          1                         variable   28637360                                            
   4       main          1                        procedure                                                      0
-  5       func          1                         function   12979552                                           2
-  6          m          2                          ref_arg   12979792                                            
-  7          n          2                          ref_arg   12979600                                            
+  5       func          1                         function   28638560                                           2
+  6          m          2                          ref_arg   28638800                                            
+  7          n          2                          ref_arg   28638608                                            
 ************* SYNTAX TREE PRINTOUT ***********
 
   +-[IDNode,0,"err1"]

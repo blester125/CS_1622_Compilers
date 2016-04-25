@@ -3,11 +3,11 @@
 ---
 >   2    println          1                   yes  procedure                                                       
 8,12c8,12
-<   4          x          1                            array   36608224                                1           
-<   5         ia          1                            array   36608800                                1           
+<   4          x          1                            array    9799904                                1           
+<   5         ia          1                            array    9800480                                1           
 <   6       main          1                        procedure                                                      0
-<   7          y          2                            array   36609568                                1           
-<   8          z          2                         variable   36610096                                            
+<   7          y          2                            array    9801248                                1           
+<   8          z          2                         variable    9801776                                            
 ---
 >   4          x          1                            array   22156528                                1           
 >   5         ia          1                            array   22157136                                1           

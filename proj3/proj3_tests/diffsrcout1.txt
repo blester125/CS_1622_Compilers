@@ -3,9 +3,9 @@
 ---
 >   2    println          1                   yes  procedure                                                       
 8,10c8,10
-<   4          x          1                         variable   32024752                                            
+<   4          x          1                         variable   23914672                                            
 <   5       main          1                        procedure                                                      0
-<   6          x          2                         variable   32025232                                            
+<   6          x          2                         variable   23915152                                            
 ---
 >   4          x          1                         variable   29295808                                            
 >   5       main          1                        procedure                                                       

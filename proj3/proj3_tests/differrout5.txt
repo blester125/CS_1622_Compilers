@@ -3,8 +3,8 @@
 ---
 > Semantic Error--line: 21, symbol main: redeclared.
 7,9c7,9
-<   2          y          1                         variable   23193776                                            
-<   3          x          1                         variable   23193776                                            
+<   2          y          1                         variable   39643312                                            
+<   3          x          1                         variable   39643312                                            
 <   4       main          1                        procedure                                                      0
 ---
 >   2          y          1                         variable   29365440                                            

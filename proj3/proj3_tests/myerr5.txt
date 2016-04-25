@@ -4,8 +4,8 @@ Semantic Error--line: 22, main() method already declared.
           Name Nest-Level  Tree-Node Predefined        Kind       Type      Value  Offset Dimension   Argnum
 
   1     mytest          0                            class                                                       
-  2          y          1                         variable   23193776                                            
-  3          x          1                         variable   23193776                                            
+  2          y          1                         variable   39643312                                            
+  3          x          1                         variable   39643312                                            
   4       main          1                        procedure                                                      0
   5      test1          0                            class                                                       
 ************* SYNTAX TREE PRINTOUT ***********

@@ -3,12 +3,12 @@
 ---
 > Semantic Error--line: 21, symbol main: redeclared.
 7,9c7,9
-<   2          y          1                         variable   19384496                                            
-<   3          x          1                         variable   19384496                                            
+<   2          y          1                         variable   17148080                                            
+<   3          x          1                         variable   17148080                                            
 <   4       main          1                        procedure                                                      0
 ---
->   2          y          1                         variable  153961824                                            
->   3          x          1                         variable  153961824                                            
+>   2          y          1                         variable  157230432                                            
+>   3          x          1                         variable  157230432                                            
 >   4       main          1                        procedure                                                       
 13c13
 <   +-[IDNode,0,"err5"]

@@ -12,6 +12,9 @@
 ../seman < ./err4.txt > ./myZhangErr4.txt
 ../seman < ./err5.txt > ./myZhangErr5.txt
 
+../seman < ./err6.txt > ./myerr6.txt
+./seman.linux < ./err6.txt > ./ZhangErr6.txt
+
 ./seman.linux < ./err1.txt > ./ZhangErr1.txt
 ./seman.linux < ./err2.txt > ./ZhangErr2.txt
 ./seman.linux < ./err3.txt > ./ZhangErr3.txt
@@ -40,6 +43,8 @@ diff ./myZhangErr2.txt ./ZhangErr2.txt > diffZerrout2.txt
 diff ./myZhangErr3.txt ./ZhangErr3.txt > diffZerrout3.txt
 diff ./myZhangErr4.txt ./ZhangErr4.txt > diffZerrout4.txt
 diff ./myZhangErr5.txt ./ZhangErr5.txt > diffZerrout5.txt
+
+diff ./myerr6.txt ./ZhangErr6.txt > diffZerrout6.txt
 
 diff ./mysrc1.txt ./src1.out > diffsrcout1.txt
 diff ./mysrc2.txt ./src2.out > diffsrcout2.txt

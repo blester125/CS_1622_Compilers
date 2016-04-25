@@ -9,21 +9,21 @@
 ---
 >   2    println          1                   yes  procedure                                                       
 10,16c10,16
-<   4          y          1                            array   17631456                                1           
-<   5          x          1                            array   17631456                                1           
-<   6          z          1                            array   17632272                                2           
+<   4          y          1                            array   14407904                                1           
+<   5          x          1                            array   14407904                                1           
+<   6          z          1                            array   14408720                                2           
 <   7       main          1                        procedure                                                      0
-<   8          a          2                         variable   17632944                                            
+<   8          a          2                         variable   14409392                                            
 <   9       next          1                        procedure                                                      1
-<  10          x          2                          ref_arg   17635632                                            
+<  10          x          2                          ref_arg   14412080                                            
 ---
->   4          y          1                            array  135853432                                1           
->   5          x          1                            array  135853432                                1           
->   6          z          1                            array  135853888                                2           
+>   4          y          1                            array  147658104                                1           
+>   5          x          1                            array  147658104                                1           
+>   6          z          1                            array  147658560                                2           
 >   7       main          1                        procedure                                                       
->   8          a          2                         variable  135854272                                            
+>   8          a          2                         variable  147658944                                            
 >   9       next          1                        procedure                                                       
->  10          x          2                          ref_arg  135855760                                            
+>  10          x          2                          ref_arg  147660432                                            
 20c20
 <   +-[IDNode,0,"err3"]
 ---
