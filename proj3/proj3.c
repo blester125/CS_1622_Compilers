@@ -121,6 +121,7 @@ STInit()
 		/* SetAttr(nSymInd, TREE_ATTR, NULL); */
 		SetAttr(nSymInd, PREDE_ATTR, true);
 		SetAttr(nSymInd, KIND_ATTR, PROCE);
+		SetAttr(nSymInd, ARGNUM_ATTR, 1);
 	}
 }
 
@@ -215,6 +216,9 @@ int type, action, id, seq;
 		case MULTI_MAIN:
 			printf("main() method already declared.\n");
 			break;
+		case STRING_MIS:
+			printf("symbol %s: is String Contstant outside of an output function.\n", getstring(id));
+			break;
 		default:
 			printf("error type: %d.\n", type);
 	}
@@ -237,18 +241,18 @@ int id;
 	/* Look for main in whole program */
 	if (!strncmp(getname(id), "main", 4)) {
 		if (mainDef == 1) {
-			error_msg(MULTI_MAIN, ABORT, 0, 0);
-			return 0;
+			error_msg(MULTI_MAIN, CONTINUE, 0, 0);
+			return -1;
 		}
 		mainDef = 1;
 	}
 	/* id is already declared in the current block */
 	if (LookUpHere(id))
 	{
-		if (!strncmp(getname(id), "main", 4)) {
-			error_msg(MULTI_MAIN, ABORT, 0, 0);
-			return 0;
-		}
+		//if (!strncmp(getname(id), "main", 4)) {
+		//	error_msg(MULTI_MAIN, CONTINUE, 0, 0);
+		//	return -1;
+		//}
 		error_msg(REDECLARATION, CONTINUE, id, 0);
 		return (0);
 	}
@@ -284,13 +288,64 @@ int id;
 			return (stack[i].st_ptr);
 		}
 	}
-	if (!strncmp(getname(id), "main", 4)) {
-		return 0;
-	}
 	/* id is undefined, push a dummy element onto stack */
 	error_msg(UNDECLARATION, CONTINUE, id, 0);
 	Push(false, id, 0, true);
 	return 0;
+}
+
+/* LookUp a field in a given class. The class int should be a class entry 
+   in the symbol table or a variable of a class type
+ */
+int LookUpField(class, field)
+int class;
+int field;
+{
+	int i;// = LookUp(class);
+	for(i += class + 1; i <= st_top; i++) {
+		//printf("%s\n", getname((int)GetAttr(i, NAME_ATTR)));
+		if ((int)GetAttr(i, NAME_ATTR) == field) {
+			if ((int)GetAttr(i, NEST_ATTR) == 1) { 
+				//printf("%d\n", i);
+				return (i);
+			}	
+		}
+		if ((int)GetAttr(i, KIND_ATTR) == CLASS) {
+			break;
+		}
+	}
+	error_msg(FIELD_MIS, CONTINUE, field, 0);
+	Push(false, field, 0, true);
+	return 0;
+}
+
+/* findClass(if): Given an id determines if it is a class or a variable
+   of type class. If it is return the index into the symbol table, 
+   otherwise return -1;
+*/
+int findClass(id)
+int id;
+{
+	int toReturn = -1;
+	//printf("%d\n", id);
+	if (IsAttr(id, KIND_ATTR)) {
+		if ((int)GetAttr(id, KIND_ATTR) == CLASS) {
+			toReturn = id;
+		} else {
+			if (IsAttr(id, TYPE_ATTR)) {
+				tree type = (tree)GetAttr(id, TYPE_ATTR);
+				//printtree(type, 0);
+				type = LeftChild(type);
+				if (NodeKind(type) == STNode) {
+					int index = IntVal(type);
+					if ((int)GetAttr(index, KIND_ATTR) == CLASS) {
+						toReturn = index;
+					}
+				}
+			}
+		}
+	}
+	return toReturn;
 }
 
 /*

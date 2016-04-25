@@ -1,0 +1,20 @@
+6,7c6,7
+<   2          y          1                         variable   14071984                                            
+<   3          x          1                         variable   14071984                                            
+---
+>   2          y          1                         variable   22701248                                            
+>   3          x          1                         variable   22701248                                            
+9,12c9,12
+<   5         p0          1                         variable   14072656                                            
+<   6       main          1                        procedure                                                      0
+<   7          p          2                         variable   14073040                                            
+<   8        xxx          2                         variable   14073376                                            
+---
+>   5         p0          1                         variable   22702016                                            
+>   6       main          1                        procedure                                                       
+>   7          p          2                         variable   22702464                                            
+>   8        xxx          2                         variable   22702832                                            
+15c15
+<   +-[IDNode,0,"x4"]
+---
+>   +-[DUMMYnode]

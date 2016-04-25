@@ -12,7 +12,7 @@ extern YYSTYPE yylval;
 /* Print the symbol table for final output */
 void print_string_table() {
 	int i;
-	printf("Symbol Table: ");
+	printf("String Table: ");
 	for (i = 0; i < st_index; i++) {
 		while (string_table[i] != '\0') {
 			printf("%c", string_table[i]);

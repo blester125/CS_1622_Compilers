@@ -405,6 +405,13 @@ IfStatement	:	IFnum Expression StatementList
 				tree ifTree = MakeTree(IfElseOp, NullExp(), commaTree);
 				$$ = MakeTree(IfElseOp, ifTree, $5);	
 			}
+		|	IFnum Expression StatementList ELSEnum IfStatement
+			{
+				tree commaTree = MakeTree(CommaOp, $2, $3);
+				tree ifTree = MakeTree(IfElseOp, NullExp(), commaTree);
+				MkLeftC(ifTree, $5);
+				$$ = $5;
+			}
 		;
 WhileStatement	:	WHILEnum Expression StatementList
 			{

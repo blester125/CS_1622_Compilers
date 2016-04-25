@@ -18,7 +18,6 @@ Aggelos Varvitsiotis.
 #include "proj2.h"
 #include "proj3.h"
 
-
 ILTree dummy = { DUMMYNode, 0, 0, 0, 0 };
  
 
@@ -142,6 +141,7 @@ tree T;
         if (NodeKind(T) != EXPRNode)
         {
           printf("NodeOP(): This node must be an EXPRNode!\n");
+	  printf("%s\n", getname(IntVal(T)));
           return(0);
         }
 	return (T->NodeOpType);

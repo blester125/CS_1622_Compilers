@@ -11,7 +11,11 @@ class myTest
 class test1
 {
 	method void main()
+	declarations
+		int w;
+	enddeclarations
 	{
 	myTest.func(2);
+	w := 1;
 	}
 }

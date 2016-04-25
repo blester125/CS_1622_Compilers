@@ -7,13 +7,13 @@ Semantic Error--line: 29, symbol z: has incorrect number of dimensions.
   1     system          0                   yes      class                                                       
   2    println          1                   yes  procedure                                                       
   3     mytest          0                            class                                                       
-  4          y          1                            array  159483256                                1           
-  5          x          1                            array  159483256                                1           
-  6          z          1                            array  159483712                                2           
+  4          y          1                            array  140572024                                1           
+  5          x          1                            array  140572024                                1           
+  6          z          1                            array  140572480                                2           
   7       main          1                        procedure                                                       
-  8          a          2                         variable  159484096                                            
+  8          a          2                         variable  140572864                                            
   9       next          1                        procedure                                                       
- 10          x          2                          ref_arg  159485584                                            
+ 10          x          2                          ref_arg  140574352                                            
  11     second          0                            class                                                       
 ************* SYNTAX TREE PRINTOUT ***********
 
